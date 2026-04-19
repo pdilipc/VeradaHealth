@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verada Health - UK Operating Model</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --accent-cyan: #22d3ee;
+      --accent-glow: rgba(34, 211, 238, 0.3);
+    }
+
+    :root.light {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #e2e8f0;
+      --bg-card: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --accent-cyan: #0891b2;
+      --accent-glow: rgba(8, 145, 178, 0.2);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--border-color);
+      z-index: 99;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-cyan);
+      transition: width 0.3s ease;
+    }
+
+    /* Main container */
+    .main-container {
+      margin-top: 64px;
+      height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Architecture view */
+    .architecture-scroll {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 24px;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .architecture-flow {
+      display: flex;
+      gap: 24px;
+      min-width: max-content;
+      padding-right: 100px;
+    }
+
+    /* Columns */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 320px;
+      max-width: 320px;
+      transition: all 0.3s ease;
+    }
+
+    .column.dimmed {
+      opacity: 0.3;
+      transform: scale(0.95);
+    }
+
+    .column.active {
+      min-width: 480px;
+      max-width: 480px;
+    }
+
+    .column-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Blocks */
+    .block {
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .block:hover {
+      transform: translateY(-2px);
+    }
+
+    .block.active {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    .block-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .block-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .block-expand {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .block-expand:hover {
+      background: var(--bg-secondary);
+    }
+
+    .block-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .block-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .block-description {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: none;
+    }
+
+    .block.active .block-description {
+      display: block;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Sub-cards */
+    .subcards-container {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .block.active .subcards-container {
+      display: block;
+    }
+
+    .subcard-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .subcard-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .subcard-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-color);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .subcard-dot.active {
+      background: var(--accent-cyan);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    .subcard-counter {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .subcard {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      display: none;
+    }
+
+    .subcard.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .subcard-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .subcard-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      color: var(--accent-cyan);
+    }
+
+    .subcard-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .subcard-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Flow connectors */
+    .connector {
+      position: absolute;
+      right: -26px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 2px;
+      background: var(--border-color);
+    }
+
+    .connector.active {
+      background: var(--accent-cyan);
+    }
+
+    .connector::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid var(--border-color);
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+
+    .connector.active::after {
+      border-left-color: var(--accent-cyan);
+    }
+
+    /* Pulse animation */
+    .pulse-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: pulseDot 1.5s infinite;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      display: none;
+    }
+
+    .connector.active .pulse-dot {
+      display: block;
+      animation: moveDot 1s infinite linear;
+    }
+
+    @keyframes moveDot {
+      0% { left: 0; }
+      100% { left: calc(100% - 8px); }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+      50% { opacity: 0.5; transform: translateY(-50%) scale(1.5); }
+    }
+
+    /* Floating button */
+    .floating-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: var(--accent-cyan);
+      color: #0f172a;
+      border: none;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      transition: all 0.2s;
+      z-index: 100;
+    }
+
+    .floating-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px var(--accent-glow);
+    }
+
+    .floating-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Hint indicator */
+    .scroll-hint {
+      position: fixed;
+      bottom: 100px;
+      right: 32px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .scroll-hint.visible {
+      opacity: 1;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* Custom scrollbar */
+    .architecture-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .architecture-scroll::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 4px;
+    }
+
+    .architecture-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .architecture-scroll::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* Icon SVGs */
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-lg {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Verada Health Ltd - UK Operating Model</h1>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <svg class="icon" id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+  </div>
+
+  <main class="main-container">
+    <div class="architecture-scroll" id="scrollContainer">
+      <div class="architecture-flow" id="architectureFlow">
+        <!-- Columns will be injected here -->
+      </div>
+    </div>
+  </main>
+
+  <div class="scroll-hint" id="scrollHint">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+    More components below
+  </div>
+
+  <button class="floating-btn" id="floatingBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </svg>
+    <span id="btnText">Start Tour</span>
+  </button>
+
+  <script>
+    // Data
+    const columns = [
+      {
+        title: "Foundation",
+        blocks: [
+          {
+            id: "verada-control",
+            title: "1. VERADA HEALTH LTD",
+            subtitle: "Control, Regulatory & Strategy",
+            description: "The central command establishing regulatory pathways, market access strategy, and clinical intelligence infrastructure for UK healthcare deployment.",
+            color: "#3b82f6",
+            subCards: [
+              { name: "Market Access & Reimbursement", detail: "Strategic positioning for NHS framework agreements, private payer engagement, and NICE pathway alignment. Develops compelling value propositions for commissioners.", icon: "trending" },
+              { name: "RWE and Clinical Intelligence", detail: "Real-world evidence generation and analysis capabilities. Transforms clinical data into actionable insights for regulatory submissions and commercial strategy.", icon: "chart" },
+              { name: "UKCA / CE Marking Strategy", detail: "Regulatory pathway planning and execution for UK and EU market access. Manages technical documentation, clinical evaluation, and conformity assessment.", icon: "check" },
+              { name: "MHRA Classification & Engagement", detail: "Device classification strategy and proactive regulatory dialogue. Ensures optimal risk classification and smooth approval pathways.", icon: "shield" },
+              { name: "UK Responsible Person", detail: "Legal compliance and market representation post-Brexit. Serves as the regulatory point of contact for all UK market activities.", icon: "users" }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Devices",
+        blocks: [
+          {
+            id: "therapeutic-devices",
+            title: "2. THERAPEUTIC DEVICES",
+            subtitle: "Connected Medical Devices",
+            description: "Portfolio of validated therapeutic devices forming the hardware layer. SynPhNe serves as the beachhead device, with Pheezee and pipeline devices extending capability.",
+            color: "#ef4444",
+            subCards: [
+              { name: "SynPhNe (EEG-EMG Device)", detail: "Beachhead neurorehabilitation device combining EEG and EMG sensing. Paired with desktop SynPhNe software via Bluetooth for real-time biofeedback therapy.", icon: "bluetooth" },
+              { name: "Pheezee (EMG-ROM Device)", detail: "EMG and range-of-motion measurement device with iOS/Android mobile app. Bluetooth-connected for home-based rehabilitation monitoring.", icon: "bluetooth" },
+              { name: "Connected Devices Ecosystem", detail: "Multi-device integration architecture allowing therapeutic devices to share data seamlessly through the VTX platform.", icon: "workflow" },
+              { name: "Device Pipeline", detail: "Future therapeutic devices in development, expanding the portfolio to address additional rehabilitation and neurological conditions.", icon: "trending" }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Platform",
+        blocks: [
+          {
+            id: "vtx-platform",
+            title: "3a. VTX PLATFORM",
+            subtitle: "System Brain - Central Data Lake",
+            description: "The intelligent core aggregating all device data into a unified clinical intelligence layer. UK-hosted with FHIR APIs and DSPT compliance.",
+            color: "#8b5cf6",
+            subCards: [
+              { name: "Verada.Health Data Lake", detail: "UK-hosted central data repository with FHIR-compliant APIs. DSPT (Data Security and Protection Toolkit) certified for NHS integration readiness.", icon: "database" },
+              { name: "Therapy Orchestration", detail: "Coordinated treatment protocol management across devices and care settings. Enables personalised therapy pathways based on patient progress.", icon: "workflow" },
+              { name: "Multi-Device Integration", detail: "Unified Bluetooth and API aggregation layer connecting SynPhNe, Pheezee, and future devices into a cohesive therapeutic ecosystem.", icon: "bluetooth" },
+              { name: "Clinical Intelligence Layer", detail: "AI-driven analytics generating insights from aggregated patient data. Powers clinical decision support and outcome prediction.", icon: "chart" }
+            ]
+          },
+          {
+            id: "practice-management",
+            title: "3b. PRACTICE MANAGEMENT",
+            subtitle: "MDT Scalability Layer",
+            description: "Software infrastructure enabling the multi-disciplinary team to manage high patient volumes efficiently, transforming clinical capacity.",
+            color: "#14b8a6",
+            subCards: [
+              { name: "Patient Scheduling", detail: "Automated high-volume appointment management. Optimises clinician time and maximises patient throughput across care modalities.", icon: "users" },
+              { name: "MDT Coordination", detail: "Multi-disciplinary team workflow management. Coordinates between physiotherapists, occupational therapists, and clinical leads.", icon: "workflow" },
+              { name: "Caseload Management", detail: "Therapist capacity planning and workload balancing. Ensures optimal patient-to-clinician ratios across the service.", icon: "chart" },
+              { name: "Billing & Administration", detail: "Integrated financial management for private and NHS-funded services. Streamlines invoicing, reporting, and compliance documentation.", icon: "check" }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Clinical Delivery",
+        blocks: [
+          {
+            id: "clinician-portal",
+            title: "4a. CLINICIAN PORTAL",
+            subtitle: "Clinical Interface",
+            description: "The primary clinical interface providing real-time patient monitoring, biofeedback displays, and outcome dashboards for the care team.",
+            color: "#10b981",
+            subCards: [
+              { name: "Clinical Dashboard", detail: "Patient vitals and trend visualisation. Displays therapy progress, adherence metrics, and clinical alerts in real-time.", icon: "chart" },
+              { name: "Patient App", detail: "Biofeedback display and exercise guidance for patients. Gamified interface encouraging therapy adherence and self-management.", icon: "users" },
+              { name: "Remote Monitoring", detail: "Continuous tracking of patient activity and outcomes. Enables early intervention and asynchronous clinical oversight.", icon: "trending" }
+            ]
+          },
+          {
+            id: "verada-clinic",
+            title: "4b. VERADA CLINIC",
+            subtitle: "CQC-Registered Delivery",
+            description: "CQC-registered clinical service delivering therapy through qualified clinicians, targeting beachhead post-discharge rehabilitation patients.",
+            color: "#f59e0b",
+            subCards: [
+              { name: "Clinician Network", detail: "Network of qualified physiotherapists and occupational therapists. CQC-compliant workforce delivering evidence-based rehabilitation.", icon: "users" },
+              { name: "Home Rehabilitation Delivery", detail: "In-home therapy services bringing device-assisted rehabilitation to patients. Reduces barriers to access and improves adherence.", icon: "home" },
+              { name: "Beachhead: Post-Discharge Patients", detail: "Initial target population of stroke and neurological patients post-hospital discharge. High unmet need and clear clinical pathway.", icon: "stethoscope" },
+              { name: "Patient Outcomes", detail: "Measurable clinical improvements in motor function, independence, and quality of life. Generates evidence for value demonstration.", icon: "trending" }
+            ]
+          },
+          {
+            id: "ehr-systems",
+            title: "4c. EHR INTEGRATION",
+            subtitle: "Bidirectional Health Record Sync",
+            description: "Seamless integration with national and hospital electronic health record systems, enabling data flow across the care continuum.",
+            color: "#6366f1",
+            subCards: [
+              { name: "NHS Spine", detail: "Integration with the national NHS digital infrastructure. Enables patient record access and care plan sharing.", icon: "database" },
+              { name: "GP Connect", detail: "Primary care data exchange enabling GPs to view rehabilitation progress and outcomes within their existing systems.", icon: "workflow" },
+              { name: "Epic / Cerner", detail: "Hospital EHR system integration for secondary care. Bidirectional data flow with major NHS trust systems.", icon: "database" }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Evidence",
+        blocks: [
+          {
+            id: "post-market",
+            title: "5a. POST-MARKET SURVEILLANCE",
+            subtitle: "Safety & Compliance",
+            description: "Systematic monitoring of device performance and patient safety in real-world use, fulfilling regulatory obligations and informing product development.",
+            color: "#6b7280",
+            subCards: [
+              { name: "Post-Market Surveillance (PMS)", detail: "Continuous device safety and performance monitoring. Tracks adverse events, device complaints, and usage patterns.", icon: "shield" },
+              { name: "Safety Reporting & Vigilance", detail: "Adverse event tracking and regulatory reporting. Ensures timely MHRA notifications and corrective actions when needed.", icon: "check" },
+              { name: "Longitudinal Clinical Monitoring", detail: "Long-term outcome tracking across patient cohorts. Generates evidence for clinical effectiveness and durability of benefit.", icon: "chart" }
+            ]
+          },
+          {
+            id: "evidence-engine",
+            title: "5b. EVIDENCE ENGINE",
+            subtitle: "Value Creation",
+            description: "Transforms clinical data into compelling evidence packages for regulators, payers, and commissioners. The fuel for market access.",
+            color: "#eab308",
+            subCards: [
+              { name: "Clinical Effectiveness", detail: "Outcome measures demonstrating therapeutic benefit. Validated endpoints for motor function, independence, and quality of life.", icon: "trending" },
+              { name: "Health Economics / QALY", detail: "Cost-effectiveness analysis and QALY calculations. Essential for NICE submissions and commissioner business cases.", icon: "chart" },
+              { name: "Real-World Evidence (RWE)", detail: "Pragmatic data from routine clinical use. Complements trial evidence with generalisable real-world outcomes.", icon: "database" }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Market Access",
+        blocks: [
+          {
+            id: "market-ladder",
+            title: "6. MARKET ACCESS LADDER",
+            subtitle: "Scale-Up Pathway",
+            description: "Progressive market penetration strategy, starting with private pay to build evidence, then expanding through insurance and NHS commissioning routes.",
+            color: "#22c55e",
+            subCards: [
+              { name: "Private Expansion", detail: "Initial market entry through self-pay patients. Builds clinical evidence and operational expertise with lower barriers.", icon: "users" },
+              { name: "Insurance Reimbursement", detail: "Private payer coverage from major health insurers. Evidence from private cohort supports reimbursement negotiations.", icon: "check" },
+              { name: "NHS Procurement", detail: "Framework agreements and supply chain access. Positions for trust-level purchasing and regional contracts.", icon: "cart" },
+              { name: "ICB/ISDN Commissioning", detail: "Integrated care system adoption at population level. The ultimate scale opportunity through system-wide commissioning.", icon: "building" }
+            ]
+          },
+          {
+            id: "commercialisation",
+            title: "7. PLATFORM COMMERCIALISATION",
+            subtitle: "B2B Revenue Streams",
+            description: "Beyond direct clinical delivery, the platform and device bundle creates licensing and partnership opportunities for broader market reach.",
+            color: "#a855f7",
+            subCards: [
+              { name: "Device + VTX Bundle", detail: "Integrated hardware-software solution for B2B customers. Complete rehabilitation platform for healthcare providers.", icon: "cpu" },
+              { name: "Path 1: Direct Enterprise Sales", detail: "Direct partnerships with NHS trusts, private hospital groups, and rehabilitation centres. Full-service implementation.", icon: "building" },
+              { name: "Path 2: Platform Licensing", detail: "Licensing the VTX platform to other device manufacturers or healthcare providers. Scalable revenue model.", icon: "workflow" }
+            ]
+          }
+        ]
+      }
+    ];
+
+    // State
+    let isDark = true;
+    let activeBlockId = null;
+    let currentSubCard = 0;
+    let isTourActive = false;
+    let tourBlockIndex = 0;
+
+    // Flatten blocks for tour
+    const allBlocks = columns.flatMap(col => col.blocks);
+
+    // Icon SVGs
+    const icons = {
+      trending: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>',
+      chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>',
+      check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+      shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+      users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+      bluetooth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"></polyline></svg>',
+      workflow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>',
+      database: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+      home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>',
+      stethoscope: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path><circle cx="20" cy="10" r="2"></circle></svg>',
+      cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>',
+      building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><line x1="8" y1="6" x2="8" y2="6"></line><line x1="16" y1="6" x2="16" y2="6"></line><line x1="12" y1="6" x2="12" y2="6"></line><line x1="8" y1="10" x2="8" y2="10"></line><line x1="16" y1="10" x2="16" y2="10"></line><line x1="12" y1="10" x2="12" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="16" y1="14" x2="16" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line></svg>',
+      cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>'
+    };
+
+    const blockIcons = {
+      'verada-control': 'building',
+      'therapeutic-devices': 'cpu',
+      'vtx-platform': 'database',
+      'practice-management': 'users',
+      'clinician-portal': 'stethoscope',
+      'verada-clinic': 'home',
+      'ehr-systems': 'database',
+      'post-market': 'shield',
+      'evidence-engine': 'chart',
+      'market-ladder': 'trending',
+      'commercialisation': 'cart'
+    };
+
+    // Render
+    function render() {
+      const flow = document.getElementById('architectureFlow');
+      flow.innerHTML = '';
+
+      columns.forEach((col, colIdx) => {
+        const isLastCol = colIdx === columns.length - 1;
+        const hasActiveBlock = col.blocks.some(b => b.id === activeBlockId);
+
+        const colEl = document.createElement('div');
+        colEl.className = `column${hasActiveBlock ? ' active' : ''}${isTourActive && !hasActiveBlock ? ' dimmed' : ''}`;
+
+        colEl.innerHTML = `<div class="column-title">${col.title}</div>`;
+
+        col.blocks.forEach((block, blockIdx) => {
+          const isActive = block.id === activeBlockId;
+          const isLastBlock = blockIdx === col.blocks.length - 1 && !isLastCol;
+
+          const blockEl = document.createElement('div');
+          blockEl.className = `block${isActive ? ' active' : ''}`;
+          blockEl.style.borderColor = isActive ? block.color : '';
+          blockEl.dataset.id = block.id;
+
+          let subCardsHtml = '';
+          if (block.subCards.length > 0) {
+            const dots = block.subCards.map((_, i) => 
+              `<div class="subcard-dot${i === currentSubCard && isActive ? ' active' : ''}" data-index="${i}"></div>`
+            ).join('');
+
+            const cards = block.subCards.map((sc, i) => `
+              <div class="subcard${i === currentSubCard ? ' active' : ''}" data-index="${i}">
+                <div class="subcard-header">
+                  <div class="subcard-icon">${icons[sc.icon] || icons.check}</div>
+                  <div class="subcard-name">${sc.name}</div>
+                </div>
+                <div class="subcard-detail">${sc.detail}</div>
+              </div>
+            `).join('');
+
+            subCardsHtml = `
+              <div class="subcards-container">
+                <div class="subcard-nav">
+                  <div class="subcard-dots">${dots}</div>
+                  <div class="subcard-counter">${currentSubCard + 1} / ${block.subCards.length}</div>
+                </div>
+                ${cards}
+              </div>
+            `;
+          }
+
+          blockEl.innerHTML = `
+            <div class="block-header">
+              <div class="block-icon" style="background: ${block.color}">${icons[blockIcons[block.id]] || icons.cpu}</div>
+              <button class="block-expand">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="${isActive ? '18 15 12 9 6 15' : '6 9 12 15 18 9'}"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="block-title">${block.title}</div>
+            <div class="block-subtitle">${block.subtitle}</div>
+            <div class="block-description">${block.description}</div>
+            ${subCardsHtml}
+            ${isLastBlock ? `<div class="connector${isActive ? ' active' : ''}"><div class="pulse-dot"></div></div>` : ''}
+          `;
+
+          colEl.appendChild(blockEl);
+        });
+
+        flow.appendChild(colEl);
+      });
+
+      // Add event listeners
+      document.querySelectorAll('.block').forEach(el => {
+        el.addEventListener('click', (e) => {
+          if (e.target.closest('.subcard-dot')) return;
+          const id = el.dataset.id;
+          if (activeBlockId === id) {
+            activeBlockId = null;
+            currentSubCard = 0;
+          } else {
+            activeBlockId = id;
+            currentSubCard = 0;
+            scrollToBlock(id);
+          }
+          render();
+          updateUI();
+        });
+      });
+
+      document.querySelectorAll('.subcard-dot').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentSubCard = parseInt(el.dataset.index);
+          render();
+        });
+      });
+    }
+
+    function scrollToBlock(blockId) {
+      const blockEl = document.querySelector(`[data-id="${blockId}"]`);
+      const container = document.getElementById('scrollContainer');
+      if (blockEl && container) {
+        const blockRect = blockEl.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const scrollLeft = container.scrollLeft + blockRect.left - containerRect.left - containerRect.width / 2 + blockRect.width / 2;
+        container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    }
+
+    function updateUI() {
+      // Progress
+      const progress = isTourActive ? ((tourBlockIndex + 1) / allBlocks.length) * 100 : 0;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+
+      // Button text
+      const btnText = document.getElementById('btnText');
+      if (!isTourActive && !activeBlockId) {
+        btnText.textContent = 'Start Tour';
+      } else if (activeBlockId) {
+        const block = allBlocks.find(b => b.id === activeBlockId);
+        if (block && currentSubCard < block.subCards.length - 1) {
+          btnText.textContent = 'Next Component';
+        } else {
+          const currentIdx = allBlocks.findIndex(b => b.id === activeBlockId);
+          if (currentIdx < allBlocks.length - 1) {
+            btnText.textContent = 'Next Section';
+          } else {
+            btnText.textContent = 'Restart Tour';
+          }
+        }
+      } else {
+        btnText.textContent = 'Start Tour';
+      }
+
+      // Scroll hint
+      const hint = document.getElementById('scrollHint');
+      const block = allBlocks.find(b => b.id === activeBlockId);
+      if (block && currentSubCard < block.subCards.length - 1) {
+        hint.classList.add('visible');
+      } else {
+        hint.classList.remove('visible');
+      }
+    }
+
+    function handleNext() {
+      if (!isTourActive && !activeBlockId) {
+        // Start tour
+        isTourActive = true;
+        tourBlockIndex = 0;
+        currentSubCard = 0;
+        activeBlockId = allBlocks[0].id;
+        scrollToBlock(activeBlockId);
+      } else if (activeBlockId) {
+        const block = allBlocks.find(b => b.id === activeBlockId);
+        if (block && currentSubCard < block.subCards.length - 1) {
+          // Next subcard
+          currentSubCard++;
+        } else {
+          // Next block
+          const currentIdx = allBlocks.findIndex(b => b.id === activeBlockId);
+          if (currentIdx < allBlocks.length - 1) {
+            tourBlockIndex = currentIdx + 1;
+            activeBlockId = allBlocks[tourBlockIndex].id;
+            currentSubCard = 0;
+            scrollToBlock(activeBlockId);
+          } else {
+            // Restart
+            isTourActive = false;
+            tourBlockIndex = 0;
+            currentSubCard = 0;
+            activeBlockId = null;
+          }
+        }
+      }
+      render();
+      updateUI();
+    }
+
+    function toggleTheme() {
+      isDark = !isDark;
+      document.documentElement.classList.toggle('light', !isDark);
+      const icon = document.getElementById('themeIcon');
+      if (isDark) {
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      } else {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      }
+    }
+
+    // Init
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('floatingBtn').addEventListener('click', handleNext);
+
+    render();
+    updateUI();
+  </script>
+</body>
+</html>
