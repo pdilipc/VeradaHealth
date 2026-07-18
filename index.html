@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Brand spectrum — from DESIGN_v2 (Bio-Synthetic Vitality) */
   --primary: #ae0070;
   --primary-container: #d61a8c;
   --primary-bright: #ff4fa8;
@@ -21,7 +20,6 @@
   --amethyst: #c264c9;
   --pink-glow: #ffafd1;
 
-  /* Dark — "Midnight Purple" */
   --bg: #140510;
   --bg-2: #1c0819;
   --surface: rgba(40, 16, 34, 0.55);
@@ -69,7 +67,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ambient background: tonal glows echoing the bloom */
 .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
 .ambient::before, .ambient::after {
   content: ''; position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5;
@@ -99,7 +96,6 @@ a { color: inherit; }
 .section { padding: 110px 0; position: relative; }
 @media (max-width: 700px) { .section { padding: 76px 0; } }
 
-/* Eyebrow with node motif */
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -110,7 +106,6 @@ a { color: inherit; }
 .eyebrow .node { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-bright); box-shadow: 0 0 12px var(--primary-bright); }
 [data-theme="light"] .eyebrow .node { background: var(--primary); box-shadow: 0 0 10px rgba(174,0,112,0.6); }
 
-/* ============ HEADER ============ */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 16px 32px; transition: padding 0.3s, background 0.3s, border-color 0.3s;
@@ -146,7 +141,6 @@ a { color: inherit; }
 .theme-btn:hover { border-color: var(--border-hi); color: var(--primary-bright); transform: rotate(15deg); }
 @media (max-width: 760px) { .nav-links { display: none; } }
 
-/* ============ HERO ============ */
 .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; overflow: hidden; }
 #neural-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.9; }
 .hero .container { z-index: 3; }
@@ -187,17 +181,14 @@ a { color: inherit; }
 @keyframes scrolldrop { 0% { opacity: 0; transform: translate(-50%, 0); } 40% { opacity: 1; } 80% { opacity: 0; transform: translate(-50%, 12px); } 100% { opacity: 0; } }
 @media (max-width: 700px) { .hero-scroll { display: none; } }
 
-/* ============ REVEAL ============ */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: 0.08s; } .reveal.d2 { transition-delay: 0.16s; } .reveal.d3 { transition-delay: 0.24s; } .reveal.d4 { transition-delay: 0.32s; }
 
-/* ============ SECTION HEAD ============ */
 .section-head { max-width: 720px; margin-bottom: 60px; }
 .section-head h2 { margin-bottom: 20px; }
 .section-head .lead { font-size: clamp(17px, 2vw, 19px); color: var(--text-2); line-height: 1.65; }
 
-/* ============ THESIS ============ */
 .thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width: 820px) { .thesis-grid { grid-template-columns: 1fr; } }
 .tcard {
@@ -219,7 +210,6 @@ a { color: inherit; }
 .tcard p { font-size: 15.5px; color: var(--text-2); line-height: 1.7; }
 .tcard p + p { margin-top: 13px; }
 
-/* ============ VERTICALS ============ */
 .verticals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 @media (max-width: 820px) { .verticals { grid-template-columns: 1fr; } }
 .vcard {
@@ -230,7 +220,6 @@ a { color: inherit; }
   display: flex; flex-direction: column;
 }
 .vcard:hover { transform: translateY(-6px); border-color: var(--border-hi); box-shadow: var(--shadow); }
-/* branch-glow that grows on hover, echoing logo motif */
 .vcard .branch-glow { position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; opacity: 0; transition: opacity 0.5s, transform 0.6s; filter: blur(30px); transform: scale(0.6); }
 .vcard:hover .branch-glow { opacity: 0.5; transform: scale(1); }
 .vcard.tech .branch-glow { background: radial-gradient(circle, #d61a8c, transparent 70%); }
@@ -263,7 +252,70 @@ a { color: inherit; }
 .vbody { font-size: 15px; color: var(--text-2); line-height: 1.68; flex-grow: 1; position: relative; z-index: 1; }
 .vfoot { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 12.5px; font-weight: 600; color: var(--text-3); position: relative; z-index: 1; }
 
-/* ============ FLYWHEEL / NEURAL LOOP ============ */
+/* ============ NESTED GROUP (parent wraps 3 SMEs) ============ */
+.group-shell {
+  position: relative; border-radius: 2rem; overflow: hidden;
+  padding: 40px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(174,0,112,0.10), transparent 70%),
+    var(--surface);
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hi);
+  box-shadow: var(--shadow-sm);
+}
+@media (max-width: 700px) { .group-shell { padding: 26px 20px; } }
+.group-head { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
+.group-head .vicon { width: 52px; height: 52px; background: rgba(127,75,133,0.18); color: #c79ccd; }
+[data-theme="light"] .group-head .vicon { color: var(--secondary); }
+.group-head-text { flex: 1; min-width: 240px; }
+.group-title-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 4px; }
+.group-title-row h3 { font-size: 26px; }
+.group-badge {
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #c79ccd; padding: 6px 13px; border-radius: 999px;
+  background: rgba(127,75,133,0.16); border: 1px solid rgba(199,156,205,0.22);
+}
+[data-theme="light"] .group-badge { color: var(--secondary); background: rgba(127,75,133,0.10); }
+.group-desc { font-size: 15px; color: var(--text-2); line-height: 1.7; max-width: 780px; }
+.group-desc strong { color: var(--text); font-weight: 600; }
+.group-divider { display: flex; align-items: center; gap: 14px; margin: 30px 0 26px; }
+.group-divider .gd-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); white-space: nowrap; }
+.group-divider .gd-line { flex: 1; height: 1px; background: var(--border); }
+
+.sme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+@media (max-width: 900px) { .sme-grid { grid-template-columns: 1fr; } }
+.sme-card {
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+  padding: 28px; border-radius: 1.25rem;
+  background: var(--surface-hi);
+  border: 1px solid var(--border);
+  transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), border-color 0.4s, box-shadow 0.4s;
+}
+.sme-card:hover { transform: translateY(-6px); border-color: var(--border-hi); box-shadow: var(--shadow); }
+.sme-card .branch-glow { position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; border-radius: 50%; opacity: 0; transition: opacity 0.5s, transform 0.6s; filter: blur(30px); transform: scale(0.6); }
+.sme-card:hover .branch-glow { opacity: 0.5; transform: scale(1); }
+.sme-card.tech .branch-glow { background: radial-gradient(circle, #d61a8c, transparent 70%); }
+.sme-card.clinic .branch-glow { background: radial-gradient(circle, #9c2880, transparent 70%); }
+.sme-card.research .branch-glow { background: radial-gradient(circle, #c264c9, transparent 70%); }
+.sme-card .vtop { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; position: relative; z-index: 1; }
+.sme-card .vicon { width: 46px; height: 46px; border-radius: 13px; }
+.sme-card .vicon svg { width: 23px; height: 23px; }
+.sme-card.tech .vicon { background: rgba(214,26,140,0.14); color: var(--primary-bright); }
+.sme-card.clinic .vicon { background: rgba(156,40,128,0.16); color: #e07bc4; }
+.sme-card.research .vicon { background: rgba(194,100,201,0.16); color: var(--amethyst); }
+[data-theme="light"] .sme-card.tech .vicon { color: var(--primary); }
+[data-theme="light"] .sme-card.clinic .vicon { color: var(--tertiary); }
+[data-theme="light"] .sme-card.research .vicon { color: #9c2880; }
+.sme-card h4 { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--text); margin-bottom: 5px; letter-spacing: -0.01em; position: relative; z-index: 1; }
+.sme-card .vtag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 13px; position: relative; z-index: 1; }
+.sme-card.tech .vtag { color: var(--primary-bright); } .sme-card.clinic .vtag { color: #e07bc4; } .sme-card.research .vtag { color: var(--amethyst); }
+[data-theme="light"] .sme-card.tech .vtag { color: var(--primary); }
+[data-theme="light"] .sme-card.clinic .vtag { color: var(--tertiary); }
+[data-theme="light"] .sme-card.research .vtag { color: #9c2880; }
+.sme-card .vbody { font-size: 14px; color: var(--text-2); line-height: 1.62; flex-grow: 1; position: relative; z-index: 1; }
+.sme-card .vfoot { margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--border); font-size: 11.5px; font-weight: 600; color: var(--text-3); position: relative; z-index: 1; }
+.sme-card .vstatus { font-size: 9.5px; }
+
 .loop-section { position: relative; }
 .loop-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 @media (max-width: 900px) { .loop-wrap { grid-template-columns: 1fr; gap: 44px; } }
@@ -300,11 +352,11 @@ a { color: inherit; }
 .loop-orbit { fill: none; stroke: url(#loopgrad); stroke-width: 2; opacity: 0.6; stroke-linecap: round; stroke-dasharray: 6 8; }
 .loop-particle { fill: var(--primary-bright); filter: drop-shadow(0 0 6px var(--primary-bright)); }
 
-/* ============ APPROACH ============ */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; position: relative; }
-@media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative; }
+@media (max-width: 980px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 .step {
-  position: relative; padding: 34px; border-radius: 1.25rem;
+  position: relative; padding: 30px 26px; border-radius: 1.25rem;
   background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform 0.35s, border-color 0.35s;
 }
@@ -312,13 +364,13 @@ a { color: inherit; }
 .step-node { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .step-dot { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-family: 'Hanken Grotesk', sans-serif; font-weight: 800; font-size: 16px; color: #fff; flex-shrink: 0; }
 .step:nth-child(1) .step-dot { background: linear-gradient(135deg, #ae0070, #d61a8c); }
-.step:nth-child(2) .step-dot { background: linear-gradient(135deg, #9c2880, #bb439b); }
-.step:nth-child(3) .step-dot { background: linear-gradient(135deg, #7f4b85, #c264c9); }
+.step:nth-child(2) .step-dot { background: linear-gradient(135deg, #b8237f, #bb439b); }
+.step:nth-child(3) .step-dot { background: linear-gradient(135deg, #9c2880, #c264c9); }
+.step:nth-child(4) .step-dot { background: linear-gradient(135deg, #7f4b85, #c264c9); }
 .step-line { flex: 1; height: 2px; background: linear-gradient(90deg, var(--border-hi), transparent); border-radius: 2px; }
-.step h3 { font-size: 19px; margin-bottom: 11px; }
-.step p { font-size: 15px; color: var(--text-2); line-height: 1.68; }
+.step h3 { font-size: 18px; margin-bottom: 11px; }
+.step p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
 
-/* ============ LEADERSHIP ============ */
 .people-block { margin-bottom: 48px; }
 .people-block:last-child { margin-bottom: 0; }
 .people-label { display: flex; align-items: center; gap: 12px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary-bright); margin-bottom: 26px; }
@@ -336,7 +388,6 @@ a { color: inherit; }
 .person .p-name { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 3px; letter-spacing: -0.01em; }
 .person .p-role { font-size: 12.5px; color: var(--text-3); line-height: 1.45; }
 
-/* ============ INVESTORS ============ */
 .invest {
   position: relative; overflow: hidden; text-align: center; border-radius: 2rem;
   padding: clamp(48px, 7vw, 80px) 32px;
@@ -349,7 +400,6 @@ a { color: inherit; }
 .invest h2 { margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; }
 .invest p { font-size: 17.5px; color: var(--text-2); max-width: 620px; margin: 0 auto 34px; line-height: 1.7; }
 
-/* ============ FOOTER ============ */
 .site-footer { position: relative; z-index: 2; padding: 70px 0 44px; margin-top: 40px; border-top: 1px solid var(--border); }
 .footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
 .footer-brand { max-width: 340px; }
@@ -368,6 +418,82 @@ a { color: inherit; }
 
 a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright); outline-offset: 3px; border-radius: 8px; }
 
+/* ============ DARK TECHNICAL BAND ============ */
+/* Deeper purple-black bands for the technical sections — magenta pops, glass sits on top */
+.band-dark {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(174,0,112,0.16), transparent 70%),
+    linear-gradient(180deg, #0c0209 0%, #12040f 50%, #0c0209 100%);
+  border-top: 1px solid rgba(255,175,209,0.10);
+  border-bottom: 1px solid rgba(255,175,209,0.10);
+  overflow: hidden;
+}
+[data-theme="light"] .band-dark {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(174,0,112,0.22), transparent 70%),
+    linear-gradient(180deg, #0f030c 0%, #160512 50%, #0f030c 100%);
+}
+/* Force dark-appropriate tokens INSIDE the band regardless of page theme */
+.band-dark {
+  --text: #fdeef6; --text-2: #d9b9cc; --text-3: #a67e97;
+  --surface: rgba(40, 16, 34, 0.5);
+  --surface-hi: rgba(58, 24, 48, 0.55);
+  --border: rgba(255, 175, 209, 0.12);
+  --border-hi: rgba(255, 175, 209, 0.28);
+}
+.band-dark .eyebrow { color: var(--primary-bright); }
+.band-dark .eyebrow .node { background: var(--primary-bright); box-shadow: 0 0 12px var(--primary-bright); }
+.band-dark .loop-close strong { color: var(--primary-bright); }
+/* faint engineered grid texture on dark bands */
+.band-dark::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(255,175,209,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,175,209,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, #000 30%, transparent 85%);
+}
+.band-dark > .container { position: relative; z-index: 1; }
+
+/* ============ VALLEY OF DEATH INFOGRAPHIC ============ */
+.valley { margin-top: 8px; }
+.valley-frame {
+  position: relative; border-radius: 1.5rem; padding: 44px 40px 36px;
+  background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm); overflow: hidden;
+}
+@media (max-width: 720px) { .valley-frame { padding: 32px 22px 28px; } }
+.valley-track { position: relative; width: 100%; }
+.valley-svg { width: 100%; height: auto; display: block; overflow: visible; }
+.valley-legend { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--border); }
+.vleg { display: flex; align-items: flex-start; gap: 11px; flex: 1; min-width: 210px; }
+.vleg .vdot { width: 11px; height: 11px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.vleg.stall .vdot { background: #ba1a1a; box-shadow: 0 0 10px rgba(186,26,26,0.6); }
+.vleg.bridge .vdot { background: var(--primary-bright); box-shadow: 0 0 10px var(--primary-bright); }
+.vleg.adopt .vdot { background: var(--amethyst); box-shadow: 0 0 10px var(--amethyst); }
+.vleg .vlt { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 13.5px; color: var(--text); margin-bottom: 2px; }
+.vleg .vls { font-size: 12.5px; color: var(--text-3); line-height: 1.5; }
+/* SVG element styling via classes */
+.v-baseline { stroke: var(--border-hi); stroke-width: 2; stroke-dasharray: 4 6; }
+.v-stage-label { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.02em; fill: var(--text-2); }
+.v-stage-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: var(--text-3); }
+.v-node-ring { fill: var(--surface-solid); stroke-width: 2.5; }
+.v-milestone { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 12.5px; }
+.v-path-proven { fill: none; stroke: url(#vgrad-proven); stroke-width: 3.5; stroke-linecap: round; }
+.v-path-stall { fill: none; stroke: #ba1a1a; stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 2 7; opacity: 0.85; }
+.v-path-bridge { fill: none; stroke: url(#vgrad-bridge); stroke-width: 4; stroke-linecap: round; }
+.v-band { fill: rgba(186,26,26,0.07); }
+.v-band-label { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; fill: #d16a6a; }
+.v-bridge-label { font-family: 'Hanken Grotesk', sans-serif; font-weight: 700; font-size: 13px; fill: var(--primary-bright); }
+@media (prefers-reduced-motion: no-preference) {
+  .v-dash-anim { stroke-dashoffset: 0; animation: vdash 1.1s linear infinite; }
+}
+@keyframes vdash { to { stroke-dashoffset: -18; } }
+.v-pulse { animation: vpulse 2.4s ease-in-out infinite; transform-origin: center; }
+@keyframes vpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
   .reveal { opacity: 1; transform: none; }
@@ -378,11 +504,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
 
 <div class="ambient"></div>
 
-<!-- HEADER -->
 <header class="site-header" id="header">
   <div class="header-inner">
     <a href="#top" class="logo">
-      <img src="assets/verada-mark.png" alt="Verada" id="logoImg">
+      <img src="assets/verada-mark-dark.png" alt="Verada" id="logoImg">
       <span class="logo-word">Verada</span>
     </a>
     <nav class="nav">
@@ -393,19 +518,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
         <a href="#leadership" class="nav-link">Leadership</a>
       </span>
       <a href="https://www.linkedin.com/in/dilip-chakravarthy/" target="_blank" rel="noopener" class="nav-cta">Investors</a>
-      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle colour theme">☀</button>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle colour theme">&#9728;</button>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="top">
   <canvas id="neural-canvas"></canvas>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-badge reveal in">
         <span class="pip"><span class="dot"></span> Building</span>
-        UK Neurorehabilitation Technology Group
+        The UK's neurorehabilitation adoption engine
       </div>
       <h1 class="reveal in d1">
         <span class="line">Proven neurorehab technology</span>
@@ -413,10 +537,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
         <span class="line">who need it. <span class="grad-text">Verada changes that.</span></span>
       </h1>
       <p class="hero-lead reveal in d2">
-        A regulatory-approved rehabilitation device and a recovering patient are separated by a gap most innovations never cross. We're building the UK's first integrated neurorehabilitation ecosystem — uniting the technology, the care delivery, and the clinical evidence that turn breakthrough innovation into everyday care.
+        Verada is the plug-and-play operating layer for proven, clinically-ready (TRL-7+) neurorehabilitation technologies entering the UK — uniting regulatory entry, real-world care delivery, and the clinical evidence that turn breakthrough innovation into adopted, everyday care.
       </p>
       <div class="hero-actions reveal in d3">
-        <a href="#verticals" class="btn btn-primary">Explore the group <span class="arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/dilip-chakravarthy/" target="_blank" rel="noopener" class="btn btn-primary">Partner with Verada <span class="arrow">&rarr;</span></a>
         <a href="#thesis" class="btn btn-ghost">Why the gap exists</a>
       </div>
     </div>
@@ -427,7 +551,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
   </div>
 </section>
 
-<!-- THESIS -->
 <section class="section" id="thesis">
   <div class="container">
     <div class="section-head reveal">
@@ -435,95 +558,164 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
       <h2>Approval is not adoption</h2>
       <p class="lead">In neurorehabilitation, earning a UKCA or CE mark should be the beginning of a device's clinical life. Too often it's where progress stalls — proven technology stranded on the wrong side of a fragmented, risk-averse system while patients lose the recovery windows that matter most.</p>
     </div>
-    <div class="thesis-grid">
-      <div class="tcard problem reveal d1">
-        <span class="tlabel">The problem</span>
-        <h3>The valley between proof and patients</h3>
-        <p>A manufacturer can spend years and millions earning regulatory approval, then hit a second, harder barrier: fragmented procurement across hundreds of NHS bodies, institutional caution toward unproven deployments, and payers who won't commission without real-world evidence — evidence that can only be generated through the very adoption they're withholding.</p>
-        <p>The result is a market where internationally proven innovations spread slowly and unevenly, and patients bear the cost through lost neuroplasticity windows and unaffordable private alternatives.</p>
-      </div>
-      <div class="tcard answer reveal d2">
-        <span class="tlabel">The Verada model</span>
-        <h3>An ecosystem that closes it</h3>
-        <p>Rather than bridge each barrier one device at a time, Verada removes them structurally. The group brings a proven technology through UK regulatory entry, deploys it into its own care delivery, and generates the UK-specific clinical, operational, and economic evidence that public and private systems need to adopt at scale.</p>
-        <p>Regulatory navigation, real-world evidence, and market access combine in a single operating model — cutting the time and risk for rehabilitation innovation to reach the people it was built for.</p>
+    <div class="valley reveal d1">
+      <div class="valley-frame">
+        <div class="valley-track">
+          <svg class="valley-svg" viewBox="0 0 1000 340" role="img" aria-label="A proven technology reaches its CE/UKCA mark, then stalls in the adoption valley where it cannot generate real-world evidence. Verada bridges the gap, carrying it across into NHS and private clinic adoption.">
+            <defs>
+              <linearGradient id="vgrad-proven" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#7f4b85"/>
+                <stop offset="100%" stop-color="#9c2880"/>
+              </linearGradient>
+              <linearGradient id="vgrad-bridge" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d61a8c"/>
+                <stop offset="60%" stop-color="#ff4fa8"/>
+                <stop offset="100%" stop-color="#c264c9"/>
+              </linearGradient>
+            </defs>
+
+            <!-- valley band -->
+            <rect class="v-band" x="360" y="40" width="300" height="240" rx="10"/>
+            <text class="v-band-label" x="510" y="66" text-anchor="middle">The adoption valley</text>
+
+            <!-- baseline -->
+            <line class="v-baseline" x1="40" y1="210" x2="960" y2="210"/>
+
+            <!-- PROVEN path: rises to CE/UKCA mark -->
+            <path class="v-path-proven" d="M 60,210 C 160,210 210,120 300,110"/>
+            <!-- STALL path: drops into the valley and flatlines -->
+            <path class="v-path-stall v-dash-anim" d="M 300,110 C 340,108 350,235 400,250 L 590,250"/>
+            <!-- BRIDGE path: Verada lifts it out and across into adoption -->
+            <path class="v-path-bridge" d="M 400,250 C 520,250 560,110 660,100 C 780,88 840,96 940,96"/>
+
+            <!-- Stage 1: R&D / proven -->
+            <circle class="v-node-ring" cx="60" cy="210" r="7" stroke="#7f4b85"/>
+            <text class="v-stage-label" x="60" y="240" text-anchor="middle">R&amp;D &amp; trials</text>
+            <text class="v-stage-sub" x="60" y="256" text-anchor="middle">Proven abroad</text>
+
+            <!-- Stage 2: CE/UKCA milestone (the peak, then the fall) -->
+            <circle class="v-node-ring v-pulse" cx="300" cy="110" r="9" stroke="#9c2880"/>
+            <text class="v-milestone" x="300" y="92" text-anchor="middle" fill="#c77bb8">CE / UKCA mark</text>
+            <text class="v-stage-sub" x="300" y="300" text-anchor="middle">Approval earned…</text>
+
+            <!-- Stall point -->
+            <circle cx="495" cy="250" r="5" fill="#ba1a1a"/>
+            <text class="v-stage-sub" x="495" y="278" text-anchor="middle" fill="#d16a6a">No evidence → no adoption</text>
+
+            <!-- Verada bridge marker -->
+            <text class="v-bridge-label" x="565" y="150" text-anchor="middle">Verada bridge</text>
+
+            <!-- Stage 3: adoption -->
+            <circle class="v-node-ring v-pulse" cx="940" cy="96" r="9" stroke="#ff4fa8"/>
+            <text class="v-milestone" x="940" y="78" text-anchor="middle" fill="#ff8fc4">Adoption at scale</text>
+            <text class="v-stage-sub" x="900" y="122" text-anchor="end">NHS &amp; private clinics</text>
+          </svg>
+        </div>
+        <div class="valley-legend">
+          <div class="vleg stall">
+            <span class="vdot"></span>
+            <div>
+              <div class="vlt">Where it stalls</div>
+              <div class="vls">Past the CE/UKCA mark, proven technology hits fragmented procurement and payers who won't commission without UK real-world evidence — evidence adoption alone can generate.</div>
+            </div>
+          </div>
+          <div class="vleg bridge">
+            <span class="vdot"></span>
+            <div>
+              <div class="vlt">How Verada bridges it</div>
+              <div class="vls">The group brings the technology through regulatory entry, deploys it into its own care delivery, and generates the clinical, operational, and economic evidence systems require.</div>
+            </div>
+          </div>
+          <div class="vleg adopt">
+            <span class="vdot"></span>
+            <div>
+              <div class="vlt">Into adoption</div>
+              <div class="vls">That evidence unlocks the route to market — direct care first, then private medical insurers, then NHS commissioning at population scale.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VERTICALS -->
 <section class="section" id="verticals">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="node"></span> The Group</div>
-      <h2>One ecosystem, grown in layers</h2>
-      <p class="lead">Verada operates as a group of focused entities — each doing one thing well, and each strengthening the others. Together they form a repeatable engine for bringing neurorehabilitation technology into real-world care.</p>
+      <h2>One group. One path from entry to adoption.</h2>
+      <p class="lead">Verada is an integrated adoption engine — a single group that carries proven neurorehabilitation technology all the way from first UK deployment to scaled, reimbursed care. Beneath the group sit three focused operating companies, each doing one thing well and each strengthening the others.</p>
     </div>
-    <div class="verticals">
 
-      <div class="vcard tech reveal d1">
-        <div class="branch-glow"></div>
-        <div class="vtop">
-          <div class="vicon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
-          </div>
-          <span class="vstatus"><span class="sdot"></span> Coming soon</span>
+    <div class="group-shell reveal d1">
+      <div class="group-head">
+        <div class="vicon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><circle cx="12" cy="4" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4.5" cy="8" r="1.8"/><circle cx="19.5" cy="8" r="1.8"/><path d="M12 6.4v3.2M11 10.8 6 8.9M13 10.8l5-1.9M12 14.4v3.8"/></svg>
         </div>
-        <h3>Verada Technologies</h3>
-        <div class="vtag">The platform &amp; data engine</div>
-        <p class="vbody">The device-agnostic orchestration and interoperability layer that captures multimodal rehabilitation data across care settings, structures it for evidence generation, and turns it into clinical intelligence — the proprietary backbone the whole group runs on.</p>
-        <div class="vfoot">Platform · Data · Clinical AI</div>
+        <div class="group-head-text">
+          <div class="group-title-row">
+            <h3>Verada Group</h3>
+            <span class="group-badge">Strategy &amp; oversight</span>
+          </div>
+          <p class="group-desc">The connective layer that holds everything together — group strategy, market-access direction, evidence governance, and the shared clinical infrastructure every company reuses. It's what lets each new technology follow the same proven route rather than starting from zero. <strong>Beneath it sit three focused operating companies:</strong></p>
+        </div>
       </div>
 
-      <div class="vcard clinic reveal d2">
-        <div class="branch-glow"></div>
-        <div class="vtop">
-          <div class="vicon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><path d="M12 8v6M9 11h6"/></svg>
-          </div>
-          <span class="vstatus"><span class="sdot"></span> Coming soon</span>
-        </div>
-        <h3>Verada Clinic</h3>
-        <div class="vtag">Care delivery</div>
-        <p class="vbody">A CQC-registered remote neurorehabilitation service delivering clinician-supervised, device-enabled care in the community. It's the first real-world home for every technology the group brings to market — and where recovery outcomes are generated for patients and payers alike.</p>
-        <div class="vfoot">Community · Clinician-led · Outcomes</div>
+      <div class="group-divider">
+        <span class="gd-label">Operating companies</span>
+        <span class="gd-line"></span>
       </div>
 
-      <div class="vcard research reveal d1">
-        <div class="branch-glow"></div>
-        <div class="vtop">
-          <div class="vicon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6.5L4.5 17a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 9.5V3"/><path d="M8 3h8M8.5 14h7"/></svg>
-          </div>
-          <span class="vstatus"><span class="sdot"></span> Coming soon</span>
-        </div>
-        <h3>Verada Research</h3>
-        <div class="vtag">Decentralised clinical trials</div>
-        <p class="vbody">A next-generation clinical research organisation for decentralised trials, capturing molecular, physiological, psychological, and functional endpoints across CNS and musculoskeletal interventions — giving commercial sponsors richer evidence than a conventional CRO can offer.</p>
-        <div class="vfoot">Sponsors · Multimodal endpoints · CNS &amp; MSK</div>
-      </div>
+      <div class="sme-grid">
 
-      <div class="vcard group reveal d2">
-        <div class="branch-glow"></div>
-        <div class="vtop">
-          <div class="vicon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><circle cx="12" cy="4" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4.5" cy="8" r="1.8"/><circle cx="19.5" cy="8" r="1.8"/><path d="M12 6.4v3.2M11 10.8 6 8.9M13 10.8l5-1.9M12 14.4v3.8"/></svg>
+        <div class="sme-card tech reveal d1">
+          <div class="branch-glow"></div>
+          <div class="vtop">
+            <div class="vicon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4"/></svg>
+            </div>
+            <span class="vstatus"><span class="sdot"></span> Coming soon</span>
           </div>
-          <span class="vstatus"><span class="sdot"></span> Coming soon</span>
+          <h4>Verada Technologies</h4>
+          <div class="vtag">The platform &amp; data engine</div>
+          <p class="vbody">The device-agnostic layer that captures multimodal rehabilitation data across care settings, structures it for evidence, and turns it into clinical intelligence — the backbone the whole group runs on.</p>
+          <div class="vfoot">Platform &middot; Data &middot; Clinical AI</div>
         </div>
-        <h3>Verada Group</h3>
-        <div class="vtag">Regulatory, strategy &amp; oversight</div>
-        <p class="vbody">The connective layer that holds the group together — regulatory pathways, market-access strategy, evidence governance, and the shared clinical infrastructure every entity reuses. It's what lets each new technology follow the same proven route rather than starting from zero.</p>
-        <div class="vfoot">Regulatory · Market access · Governance</div>
-      </div>
 
+        <div class="sme-card clinic reveal d2">
+          <div class="branch-glow"></div>
+          <div class="vtop">
+            <div class="vicon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><path d="M12 8v6M9 11h6"/></svg>
+            </div>
+            <span class="vstatus"><span class="sdot"></span> Coming soon</span>
+          </div>
+          <h4>Verada Clinic</h4>
+          <div class="vtag">Real-world evidence engine</div>
+          <p class="vbody">A CQC-registered remote neurorehab service where efficacy-proven interventions — devices at TRL-7+ and medicinal products at Phase III-complete — generate the Phase IV, real-world evidence that carries them to routine, reimbursed adoption (TRL-8/9). The group's first customer, its revenue generator, and its evidence layer.</p>
+          <div class="vfoot">Clinician-led &middot; Phase IV / RWE &middot; Adoption</div>
+        </div>
+
+        <div class="sme-card research reveal d3">
+          <div class="branch-glow"></div>
+          <div class="vtop">
+            <div class="vicon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6.5L4.5 17a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 9.5V3"/><path d="M8 3h8M8.5 14h7"/></svg>
+            </div>
+            <span class="vstatus"><span class="sdot"></span> Coming soon</span>
+          </div>
+          <h4>Verada Research</h4>
+          <div class="vtag">Decentralised clinical trials</div>
+          <p class="vbody">A next-generation CRO running decentralised trials across the full intervention spectrum — medical devices and medicinal products, from small molecules and biologics to ATMPs (cell &amp; gene therapies), plus adjacent nutraceuticals and nootropics — capturing molecular, physiological, psychological, and functional endpoints across CNS and musculoskeletal indications.</p>
+          <div class="vfoot">Devices &middot; Medicinal products &middot; ATMPs &middot; CNS &amp; MSK</div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
-<!-- LOOP / FLYWHEEL -->
-<section class="section loop-section" id="loop">
+<section class="section loop-section band-dark" id="loop">
   <div class="container">
     <div class="loop-wrap">
       <div class="loop-copy reveal">
@@ -562,35 +754,38 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
   </div>
 </section>
 
-<!-- APPROACH -->
-<section class="section" id="approach">
+<section class="section band-dark" id="approach">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="node"></span> A Repeatable Pathway</div>
       <h2>Built once, reused for every technology</h2>
-      <p class="lead">The hard work is done once and amortised across the whole portfolio. Each new neurorehabilitation technology follows the same three-part route — reusing the regulatory foundations, clinical infrastructure, and evidence engine already in place.</p>
+      <p class="lead">The hard work is done once and amortised across the whole portfolio. Each new neurorehabilitation technology follows the same repeatable route — reusing the clinical infrastructure, evidence engine, and market-access playbook already in place.</p>
     </div>
     <div class="steps">
       <div class="step reveal d1">
         <div class="step-node"><div class="step-dot">1</div><div class="step-line"></div></div>
-        <h3>Regulatory alignment</h3>
-        <p>Bring a proven technology through UK regulatory entry — reusing established UKCA/CE foundations, responsible-person structures, and MHRA pathways rather than rebuilding them for each device.</p>
+        <h3>Prepare</h3>
+        <p>Study design, evidence-pathway build, and grant navigation — laying the groundwork before a single patient is seen.</p>
       </div>
       <div class="step reveal d2">
         <div class="step-node"><div class="step-dot">2</div><div class="step-line"></div></div>
-        <h3>Evidence generation</h3>
-        <p>Deploy it into real patient pathways within Verada's own care delivery, capturing the UK-specific clinical, operational, and economic outcomes that systems require before they adopt.</p>
+        <h3>Validate</h3>
+        <p>Feasibility and acceptability studies that qualify the intervention, de-risk workflow fit, and prepare higher-order trials where warranted.</p>
       </div>
       <div class="step reveal d3">
         <div class="step-node"><div class="step-dot">3</div><div class="step-line"></div></div>
-        <h3>Scaled adoption</h3>
-        <p>Convert that evidence into market access — beginning with direct care, then private medical insurer pathways, and ultimately NHS commissioning at population scale.</p>
+        <h3>Deploy</h3>
+        <p>Clinic-led patient deployment within Verada's own care delivery — creating early revenue, operational proof, and live outcomes data at once.</p>
+      </div>
+      <div class="step reveal d4">
+        <div class="step-node"><div class="step-dot">4</div><div class="step-line"></div></div>
+        <h3>Scale</h3>
+        <p>Real-world evidence unlocks the route to market — private-provider uptake, payer engagement, and NHS commissioning at population scale.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LEADERSHIP -->
 <section class="section" id="leadership">
   <div class="container">
     <div class="section-head reveal">
@@ -608,7 +803,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
         <div class="person"><div class="person-avatar">SS</div><div><div class="p-name">Sailaja Swamisetti</div><div class="p-role">Consultant — Data Protection Lead (IP, GDPR &amp; Health Data)</div></div></div>
       </div>
     </div>
-<!-- APPROACH 
+/*
     <div class="people-block reveal">
       <div class="people-label">Advisory Board</div>
       <div class="people-grid">
@@ -618,22 +813,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
         <div class="person"><div class="person-avatar">KR</div><div><div class="p-name">Koteshwar Rao</div><div class="p-role">International Marketing Advisor — Commercial &amp; Go-to-Market</div></div></div>
       </div>
     </div>
+    */
   </div>
 </section>
--->
-<!-- INVESTORS -->
+
 <section class="section" id="investors">
   <div class="container">
     <div class="invest reveal">
       <div class="eyebrow"><span class="node"></span> For Investors &amp; Partners</div>
       <h2>Backing the infrastructure for neurorehab adoption</h2>
       <p>Verada is building durable infrastructure at the intersection of medical technology, regulated care, and clinical evidence — a model designed to compound in value with every patient treated. If you invest in health technology, back founders solving hard adoption problems, or want to explore partnership, we'd welcome a conversation.</p>
-      <a href="https://www.linkedin.com/in/dilip-chakravarthy/" target="_blank" rel="noopener" class="btn btn-primary">Connect with our founder <span class="arrow">→</span></a>
+      <a href="https://www.linkedin.com/in/dilip-chakravarthy/" target="_blank" rel="noopener" class="btn btn-primary">Connect with our founder <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
@@ -644,9 +838,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
       <div class="footer-cols">
         <div class="fcol">
           <div class="fcol-label">Group</div>
-          <span class="soon"><span class="mininode"></span> Verada Technologies · soon</span>
-          <span class="soon"><span class="mininode"></span> Verada Clinic · soon</span>
-          <span class="soon"><span class="mininode"></span> Verada Research · soon</span>
+          <span class="soon"><span class="mininode"></span> Verada Technologies &middot; soon</span>
+          <span class="soon"><span class="mininode"></span> Verada Clinic &middot; soon</span>
+          <span class="soon"><span class="mininode"></span> Verada Research &middot; soon</span>
         </div>
         <div class="fcol">
           <div class="fcol-label">Company</div>
@@ -662,20 +856,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
       </div>
     </div>
     <div class="footer-legal">
-      © 2026 Verada Health Ltd · Registered in England &amp; Wales (Company No. 17137766) · 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+      &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71–75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
       Verada, Verada Technologies, Verada Clinic and Verada Research are brands of the Verada group of companies.
     </div>
   </div>
 </footer>
 
 <script>
-/* ---------- Theme ---------- */
 function applyThemeAssets(theme) {
   var logo = document.getElementById('logoImg');
   var footer = document.getElementById('footerLogo');
-  // mark is magenta on both; footer uses reversed-on-dark for dark, transparent for light
+  if (logo) logo.src = theme === 'dark' ? 'assets/verada-mark-dark.png' : 'assets/verada-mark.png';
   if (footer) footer.src = theme === 'dark' ? 'assets/verada-logo-dark.png' : 'assets/verada-logo-light.png';
-  document.getElementById('themeBtn').textContent = theme === 'dark' ? '☀' : '☾';
+  document.getElementById('themeBtn').innerHTML = theme === 'dark' ? '&#9728;' : '&#9790;';
 }
 function toggleTheme() {
   var html = document.documentElement;
@@ -695,13 +888,11 @@ function toggleTheme() {
   document.addEventListener('DOMContentLoaded', function(){ applyThemeAssets(theme); });
 })();
 
-/* ---------- Header scroll state ---------- */
 window.addEventListener('scroll', function () {
   var h = document.getElementById('header');
   if (window.scrollY > 24) h.classList.add('scrolled'); else h.classList.remove('scrolled');
 }, { passive: true });
 
-/* ---------- Smooth anchor scroll ---------- */
 document.querySelectorAll('a[href^="#"]').forEach(function (link) {
   link.addEventListener('click', function (e) {
     var id = link.getAttribute('href');
@@ -711,7 +902,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
   });
 });
 
-/* ---------- Scroll reveal ---------- */
 (function () {
   var els = document.querySelectorAll('.reveal:not(.in)');
   if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('in'); }); return; }
@@ -721,9 +911,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
   els.forEach(function (el) { io.observe(el); });
 })();
 
-/* ---------- Neural network hero animation ---------- */
-/* Echoes the Verada logo: nodes (synaptic terminals) linked by branches; the network
-   subtly grows, pulses, and drifts — the brand's own metaphor for neuroplasticity. */
 (function () {
   var canvas = document.getElementById('neural-canvas');
   if (!canvas) return;
@@ -773,12 +960,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       n.x += n.vx; n.y += n.vy; n.pulse += n.pv;
       if (n.x < -20) n.x = W + 20; if (n.x > W + 20) n.x = -20;
       if (n.y < -20) n.y = H + 20; if (n.y > H + 20) n.y = -20;
-      // gentle mouse attraction — network leans toward the cursor
       var mdx = mouse.x - n.x, mdy = mouse.y - n.y;
       var md = Math.sqrt(mdx * mdx + mdy * mdy);
       if (md < 180 && md > 0.1) { n.x += (mdx / md) * 0.4; n.y += (mdy / md) * 0.4; }
     }
-    // branches
     for (var a = 0; a < nodes.length; a++) {
       for (var b = a + 1; b < nodes.length; b++) {
         var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
@@ -794,7 +979,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         }
       }
     }
-    // nodes (synaptic terminals) with soft glow
     for (var k = 0; k < nodes.length; k++) {
       var p = nodes[k];
       var pr = p.r + Math.sin(p.pulse) * 0.6;
@@ -822,12 +1006,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function (link) {
   });
   hero.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
 
-  if (reduce) {
-    // draw a single static frame
-    frame(); cancelAnimationFrame(raf);
-  } else {
-    frame();
-  }
+  if (reduce) { frame(); cancelAnimationFrame(raf); } else { frame(); }
 })();
 </script>
 </body>
