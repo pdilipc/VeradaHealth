@@ -318,6 +318,7 @@ a { color: inherit; }
 .sme-qual { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--text-2); }
 .sme-qual .qdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 .sme-card.research .sme-qual .qdot { background: var(--amethyst); box-shadow: 0 0 7px var(--amethyst); }
+.sme-card.tech .sme-qual .qdot { background: var(--primary-bright); box-shadow: 0 0 7px var(--primary-bright); }
 .sme-card.clinic .sme-qual .qdot { background: #e07bc4; box-shadow: 0 0 7px #e07bc4; }
 .sme-qual .qlabel { color: var(--text-3); }
 .sme-qual .qval { font-weight: 700; color: var(--text); }
@@ -685,7 +686,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
           </div>
           <h4>Verada Technologies</h4>
           <div class="vtag">The platform &amp; data engine</div>
-          <p class="vbody">The device-agnostic layer that captures multimodal data across care settings and clinical trial units, structures it for evidence, and turns it into clinical intelligence. It builds on established open clinical-data standards and best-in-class trial tooling to form the backbone the whole group runs on.</p>
+          <p class="vbody">The unifying layer that brings together multimodal data across care settings and clinical trial units. It identifies and characterises real-world patient cohorts from routine EHR data, captures the full spectrum of trial outcomes (patient-, clinician-, and performance-reported), and structures it all into evidence-ready clinical intelligence: the backbone the whole group runs on.</p>
+          <div class="sme-quals">
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Interoperability</span><span class="qval">Semantic &amp; syntactic</span></div>
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Coverage</span><span class="qval">Device- &amp; vendor-agnostic</span></div>
+          </div>
           <div class="vfoot">Platform &middot; Data &middot; Clinical AI</div>
         </div>
 
@@ -701,8 +706,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
           <div class="vtag">Decentralised clinical trials</div>
           <p class="vbody">A next-generation CRO running decentralised trials across neuro/CNS, musculoskeletal, and cognitive indications. It spans devices, small molecules, biologics, and ATMPs (cell &amp; gene therapies), plus nutraceuticals and nootropics where they target cognitive endpoints, capturing molecular, physiological, psychological, and functional outcomes.</p>
           <div class="sme-quals">
-            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Devices</span><span class="qval">TRL-5+</span></div>
-            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Molecules</span><span class="qval">Phase II+</span></div>
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Medical Devices</span><span class="qval">TRL 5+</span></div>
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Medicinal Compounds</span><span class="qval">Phase II+</span></div>
           </div>
           <div class="vfoot">Neuro/CNS &middot; MSK &middot; Cognitive</div>
         </div>
@@ -719,8 +724,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
           <div class="vtag">Real-world evidence engine</div>
           <p class="vbody">A CQC-registered service delivering both rehabilitative and regenerative interventions across neuro/CNS, musculoskeletal, and cognitive conditions. Efficacy-proven interventions generate the Phase IV, real-world evidence that carries them to routine, reimbursed adoption. The group's first customer, its revenue generator, and its evidence layer.</p>
           <div class="sme-quals">
-            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Devices</span><span class="qval">TRL-7+</span></div>
-            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Molecules</span><span class="qval">Phase III+</span></div>
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Medical Devices</span><span class="qval">TRL 7+</span></div>
+            <div class="sme-qual"><span class="qdot"></span><span class="qlabel">Medicinal Compounds</span><span class="qval">Phase III+</span></div>
           </div>
           <div class="vfoot">Neuro/CNS &middot; MSK &middot; Cognitive</div>
         </div>
@@ -769,7 +774,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
   </div>
 </section>
 
-<section class="section band-dark" id="approach">
+<section class="section" id="approach">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="node"></span> A Repeatable Pathway</div>
