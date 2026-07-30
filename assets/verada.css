@@ -168,8 +168,23 @@
   font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   color: var(--text-3); margin-bottom: 14px;
 }
-.doc-toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
-.doc-toc li { margin-bottom: 7px; break-inside: avoid; font-size: 14.5px; }
+.doc-toc ol {
+  margin: 0; padding: 0; list-style: none;
+  counter-reset: toc;
+  columns: 2; column-gap: 32px;
+}
+.doc-toc li {
+  counter-increment: toc;
+  margin-bottom: 7px; break-inside: avoid; font-size: 14.5px;
+  padding-left: 30px; position: relative;
+}
+.doc-toc li::before {
+  content: counter(toc) ".";
+  position: absolute; left: 0; width: 24px;
+  text-align: right;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
 .doc-toc a { text-decoration: none; }
 .doc-toc a:hover { text-decoration: underline; }
 @media (max-width: 640px) { .doc-toc ol { columns: 1; } }
