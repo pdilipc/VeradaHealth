@@ -21,7 +21,7 @@
     // in this file, in the page source, or in any HTTP response.
     form: {
       endpoint:   'https://api.web3forms.com/submit',
-      accessKey:  'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY',
+      accessKey:  'bd167070-93dc-4698-b7fb-7258654a64f6',
       minSeconds: 4,     // reject submissions faster than a human can type
       cooldownSec: 90,   // per-browser rate limit between submissions
       maxMessage: 4000
