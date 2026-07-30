@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Policy | Verada</title>
+<meta name="description" content="How verada.health uses cookies and similar technologies, and how to change your choices.">
+<link rel="canonical" href="https://www.verada.health/cookie-policy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    document.getElementById('themeBtn').innerHTML = n === 'dark' ? '&#9728;' : '&#9790;';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var t = document.documentElement.getAttribute('data-theme');
+    document.getElementById('themeBtn').innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+  });
+</script>
+</head>
+<body class="doc-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><span class="brand-node"></span> Verada</a>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Home</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+  <div class="doc-eyebrow"><span class="node"></span> Legal</div>
+  <h1>Cookie Policy</h1>
+  <p class="doc-updated">Version 1.0 &middot; Last updated 30 July 2026</p>
+
+  <p class="doc-lead">This site sets almost nothing. What follows is the complete list, what each item does, and how to change your mind. Read alongside our <a href="privacy.html">Privacy Notice</a>.</p>
+
+  <h2 id="what">What cookies are</h2>
+  <p>Cookies are small text files a website stores on your device. Similar technologies, such as browser local storage, do much the same thing. They are used to make sites work, remember preferences, and tell site owners how their site is being used.</p>
+
+  <h2 id="approach">Our approach</h2>
+  <p>By default, this website sets <strong>only what is strictly necessary</strong> for it to function and to remember your cookie choice. Anything optional &mdash; currently just analytics &mdash; is set only after you have actively accepted it, in line with the UK GDPR and regulation 6 of the Privacy and Electronic Communications Regulations (PECR).</p>
+  <p>Declining changes nothing about how the site works for you. There is no dark pattern here: the decline button is as easy to press as the accept button, we do not ask again on every page, and we do not treat "keep scrolling" as consent.</p>
+
+  <h2 id="strictly-necessary">Strictly necessary</h2>
+  <p>These do not require consent because the site cannot work properly without them.</p>
+  <div class="doc-table-wrap">
+  <table>
+    <thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>verada_consent</code></td>
+        <td>First-party local storage</td>
+        <td>Remembers whether you accepted or declined optional cookies, so we do not ask again on every visit.</td>
+        <td>12 months</td>
+      </tr>
+      <tr>
+        <td><code>verada-theme</code></td>
+        <td>First-party local storage</td>
+        <td>Remembers whether you chose the light or dark version of the site.</td>
+        <td>Until cleared</td>
+      </tr>
+      <tr>
+        <td><code>verada_last_send</code></td>
+        <td>First-party local storage</td>
+        <td>Records the time of your last contact-form submission, purely to rate-limit automated spam. Contains a timestamp and nothing else.</td>
+        <td>Until cleared</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 id="analytics">Analytics &mdash; only with your consent</h2>
+  <p>We do not currently operate analytics on this site. If and when we do, the tags will load only after you accept, and this table will list exactly what they set before they are switched on.</p>
+  <div class="doc-table-wrap">
+  <table>
+    <thead><tr><th>Name</th><th>Provider</th><th>Purpose</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Distinguishes visitors so we can measure how the site is used in aggregate.</td><td>Up to 13 months</td></tr>
+      <tr><td><code>_ga_&lt;id&gt;</code></td><td>Google Analytics</td><td>Maintains session state for analytics measurement.</td><td>Up to 13 months</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- TODO: when a GTM container is actually deployed, verify these names and
+       durations against the real container and update this table. If no analytics
+       are deployed, this section stays accurate as written. -->
+  <p>Analytics data is used in aggregate to understand which pages are useful. Google may process it on servers outside the UK &mdash; see <a href="privacy.html#transfers">International transfers</a>.</p>
+
+  <h2 id="third-party">Third parties that see your request</h2>
+  <p>Two services receive technical information simply because your browser contacts them when a page loads. Neither sets tracking cookies on this site.</p>
+  <ul>
+    <li><strong>GitHub Pages</strong> hosts the site and logs requests for security and delivery.</li>
+    <li><strong>Google Fonts</strong> serves the typefaces, and receives your IP address when your browser fetches them. We intend to self-host these fonts to remove that transfer.</li>
+    <li><strong>Cloudflare Turnstile</strong>, where enabled on the contact form, runs a spam-verification check. It is designed not to use cookies for cross-site tracking.</li>
+  </ul>
+
+  <h2 id="manage">Changing your mind</h2>
+  <p>You can change your choice at any time. Withdrawing consent stops any new analytics cookies being set; you can clear existing ones through your browser.</p>
+  <p style="margin: 26px 0;">
+    <button type="button" class="vbtn" onclick="if(window.veradaResetConsent){window.veradaResetConsent();}else{try{localStorage.removeItem('verada_consent');}catch(e){}location.reload();}">
+      Change my cookie choice
+    </button>
+  </p>
+  <p>You can also block or delete cookies in your browser:
+    <a href="https://support.google.com/chrome/answer/95647" rel="noopener">Chrome</a>,
+    <a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" rel="noopener">Firefox</a>,
+    <a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" rel="noopener">Safari</a>,
+    <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" rel="noopener">Edge</a>.
+  </p>
+
+  <h2 id="links">Links to other sites</h2>
+  <p>Where we link out &mdash; for example to LinkedIn or a university partner &mdash; those sites set their own cookies under their own policies once you leave ours. We have no control over them.</p>
+
+  <h2 id="changes">Changes and contact</h2>
+  <p>We will update this policy whenever what we set changes. Questions to <a href="mailto:privacy@verada.health">privacy@verada.health</a>.</p>
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Legal">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada, Verada Technologies, Verada Clinic and Verada Research are brands of the Verada group of companies.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>

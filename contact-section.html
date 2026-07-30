@@ -1,0 +1,115 @@
+<!-- ============================================================
+     VERADA — CONTACT SECTION
+     Paste this whole block into index.html immediately BEFORE the
+     line that reads:   <footer class="site-footer">
+
+     Requires (see INDEX-EDITS.md, edits 1 and 12):
+       <link rel="stylesheet" href="assets/verada.css">   in <head>
+       <script src="assets/verada.js" defer></script>     before </body>
+     ============================================================ -->
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="node"></span> Get In Touch</div>
+      <h2>Start a conversation</h2>
+      <p class="lead">Whether you build medical technology, fund it, research it, or refer the patients who need it, we would like to hear from you. Tell us which you are and your message reaches the right person directly.</p>
+    </div>
+
+    <div class="vform-shell reveal d1">
+
+      <div class="vform-guard">
+        <span aria-hidden="true">&#9888;</span>
+        <div><strong>Please do not send health information through this form.</strong> This channel is for business, partnership and research enquiries. If you are seeking treatment, speak to your GP or another qualified clinician. In an emergency call 999.</div>
+      </div>
+
+      <form id="verada-contact-form" novalidate>
+
+        <div class="vform-grid">
+
+          <div class="vfield">
+            <label for="vf-name">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="vf-name" name="name" autocomplete="name" maxlength="120" required>
+            <span class="err-msg">Please tell us your name.</span>
+          </div>
+
+          <div class="vfield">
+            <label for="vf-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="vf-email" name="email" autocomplete="email" maxlength="180" required>
+            <span class="err-msg">Please enter a valid email address.</span>
+          </div>
+
+          <div class="vfield">
+            <label for="vf-org">Organisation <span class="hint">(optional)</span></label>
+            <input type="text" id="vf-org" name="organisation" autocomplete="organization" maxlength="160">
+          </div>
+
+          <div class="vfield">
+            <label for="vf-type">I am getting in touch as <span class="req" aria-hidden="true">*</span></label>
+            <select id="vf-type" name="enquiry_type" required>
+              <option value="">Please choose&hellip;</option>
+              <option>A medical device or pharmaceutical company</option>
+              <option>An investor</option>
+              <option>A university or research collaborator</option>
+              <option>A clinician or referral partner</option>
+              <option>A grant body or public funder</option>
+              <option>A clinic or care provider</option>
+              <option>Press or media</option>
+              <option>Someone looking to work with Verada</option>
+              <option>Something else</option>
+            </select>
+            <span class="err-msg">Please choose one so we can route your message.</span>
+          </div>
+
+          <div class="vfield full">
+            <label for="vf-message">Your message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="vf-message" name="message" maxlength="4000" required
+              placeholder="A sentence or two about what you are working on and what you are looking for."></textarea>
+            <span class="err-msg">Please write at least a couple of sentences.</span>
+          </div>
+
+        </div>
+
+        <!-- Honeypot: hidden from people and from assistive technology.
+             Anything typed here means an automated script filled the form. -->
+        <div class="vhp" aria-hidden="true">
+          <label for="vf-botcheck">Leave this field empty</label>
+          <input type="text" id="vf-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div id="vform-turnstile" style="margin-top:20px"></div>
+
+        <div style="margin-top:24px; display:flex; flex-direction:column; gap:14px">
+          <div class="vcheck">
+            <input type="checkbox" id="vf-ack" name="privacy_ack" required>
+            <label for="vf-ack">I have read the <a href="privacy.html">Privacy Notice</a> and understand that Verada will use the details above to respond to my enquiry. <span class="req" aria-hidden="true">*</span></label>
+          </div>
+          <div class="vcheck">
+            <input type="checkbox" id="vf-optin" name="marketing_opt_in">
+            <label for="vf-optin">Optional: send me occasional updates about Verada's progress. You can unsubscribe at any time.</label>
+          </div>
+        </div>
+
+        <div class="vform-actions">
+          <button type="submit" class="vbtn">
+            <span class="spin" aria-hidden="true"></span>
+            <span>Send message</span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </button>
+          <span class="vform-alt">Or write to <a href="mailto:info@verada.health">info@verada.health</a></span>
+        </div>
+
+        <div class="vform-status" id="vform-status" aria-live="polite"></div>
+
+      </form>
+
+      <div class="vform-legal">
+        <p style="margin:0 0 8px">Verada Health Ltd, 71&ndash;75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom. Registered in England &amp; Wales, company number 17137766.</p>
+        <p style="margin:0">Nothing on this site is medical advice or an offer of investment, and statements about future plans and timelines are targets rather than commitments. See our <a href="terms.html">Terms of Use</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== END CONTACT SECTION ==================== -->

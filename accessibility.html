@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility | Verada</title>
+<meta name="description" content="Verada's commitment to accessible digital services, and how to tell us about a barrier.">
+<link rel="canonical" href="https://www.verada.health/accessibility.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    document.getElementById('themeBtn').innerHTML = n === 'dark' ? '&#9728;' : '&#9790;';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var t = document.documentElement.getAttribute('data-theme');
+    document.getElementById('themeBtn').innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+  });
+</script>
+</head>
+<body class="doc-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><span class="brand-node"></span> Verada</a>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Home</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+  <div class="doc-eyebrow"><span class="node"></span> Legal</div>
+  <h1>Accessibility Statement</h1>
+  <p class="doc-updated">Version 1.0 &middot; Last updated 30 July 2026</p>
+
+  <p class="doc-lead">This statement applies to <strong>verada.health</strong>, operated by Verada Health Ltd. Accessibility matters to us for a reason beyond compliance: the people our clinical work ultimately serves &mdash; stroke survivors, people living with neurological and musculoskeletal conditions, and the families who support them &mdash; are precisely the people that inaccessible websites shut out.</p>
+
+  <h2 id="standard">The standard we work to</h2>
+  <p>We aim for this website to conform to the <a href="https://www.w3.org/TR/WCAG22/" rel="noopener">Web Content Accessibility Guidelines (WCAG) 2.2</a> at level AA. In practice, we build so that you can:</p>
+  <ul>
+    <li>navigate the whole site with a keyboard alone, with a clearly visible focus indicator and a skip link on every page;</li>
+    <li>zoom to at least 200% and use the site on a narrow screen without losing content or function;</li>
+    <li>read text at sufficient contrast against its background, in either the light or dark version of the site;</li>
+    <li>use the site with screen readers and other assistive technology, supported by proper heading structure, form labels, landmark regions and alternative text;</li>
+    <li>turn off motion &mdash; if your device is set to reduce motion, our animations and the moving background on the home page stop.</li>
+  </ul>
+
+  <h2 id="choices">Specific choices we have made</h2>
+  <ul>
+    <li><strong>The contact form has real labels</strong>, not placeholder text standing in for them, and errors are announced rather than shown only in colour.</li>
+    <li><strong>We do not use a CAPTCHA that requires you to identify images.</strong> Our spam protection is invisible, and where we use a verification check it is one that does not depend on vision or fine motor control.</li>
+    <li><strong>The animated network on the home page is decorative</strong> and hidden from assistive technology; the diagrams that carry meaning have text descriptions.</li>
+    <li><strong>Colour is never the only signal.</strong> Status messages carry text as well as colour.</li>
+  </ul>
+
+  <h2 id="limitations">Known limitations</h2>
+  <p>This site is under active development and we would rather be honest than reassuring. We have not yet commissioned a formal external accessibility audit. Areas we are aware need checking:</p>
+  <ul>
+    <li>the moving background on the home page has not been assessed for its effect on people with vestibular conditions beyond honouring the reduced-motion setting;</li>
+    <li>some contrast ratios in the light version of the site need re-measuring against the AA threshold;</li>
+    <li>the diagrams on the home page carry text descriptions but have not been tested end to end with a screen reader.</li>
+  </ul>
+  <p>We will update this list, with target dates, as testing progresses.</p>
+  <!-- TODO: after running WAVE or axe plus a manual keyboard and screen-reader pass,
+       replace the list above with real findings and fix dates. An honest list of known
+       issues builds more credibility with commissioners than a blank section does. -->
+
+  <h2 id="report">Tell us about a barrier</h2>
+  <p>If any part of this site is difficult for you to use, or you need information from it in another format &mdash; large print, plain text, or read aloud &mdash; please tell us and we will help.</p>
+  <ul>
+    <li>Email: <a href="mailto:info@verada.health">info@verada.health</a></li>
+    <li>Contact form: <a href="index.html#contact">verada.health/#contact</a></li>
+    <li>Post: Verada Health Ltd, 71&ndash;75 Shelton Street, Covent Garden, London WC2H 9JQ</li>
+  </ul>
+  <p>It helps if you can tell us the page, what you were trying to do, and the browser or assistive technology you were using. We aim to reply within five working days.</p>
+
+  <h2 id="enforcement">If we do not get it right</h2>
+  <p>Under the Equality Act 2010 we have a duty to make reasonable adjustments so that disabled people are not put at a substantial disadvantage. If you contact us about an accessibility problem and you are not satisfied with our response, you can contact the <a href="https://www.equalityadvisoryservice.com/" rel="noopener">Equality Advisory and Support Service (EASS)</a>.</p>
+
+  <h2 id="prep">How this statement was prepared</h2>
+  <p>Prepared on 30 July 2026 following an internal review of the website against WCAG 2.2 level AA. It will be reviewed as the site develops and after formal testing.</p>
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Legal">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada, Verada Technologies, Verada Clinic and Verada Research are brands of the Verada group of companies.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Notice | Verada</title>
+<meta name="description" content="How Verada Health Ltd collects, uses and protects personal data through verada.health.">
+<link rel="canonical" href="https://www.verada.health/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    document.getElementById('themeBtn').innerHTML = n === 'dark' ? '&#9728;' : '&#9790;';
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    var t = document.documentElement.getAttribute('data-theme');
+    document.getElementById('themeBtn').innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+  });
+</script>
+</head>
+<body class="doc-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><span class="brand-node"></span> Verada</a>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Home</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+  <div class="doc-eyebrow"><span class="node"></span> Legal</div>
+  <h1>Privacy Notice</h1>
+  <p class="doc-updated">Version 1.0 &middot; Last updated 30 July 2026</p>
+
+  <p class="doc-lead">This notice explains what personal data Verada Health Ltd collects through this website, why we collect it, who we share it with, and the rights you have over it. We have written it to be read, not to be survived.</p>
+
+  <div class="doc-toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#scope">What this notice covers</a></li>
+      <li><a href="#nohealth">Why we do not want your health data</a></li>
+      <li><a href="#collect">What we collect</a></li>
+      <li><a href="#why">Why we use it, and our lawful basis</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#share">Who we share it with</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact us</a></li>
+    </ol>
+  </div>
+
+  <h2 id="who">1. Who we are</h2>
+  <p><strong>Verada Health Ltd</strong> is the data controller for personal data collected through this website. We are registered in England &amp; Wales under company number <strong>17137766</strong>. Our registered office is 71&ndash;75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom.</p>
+  <p>Verada, Verada Technologies, Verada Clinic and Verada Research are brands of the Verada group of companies.</p>
+  <p>We are registered with the UK Information Commissioner's Office (ICO) under registration number <strong>[ICO REGISTRATION NUMBER]</strong>.</p>
+  <!-- TODO (Sailaja): insert the ICO registration number. Paying the data protection
+       fee and registering is a statutory requirement for almost all UK controllers
+       under the Data Protection (Charges and Information) Regulations 2018. -->
+
+  <h2 id="scope">2. What this notice covers</h2>
+  <p>This notice applies to <strong>verada.health</strong> &mdash; the corporate website of the Verada group &mdash; and to the business correspondence that follows from it: partnership, investor, research, clinician and media enquiries.</p>
+  <p>It does <strong>not</strong> cover patient records, clinical data or research-participant data. Verada Clinic and Verada Research will operate under their own separate privacy notices, appropriate to health and research data and to the jurisdictions they operate in, published on their own services when those services launch.</p>
+
+  <h2 id="nohealth">3. Why we do not want your health data</h2>
+  <div class="doc-note warn">
+    <p><strong>Please do not send us information about your health, or anyone else's, through this website.</strong></p>
+    <p>Health data is "special category" personal data under Article 9 of the UK GDPR and deserves protections this website is deliberately not built to provide. Our contact form is designed for business enquiries and is processed by a third-party form service that is not contracted to handle clinical information.</p>
+    <p>If you do include health information in a message, we will use it only so far as necessary to respond appropriately or to direct you elsewhere, and will then delete it unless we are legally required to keep it. If you are seeking treatment, please speak to your GP or another qualified clinician.</p>
+  </div>
+
+  <h2 id="collect">4. What we collect</h2>
+
+  <h3>Information you give us</h3>
+  <ul>
+    <li><strong>Contact form and correspondence data</strong> &mdash; your name, email address, organisation (if you give one), the type of enquiry you select, and the content of your message.</li>
+    <li><strong>Marketing preference</strong> &mdash; whether you ticked the optional box asking to receive occasional updates.</li>
+    <li><strong>Business relationship data</strong> &mdash; contact and organisational details of partners, advisers, investors, researchers, clinicians and suppliers we work with or are in discussion with.</li>
+  </ul>
+
+  <h3>Information collected automatically</h3>
+  <ul>
+    <li><strong>Technical and log data</strong> &mdash; our hosting provider records limited technical information such as IP address, browser type and pages requested, for security and service delivery.</li>
+    <li><strong>Anti-spam signals</strong> &mdash; our contact form records how long a page was open before submission and whether a hidden field was completed, purely to distinguish people from automated scripts. This is not used to profile you.</li>
+    <li><strong>Analytics</strong> &mdash; only if you accept analytics cookies. See our <a href="cookie-policy.html">Cookie Policy</a>.</li>
+  </ul>
+  <p>We do not buy personal data, we do not sell it, and we do not use it for automated decision-making that produces legal or similarly significant effects.</p>
+
+  <h2 id="why">5. Why we use it, and our lawful basis</h2>
+  <div class="doc-table-wrap">
+  <table>
+    <thead><tr><th>What we do</th><th>Lawful basis (UK GDPR Art. 6)</th></tr></thead>
+    <tbody>
+      <tr><td>Reply to your enquiry and manage the correspondence that follows</td><td>Legitimate interests &mdash; responding to people who contact us; and, where relevant, steps taken at your request before entering a contract</td></tr>
+      <tr><td>Build and manage partnerships, research collaborations, investor and supplier relationships</td><td>Legitimate interests; pre-contractual steps; performance of a contract</td></tr>
+      <tr><td>Operate, secure and improve this website, including spam prevention</td><td>Legitimate interests &mdash; running a secure, working website</td></tr>
+      <tr><td>Send you occasional updates about Verada</td><td>Consent &mdash; only if you ticked the optional box, and you can withdraw at any time</td></tr>
+      <tr><td>Website analytics</td><td>Consent &mdash; only if you accepted analytics cookies</td></tr>
+      <tr><td>Meet legal, regulatory and accounting obligations</td><td>Legal obligation</td></tr>
+      <tr><td>Establish, exercise or defend legal claims</td><td>Legitimate interests</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Where we rely on legitimate interests we have assessed that our interests do not override your rights and freedoms. You can object at any time &mdash; see <a href="#rights">Your rights</a>.</p>
+
+  <h2 id="cookies">6. Cookies</h2>
+  <p>By default this site sets only what is strictly necessary to work and to remember your cookie choice. Optional analytics cookies are set <strong>only if you accept them</strong>, and you can change your mind at any time. Full detail, including names and durations, is in our <a href="cookie-policy.html">Cookie Policy</a>.</p>
+
+  <h2 id="share">7. Who we share it with</h2>
+  <ul>
+    <li><strong>Form processing</strong> &mdash; our contact form is delivered by a third-party form service acting on our instructions under contract. It receives the contents of your message in order to deliver it to us.</li>
+    <li><strong>Spam protection</strong> &mdash; where enabled, Cloudflare, Inc. processes a verification check on form submissions. Cloudflare Turnstile does not use cookies for cross-site tracking.</li>
+    <li><strong>Hosting</strong> &mdash; this site is hosted by GitHub, Inc. (GitHub Pages), which processes request logs.</li>
+    <li><strong>Web fonts</strong> &mdash; typefaces are currently served by Google Fonts, which receives your IP address when your browser requests them.</li>
+    <li><strong>Analytics</strong> &mdash; Google, but only where you have consented.</li>
+    <li><strong>Group companies</strong> &mdash; other Verada companies, for the purposes described here and under the same protections.</li>
+    <li><strong>Professional advisers</strong> &mdash; lawyers, accountants, insurers, where necessary.</li>
+    <li><strong>Regulators, authorities and courts</strong> &mdash; where the law requires it.</li>
+  </ul>
+  <!-- TODO (Sailaja): name the chosen form provider explicitly here once selected,
+       and confirm a written Art. 28 data processing agreement is in place with each
+       processor listed above before this page goes live. -->
+
+  <h2 id="transfers">8. International transfers</h2>
+  <p>Some of the providers above process data outside the UK, including in the United States. Where personal data leaves the UK we rely on UK adequacy regulations where they apply (including the UK Extension to the EU&ndash;US Data Privacy Framework), or on appropriate safeguards such as the UK International Data Transfer Agreement or the UK Addendum to the EU Standard Contractual Clauses, together with a transfer risk assessment. You can ask us for details of the safeguards in place.</p>
+
+  <h2 id="retention">9. How long we keep it</h2>
+  <ul>
+    <li><strong>Enquiries that go nowhere</strong> &mdash; up to 24 months from our last contact, then deleted.</li>
+    <li><strong>Business relationship records</strong> &mdash; for the life of the relationship and up to 6 years afterwards, in line with limitation periods and accounting requirements.</li>
+    <li><strong>Marketing list</strong> &mdash; until you unsubscribe, or after 24 months of no engagement.</li>
+    <li><strong>Server logs</strong> &mdash; short retention periods set by our hosting provider.</li>
+    <li><strong>Analytics</strong> &mdash; as set out in the <a href="cookie-policy.html">Cookie Policy</a>.</li>
+  </ul>
+
+  <h2 id="rights">10. Your rights</h2>
+  <p>Under the UK GDPR and the Data Protection Act 2018 you have the right to:</p>
+  <ul>
+    <li>ask for a copy of the personal data we hold about you;</li>
+    <li>have inaccurate or incomplete data corrected;</li>
+    <li>have your data erased in certain circumstances;</li>
+    <li>object to processing based on legitimate interests, and to object to direct marketing at any time, without needing a reason;</li>
+    <li>ask us to restrict processing in certain circumstances;</li>
+    <li>receive data you gave us in a portable format, where processing is based on consent or contract; and</li>
+    <li>withdraw consent at any time where we rely on it, without affecting anything done before you withdrew.</li>
+  </ul>
+  <p>To exercise any of these, contact us using the details in section 14. We will respond within one month. There is no charge.</p>
+  <p>You also have the right to complain to the UK supervisory authority: the <strong>Information Commissioner's Office</strong>, Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF; telephone 0303 123 1113; <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>. We would rather you came to us first so we can put things right.</p>
+
+  <h2 id="security">11. Security</h2>
+  <p>We apply technical and organisational measures appropriate to the risk: encryption in transit (HTTPS across the whole site), access controls on business systems, multi-factor authentication on administrative accounts, and confidentiality obligations on everyone who works with us. No transmission over the internet is ever completely secure, and information sent to this site is sent at your own risk.</p>
+
+  <h2 id="children">12. Children</h2>
+  <p>This website is aimed at professional and adult audiences. We do not knowingly collect personal data from anyone under 18 through it. If you believe a child has sent us personal data, tell us and we will delete it.</p>
+
+  <h2 id="changes">13. Changes to this notice</h2>
+  <p>We update this notice when what we do changes. The version number and date at the top show when it last changed, and material changes will be flagged on this page.</p>
+
+  <h2 id="contact">14. Contact us</h2>
+  <p>For anything in this notice, including requests to exercise your rights, contact our Data Protection Lead:</p>
+  <ul>
+    <li>Email: <a href="mailto:privacy@verada.health">privacy@verada.health</a></li>
+    <li>Contact form: <a href="index.html#contact">verada.health/#contact</a></li>
+    <li>Post: Data Protection Lead, Verada Health Ltd, 71&ndash;75 Shelton Street, Covent Garden, London WC2H 9JQ, United Kingdom</li>
+  </ul>
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Legal">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada, Verada Technologies, Verada Clinic and Verada Research are brands of the Verada group of companies.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>
