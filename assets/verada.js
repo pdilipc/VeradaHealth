@@ -16,7 +16,7 @@
 
     // --- Contact form -------------------------------------------------
     // Web3Forms: create a free access key at https://web3forms.com
-    // Enter dilip@verada.health there. The key below is public and safe;
+    // The key below is public and safe;
     // the destination address is stored server-side and never appears
     // in this file, in the page source, or in any HTTP response.
     form: {
