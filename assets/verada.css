@@ -368,3 +368,10 @@ select:focus-visible, textarea:focus-visible {
   .doc-page h1, .doc-page h2, .doc-page h3, .doc-page strong { color: #000; }
   .doc-page a { color: #000; }
 }
+/* Header links must not inherit body-link styling */
+.doc-page .doc-brand,
+.doc-page .doc-back { text-decoration: none; }
+.doc-page .doc-brand { color: var(--text); }
+.doc-page .doc-brand:hover { color: var(--text); }
+.doc-page .doc-back { color: var(--text-2); }
+.doc-page .doc-back:hover { color: var(--text); }
