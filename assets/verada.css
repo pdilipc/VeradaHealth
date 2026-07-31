@@ -702,5 +702,208 @@ select:focus-visible, textarea:focus-visible {
 [data-theme="light"] .lead .n-research { color: #9c2880; }
 [data-theme="light"] .lead .n-tech     { color: var(--primary); }
 
+/* ============================================================
+   ENTITY PAGES  —  clinics.html · research.html · technology.html
+   Append this to the end of assets/verada.css
+   Pages use  <body class="doc-page ent-page">  so they inherit
+   the existing header, footer, ambient background and typography.
+   ============================================================ */
+
+/* ---------- accent per entity ---------- */
+.ent-page { --accent: var(--primary-bright); }
+[data-theme="light"] .ent-page { --accent: var(--primary); }
+.ent-page.is-clinics  { --accent: #e07bc4; }
+.ent-page.is-research { --accent: var(--amethyst); }
+.ent-page.is-tech     { --accent: var(--primary-bright); }
+[data-theme="light"] .ent-page.is-clinics  { --accent: var(--tertiary); }
+[data-theme="light"] .ent-page.is-research { --accent: #9c2880; }
+[data-theme="light"] .ent-page.is-tech     { --accent: var(--primary); }
+
+/* ---------- header nav ---------- */
+.ent-nav { display: flex; align-items: center; gap: 4px; }
+.ent-nav a {
+  font-size: 13px; font-weight: 600; color: var(--text-3);
+  text-decoration: none; padding: 8px 13px; border-radius: 999px; transition: all .2s;
+  white-space: nowrap;
+}
+.ent-nav a:hover { color: var(--text); background: var(--surface-hi); }
+.ent-nav a.current { color: var(--accent); }
+@media (max-width: 780px) { .ent-nav { display: none; } }
+
+/* ---------- wider wrap than legal pages ---------- */
+.ent-page .doc-wrap,
+.ent-page .doc-header-inner,
+.ent-page .doc-footer-inner { max-width: 1040px; }
+
+/* ---------- hero ---------- */
+.ent-hero { padding: 20px 0 8px; }
+.ent-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 8px 16px; border-radius: 999px; margin-bottom: 26px;
+  background: var(--surface-hi); border: 1px solid var(--border); color: var(--text-2);
+}
+.ent-chip .cdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent);
+}
+.ent-page h1 { font-size: clamp(36px, 6vw, 58px); max-width: 15ch; }
+.ent-hero .ent-sub {
+  font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 20px;
+}
+.ent-hero .ent-lead {
+  font-size: 19px; line-height: 1.65; color: var(--text-2); max-width: 62ch; margin: 0 0 12px;
+}
+@media (max-width: 600px) { .ent-hero .ent-lead { font-size: 17px; } }
+
+/* ---------- section rhythm ---------- */
+.ent-sec { margin-top: 78px; }
+.ent-sec > .doc-eyebrow { color: var(--accent); }
+.ent-page h2 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 16px; }
+.ent-sec .sec-lead { font-size: 17px; color: var(--text-2); max-width: 66ch; margin: 0 0 34px; }
+
+/* ---------- pull quote / thesis ---------- */
+.ent-pull {
+  position: relative; margin: 40px 0; padding: 32px 36px;
+  border-radius: 1.25rem; border: 1px solid var(--border-hi);
+  background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-size: 21px; line-height: 1.45; font-weight: 600; color: var(--text); letter-spacing: -.01em;
+}
+.ent-pull::before { content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 3px; background: var(--accent); }
+@media (max-width: 600px) { .ent-pull { padding: 24px 22px; font-size: 18px; } }
+
+/* ---------- feature cards ---------- */
+.ent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ent-grid.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 940px) { .ent-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 660px) { .ent-grid, .ent-grid.two { grid-template-columns: 1fr; } }
+
+.ent-card {
+  position: relative; padding: 30px; border-radius: 1.25rem; overflow: hidden;
+  background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border); transition: transform .3s, border-color .3s;
+}
+.ent-card:hover { transform: translateY(-4px); border-color: var(--border-hi); }
+.ent-card .cnum {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 9px; margin-bottom: 16px;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent); font-size: 13px; font-weight: 800;
+}
+.ent-card h3 {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 700;
+  font-size: 17.5px; color: var(--text); margin: 0 0 9px; letter-spacing: -.01em;
+}
+.ent-card p { font-size: 14.5px; color: var(--text-2); line-height: 1.62; margin: 0; }
+
+/* ---------- audience cards ---------- */
+.aud-card {
+  position: relative; padding: 34px; border-radius: 1.5rem; overflow: hidden;
+  background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
+}
+.aud-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.aud-card .atag {
+  align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 999px; margin-bottom: 18px;
+  background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent);
+}
+.aud-card h3 {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 700;
+  font-size: 21px; line-height: 1.25; color: var(--text); margin: 0 0 12px; letter-spacing: -.01em;
+}
+.aud-card > p { font-size: 15px; color: var(--text-2); line-height: 1.68; margin: 0 0 20px; }
+@media (max-width: 600px) { .aud-card { padding: 26px 22px; } }
+
+/* ---------- dot list ---------- */
+.dot-list { list-style: none; margin: 0 0 4px; padding: 0; }
+.dot-list li {
+  position: relative; padding-left: 25px; margin-bottom: 11px;
+  font-size: 14.5px; color: var(--text-2); line-height: 1.6;
+}
+.dot-list li::before {
+  content: ''; position: absolute; left: 3px; top: 9px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 8px var(--accent);
+}
+.dot-list strong { color: var(--text); font-weight: 600; }
+.aud-foot {
+  margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border);
+  font-size: 13.5px; color: var(--text-3); line-height: 1.65;
+}
+
+/* ---------- status rows ---------- */
+.stat-rows { border-top: 1px solid var(--border); }
+.stat-row {
+  display: grid; grid-template-columns: 150px 1fr; gap: 20px;
+  padding: 20px 4px; border-bottom: 1px solid var(--border); align-items: start;
+}
+@media (max-width: 620px) { .stat-row { grid-template-columns: 1fr; gap: 6px; } }
+.stat-row .slabel {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3);
+  padding-top: 3px;
+}
+.stat-row .sval { font-size: 15px; color: var(--text-2); line-height: 1.65; }
+.stat-row .sval strong { color: var(--text); font-weight: 600; }
+
+/* ---------- sibling links ---------- */
+.sib-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+@media (max-width: 660px) { .sib-grid { grid-template-columns: 1fr; } }
+.sib-card {
+  display: block; text-decoration: none; padding: 26px 28px; border-radius: 1.25rem;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform .3s, border-color .3s;
+}
+.sib-card:hover { transform: translateY(-4px); border-color: var(--border-hi); }
+.sib-card .sk {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-3); display: block; margin-bottom: 9px;
+}
+.sib-card .sn {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 19px;
+  color: var(--text); display: block; margin-bottom: 7px; letter-spacing: -.01em;
+}
+.sib-card .sd { font-size: 14px; color: var(--text-2); line-height: 1.6; display: block; }
+.sib-card .sgo { font-size: 13.5px; font-weight: 700; color: var(--accent); margin-top: 14px; display: inline-block; }
+
+/* ---------- closing CTA ---------- */
+.ent-cta {
+  margin-top: 78px; padding: 52px 44px; border-radius: 1.5rem; text-align: center;
+  background: var(--surface); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-hi); box-shadow: var(--shadow-sm);
+}
+.ent-cta h2 { margin-bottom: 14px; }
+.ent-cta p { font-size: 16.5px; color: var(--text-2); max-width: 58ch; margin: 0 auto 28px; line-height: 1.7; }
+@media (max-width: 600px) { .ent-cta { padding: 34px 22px; } }
+
+/* ---------- division disclosure ---------- */
+.division-note {
+  margin-top: 60px; padding: 22px 26px; border-radius: 1rem;
+  background: var(--surface-hi); border: 1px solid var(--border);
+  font-size: 13.5px; color: var(--text-3); line-height: 1.7;
+}
+.division-note strong { color: var(--text-2); font-weight: 600; }
+
+/* ---------- stage router ---------- */
+.stage-router { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+@media (max-width: 860px) { .stage-router { grid-template-columns: 1fr; } }
+.stage-card {
+  display: block; text-decoration: none; padding: 24px 26px; border-radius: 1.1rem;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: transform .3s, border-color .3s;
+}
+a.stage-card:hover { transform: translateY(-4px); border-color: var(--border-hi); }
+.stage-card.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, var(--surface)); }
+.stage-card .sq {
+  display: block; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-weight: 700;
+  font-size: 15.5px; color: var(--text); margin-bottom: 9px; letter-spacing: -.01em;
+}
+.stage-card .sa { display: block; font-size: 13.5px; color: var(--text-2); line-height: 1.6; }
+.stage-card .sgo2 { display: inline-block; margin-top: 13px; font-size: 12.5px; font-weight: 700; color: var(--accent); }
+.stage-card.active .sgo2 { color: var(--text-3); }
+
 /* Closing beat */
 .lead .coda { display: block; margin-top: 14px; color: var(--text); font-weight: 600; }
