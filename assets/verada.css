@@ -647,3 +647,17 @@ select:focus-visible, textarea:focus-visible {
 [data-theme="light"] .sme-card.clinic   .vlink { color: var(--tertiary); }
 [data-theme="light"] .sme-card.research .vlink { color: #9c2880; }
 [data-theme="light"] .sme-card.tech     .vlink { color: var(--primary); }
+
+/* Card links through to the division pages */
+.sme-card .vlink {
+  display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700;
+  text-decoration: none; position: relative; z-index: 1;
+  transition: transform .2s;
+}
+.sme-card .vlink:hover { transform: translateX(3px); }
+.sme-card.clinic   .vlink { color: #e07bc4; }
+.sme-card.research .vlink { color: var(--amethyst); }
+.sme-card.tech     .vlink { color: var(--primary-bright); }
+[data-theme="light"] .sme-card.clinic   .vlink { color: var(--tertiary); }
+[data-theme="light"] .sme-card.research .vlink { color: #9c2880; }
+[data-theme="light"] .sme-card.tech     .vlink { color: var(--primary); }
