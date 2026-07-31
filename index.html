@@ -558,10 +558,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--primary-bright)
     <nav class="nav">
       <span class="nav-links">
         <a href="#thesis" class="nav-link">The Gap</a>
-        <a href="#verticals" class="nav-link">The Group</a>
+        <span class="nav-drop">
+          <a href="#verticals" class="nav-link">The Group <span class="caret">&#9662;</span></a>
+          <div class="nav-menu">
+            <a href="clinics.html">Verada Rehab Clinics<span>The first UK deployment</span></a>
+            <a href="research.html">Verada Clinical Research<span>Decentralised trials &amp; endpoints</span></a>
+            <a href="technology.html">Verada Healthcare IT<span>The evidence layer</span></a>
+          </div>
+        </span>
         <a href="#loop" class="nav-link">How It Compounds</a>
         <a href="#leadership" class="nav-link">Leadership</a>
-        <a href="clinics.html" class="nav-link">Clinics</a>
       </span>
       <a href="#contact" class="nav-cta">Contact</a>
       <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle colour theme">&#9728;</button>
