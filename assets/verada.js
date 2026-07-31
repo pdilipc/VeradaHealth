@@ -16,7 +16,7 @@
 
     // --- Contact form -------------------------------------------------
     // Web3Forms: create a free access key at https://web3forms.com
-    // The key below is public and safe;
+    // Enter dilip@verada.health there. The key below is public and safe;
     // the destination address is stored server-side and never appears
     // in this file, in the page source, or in any HTTP response.
     form: {
@@ -298,9 +298,104 @@
     });
   }
 
+
+  /* ----------------------------------------------------------
+     3. APPLICABILITY CHECK HANDOFF
+     Reads ?ac=stage.axis.measure written by applicability.html,
+     shows a summary above the form and carries it into the email.
+     ---------------------------------------------------------- */
+
+  var AC_LABELS = {
+    stage: {
+      trials:   'Under investigation',
+      approved: 'Approved, limited adoption',
+      routine:  'Routine clinical use',
+      early:    'Pre-clinical'
+    },
+    axis: {
+      cortical: 'Cortical and neuromuscular pathway',
+      muscle:   'Muscle, joint or movement',
+      both:     'Both, or undetermined',
+      other:    'Neither'
+    },
+    measure: {
+      rater:     'Clinician-rated scale',
+      pro:       'Patient-reported measure',
+      timed:     'Strength or timed function test',
+      imaging:   'Imaging or body composition',
+      objective: 'Objective and validated measure'
+    }
+  };
+
+  var AC_ROUTE = {
+    trials: 'Clinical Research', early: 'Clinical Research',
+    approved: 'Rehab Clinics',   routine: 'Rehab Clinics'
+  };
+
+  function initApplicability() {
+    var form = document.getElementById('verada-contact-form');
+    if (!form) return;
+
+    var raw;
+    try { raw = new URLSearchParams(window.location.search).get('ac'); } catch (e) { return; }
+    if (!raw) return;
+
+    var parts = raw.split('.');
+    if (parts.length !== 3) return;
+    var stage = AC_LABELS.stage[parts[0]],
+        axis  = AC_LABELS.axis[parts[1]],
+        meas  = AC_LABELS.measure[parts[2]];
+    if (!stage || !axis || !meas) return;
+
+    var applicable = parts[1] !== 'other';
+    var verdict = !applicable ? 'Criteria not satisfied'
+                : (parts[2] === 'objective' ? 'Criteria satisfied, with one qualification'
+                                            : 'Criteria satisfied');
+
+    // visible summary above the form
+    var panel = document.getElementById('ac-prefill');
+    if (panel) {
+      panel.innerHTML =
+        '<span class="h">Carried over from your applicability check</span>' +
+        '<dl>' +
+          '<dt>Development stage</dt><dd>' + stage + '</dd>' +
+          '<dt>Mechanism acts on</dt><dd>' + axis + '</dd>' +
+          '<dt>Current endpoint</dt><dd>' + meas + '</dd>' +
+          '<dt>Determination</dt><dd>' + verdict + '</dd>' +
+        '</dl>';
+      panel.classList.add('show');
+    }
+
+    // hidden field carried into the email
+    var hidden = form.elements['applicability_check'];
+    if (hidden) {
+      hidden.value = 'Stage: ' + stage + ' | Mechanism: ' + axis +
+                     ' | Current endpoint: ' + meas + ' | Determination: ' + verdict;
+    }
+
+    // sensible default on the enquiry-type select
+    var sel = form.elements['enquiry_type'];
+    if (sel && !sel.value) {
+      var want = applicable && AC_ROUTE[parts[0]] === 'Clinical Research'
+        ? 'A medical device or pharmaceutical company' : null;
+      if (want) {
+        for (var i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === want || sel.options[i].text === want) { sel.selectedIndex = i; break; }
+        }
+      }
+    }
+
+    // prompt for the part only they can supply
+    var msg = form.elements['message'];
+    if (msg && !msg.value) {
+      msg.setAttribute('placeholder',
+        'The indication, the intervention, and roughly when your protocol locks or when you need a UK presence.');
+    }
+  }
+
   /* ---------------------------------------------------------- */
 
-  function boot() { initConsent(); initForm(); }
+  function boot() { initConsent(); initForm(); initApplicability(); }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
