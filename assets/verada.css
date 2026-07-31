@@ -65,12 +65,10 @@
 }
 .skip-link:focus { left: 0; }
 
-/* ---------- card order ---------- */
-
-.sme-card.clinic    { order: 1; }
-.sme-card.research  { order: 2; }
-.sme-card.tech      { order: 3; }
-
+/* Display order: Clinics → Research → IT (concrete first) */
+.sme-card.clinic   { order: 1; transition-delay: .08s; }
+.sme-card.research { order: 2; transition-delay: .16s; }
+.sme-card.tech     { order: 3; transition-delay: .24s; }
 
 /* ============================================================
    LEGAL / DOCUMENT PAGES
