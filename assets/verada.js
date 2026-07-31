@@ -262,6 +262,7 @@
       data.append('message', form.elements['message'].value.trim());
       data.append('marketing_opt_in', form.elements['marketing_opt_in'].checked ? 'YES' : 'no');
       data.append('privacy_ack', 'acknowledged ' + new Date().toISOString());
+      data.append('applicability_check', form.elements['applicability_check'].value || '');
       data.append('botcheck', '');
       if (turnstileToken) data.append('cf-turnstile-response', turnstileToken);
 
