@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applicability Check | Verada</title>
+<meta name="description" content="Three questions to determine whether Verada instrumentation is applicable to your intervention.">
+<link rel="canonical" href="https://verada.health/applicability.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verada">
+<meta property="og:url" content="https://verada.health/applicability.html">
+<meta property="og:title" content="Applicability Check | Verada">
+<meta property="og:description" content="Development stage, mechanism and current endpoint are sufficient to determine applicability. Three questions.">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaPaintBrand(t) {
+    var b = document.getElementById('themeBtn'); if (b) b.innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+    var m = document.getElementById('brandMark'); if (m) m.src = 'assets/verada-logo-' + t + '.png';
+  }
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    veradaPaintBrand(n);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    veradaPaintBrand(document.documentElement.getAttribute('data-theme'));
+  });
+</script>
+</head>
+<body class="doc-page ent-page ac-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><img src="assets/verada-logo-dark.png" alt="Verada" id="brandMark"></a>
+    <nav class="ent-nav" aria-label="Divisions">
+      <a href="fit.html">Scope</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+    </nav>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Group</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+
+  <section class="ent-hero">
+    <span class="ent-chip"><span class="cdot"></span> Three questions</span>
+    <p class="ent-sub">Applicability check</p>
+    <h1>Is this instrumentation applicable to your intervention?</h1>
+    <p class="ac-intro">Development stage, therapeutic mechanism and the endpoint currently in use are jointly sufficient to determine applicability. Selecting one option from each returns the relevant device, the division that would deliver the work, and the principal limitation. Nothing is submitted until you choose to send it.</p>
+  </section>
+
+  <div class="qz">
+    <div class="qz-q">
+      <div class="qz-label"><span>1</span>Development stage</div>
+      <div class="qz-opts" data-group="stage">
+        <button type="button" class="qz-opt" data-v="trials" aria-pressed="false">Under investigation</button>
+        <button type="button" class="qz-opt" data-v="approved" aria-pressed="false">Approved, limited adoption</button>
+        <button type="button" class="qz-opt" data-v="routine" aria-pressed="false">Routine clinical use</button>
+        <button type="button" class="qz-opt" data-v="early" aria-pressed="false">Pre-clinical</button>
+      </div>
+    </div>
+
+    <div class="qz-q">
+      <div class="qz-label"><span>2</span>Therapeutic mechanism acts on</div>
+      <div class="qz-opts" data-group="axis">
+        <button type="button" class="qz-opt" data-v="cortical" aria-pressed="false">Cortical and neuromuscular pathway</button>
+        <button type="button" class="qz-opt" data-v="muscle" aria-pressed="false">Muscle, joint or movement</button>
+        <button type="button" class="qz-opt" data-v="both" aria-pressed="false">Both, or undetermined</button>
+        <button type="button" class="qz-opt" data-v="other" aria-pressed="false">Neither</button>
+      </div>
+    </div>
+
+    <div class="qz-q">
+      <div class="qz-label"><span>3</span>Current primary endpoint</div>
+      <div class="qz-opts" data-group="measure">
+        <button type="button" class="qz-opt" data-v="rater" aria-pressed="false">Clinician-rated scale</button>
+        <button type="button" class="qz-opt" data-v="pro" aria-pressed="false">Patient-reported measure</button>
+        <button type="button" class="qz-opt" data-v="timed" aria-pressed="false">Strength or timed function test</button>
+        <button type="button" class="qz-opt" data-v="imaging" aria-pressed="false">Imaging or body composition</button>
+        <button type="button" class="qz-opt" data-v="objective" aria-pressed="false">Objective and validated measure</button>
+      </div>
+    </div>
+
+    <div class="qz-result" id="qzResult" role="status" aria-live="polite"></div>
+  </div>
+
+  <a class="ac-link-card" href="fit.html">
+    <span class="k">Reference</span>
+    <span class="t">Scope and limitations</span>
+    <span class="d">The full criteria, the instrumentation, the categories in which the case is established or unresolved, and those outside scope. Written for anyone who wants to check the reasoning rather than the conclusion.</span>
+  </a>
+
+  <div class="ac-note">
+    This check returns an indicative determination based on three variables. It is not a substitute for an assessment against the full criteria, and it does not constitute a commitment to undertake work. Selections are held in your browser and are transmitted only if you choose to send an enquiry.
+  </div>
+
+  <div class="division-note">
+    <strong>About this page.</strong> Verada Rehab Clinics, Verada Clinical Research and Verada Healthcare IT are trading divisions of Verada Health Ltd, registered in England &amp; Wales under company number 17137766. They are not currently separate legal entities. Nothing on this page is medical advice or an offer or invitation to invest. Applicability assessments describe where the instrumentation plausibly applies; they are not claims of validated efficacy or of a qualified clinical outcome assessment for any intervention. See our <a href="terms.html">Terms of Use</a>.
+  </div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Site">
+      <a href="index.html">Group</a>
+      <a href="applicability.html">Applicability check</a>
+      <a href="fit.html">Scope</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada Health, Verada Healthcare IT, Verada Rehab Clinics and Verada Clinical Research are brands and trading divisions of Verada Health Ltd.
+  </div>
+</footer>
+
+<script>
+(function () {
+  var pick = {}, box = document.getElementById('qzResult');
+  if (!box) return;
+
+  var INSTRUMENT = {
+    cortical: ['Paired EEG and surface EMG', 'Simultaneous cortical and neuromuscular recording, for interventions acting on the cortical to neuromuscular pathway. Upper limb only.'],
+    muscle:   ['Surface EMG with joint mobility', 'Muscle activation, recruitment and symmetry with simultaneous active range of motion, at any major muscle group or joint.'],
+    both:     ['Combined instrumentation', 'Where reduced output may originate centrally or peripherally, recording drive alongside output permits discrimination between them. Not resolvable by either device alone.']
+  };
+  var ROUTE = {
+    trials:   ['Verada Clinical Research', 'research.html', 'Randomisation, pre-exposure baseline and blinded assessment are not retrospectively recoverable. Applicable while the protocol remains open.'],
+    approved: ['Verada Rehab Clinics', 'clinics.html', 'Operational and health-economic evidence requires a service in routine delivery within the target health system.'],
+    routine:  ['Verada Rehab Clinics', 'clinics.html', 'Real-world outcome and utilisation data from routine delivery, structured for payor and commissioner assessment.'],
+    early:    ['Verada Clinical Research', 'research.html', 'Endpoint architecture is fully open at this stage, which is favourable. First-in-human studies are not a category in which Verada would currently take a first engagement.']
+  };
+  var CAVEAT = {
+    rater:    'Rater variability is among the larger sources of measurement error in this field. An instrumented measure removes the scoring component of that variance, though not administration variance.',
+    pro:      'Patient-reported measures capture a construct the instrumentation does not replace. The measure would be carried alongside rather than in substitution, permitting assessment of concordance between the two.',
+    timed:    'Timed and strength tests are effort-dependent, so participant motivation on the assessment day propagates into the score. Recording drive alongside output renders that component observable rather than unexplained.',
+    imaging:  'Imaging and body-composition measures quantify structure and mass. They do not characterise activation, compensation or fatigue, which is frequently the dimension the intervention is intended to alter.',
+    objective:'An objective validated measure is already established, so the instrumentation would compete with an incumbent rather than address a gap. The defensible case is limited to dimensions the existing measure does not cover.'
+  };
+
+  function render() {
+    if (!pick.stage || !pick.axis || !pick.measure) return;
+    var v, h, body = '', links = '';
+    var q = 'index.html?ac=' + pick.stage + '.' + pick.axis + '.' + pick.measure + '#contact';
+
+    if (pick.axis === 'other') {
+      v = 'no'; h = 'Criteria not satisfied';
+      body = '<p>Where the mechanism acts outside the cortical to neuromuscular pathway or the muscle and movement system, the instrumentation would record a signal that does not covary with therapeutic effect. Condition three is not satisfied.</p>' +
+             '<p>One exception is worth checking. A disease process may be outside scope while functional impairment arising from its treatment is not.</p>';
+      links = '<a href="fit.html#no">Outside scope</a><a class="primary" href="' + q + '">Enquire anyway</a>';
+    } else {
+      var inst = INSTRUMENT[pick.axis], route = ROUTE[pick.stage];
+      v = (pick.measure === 'objective') ? 'maybe' : 'yes';
+      h = (pick.measure === 'objective') ? 'Criteria satisfied, with one qualification' : 'Criteria satisfied';
+      body = '<p><strong>Instrumentation: ' + inst[0] + '.</strong> ' + inst[1] + '</p>' +
+             '<p><strong>Delivered by ' + route[0] + '.</strong> ' + route[2] + '</p>' +
+             '<p>' + CAVEAT[pick.measure] + '</p>';
+      links = '<a href="' + route[1] + '">' + route[0] + '</a>' +
+              (pick.axis === 'both' ? '<a href="fit.html#paired">Combined instrumentation</a>'
+                                    : '<a href="fit.html#' + (pick.axis === 'cortical' ? 'neuro-1' : 'muscle') + '">Applications</a>') +
+              '<a class="primary" href="' + q + '">Continue to enquiry</a>';
+    }
+
+    box.innerHTML = '<span class="qz-verdict ' + v + '">' +
+      (v === 'yes' ? 'Applicable' : v === 'maybe' ? 'Qualified' : 'Not applicable') + '</span>' +
+      '<h3>' + h + '</h3>' + body +
+      '<div class="qz-links">' + links + '</div>' +
+      '<button type="button" class="qz-reset">Reset</button>';
+    box.classList.add('show');
+    box.querySelector('.qz-reset').addEventListener('click', function () {
+      pick = {}; box.classList.remove('show'); box.innerHTML = '';
+      document.querySelectorAll('.qz-opt').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  document.querySelectorAll('.qz-opts').forEach(function (grp) {
+    var key = grp.getAttribute('data-group');
+    grp.addEventListener('click', function (e) {
+      var b = e.target.closest('.qz-opt'); if (!b) return;
+      grp.querySelectorAll('.qz-opt').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      pick[key] = b.getAttribute('data-v');
+      render();
+    });
+  });
+})();
+</script>
+<script src="assets/verada.js" defer></script>
+</body>
+</html>

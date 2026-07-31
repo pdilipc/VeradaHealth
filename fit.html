@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scope and Limitations | Verada</title>
+<meta name="description" content="Criteria used to assess whether Verada instrumentation is applicable to a given intervention, the categories where the case is established, unresolved, or outside scope.">
+<link rel="canonical" href="https://verada.health/fit.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verada">
+<meta property="og:url" content="https://verada.health/fit.html">
+<meta property="og:title" content="Scope and Limitations | Verada">
+<meta property="og:description" content="Applicability criteria, instrumentation, and the categories in which measurement would not be informative.">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaPaintBrand(t) {
+    var b = document.getElementById('themeBtn'); if (b) b.innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+    var m = document.getElementById('brandMark'); if (m) m.src = 'assets/verada-logo-' + t + '.png';
+  }
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    veradaPaintBrand(n);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    veradaPaintBrand(document.documentElement.getAttribute('data-theme'));
+  });
+</script>
+</head>
+<body class="doc-page ent-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><img src="assets/verada-logo-dark.png" alt="Verada" id="brandMark"></a>
+    <nav class="ent-nav" aria-label="Divisions">
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+    </nav>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Group</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+
+  <nav class="pg-nav" aria-label="On this page">
+    <a href="applicability.html">Applicability check</a>
+    <a href="#doors">Development stage</a>
+    <a href="#test">Criteria</a>
+    <a href="#instruments">Instrumentation</a>
+    <a href="#role">Role</a>
+    <a href="#neuro-1">EEG and EMG</a>
+    <a href="#muscle">EMG and ROM</a>
+    <a href="#paired">Combined</a>
+    <a href="#open">Unresolved</a>
+    <a href="#no">Outside scope</a>
+    <a href="#capacity">Capacity</a>
+  </nav>
+
+  <section class="ent-hero">
+    <span class="ent-chip"><span class="cdot"></span> Reference</span>
+    <p class="ent-sub">Applicability</p>
+    <h1>Scope and limitations</h1>
+    <p class="ent-lead">This page sets out the criteria used to determine whether Verada instrumentation is applicable to a given intervention, the categories in which the case is currently established, those in which it remains unresolved, and those in which measurement would not be informative. The criteria are published so they can be applied independently of us.</p>
+  </section>
+
+  <a class="ac-link-card" href="applicability.html" style="margin: 40px 0 8px">
+    <span class="k">Start here</span>
+    <span class="t">Applicability check</span>
+    <span class="d">Three questions returning an indicative determination, the relevant instrument and the principal limitation. Faster than reading this page, and it carries your answers through to an enquiry if you decide to make one.</span>
+  </a>
+
+
+  <section class="ent-sec" id="doors">
+    <div class="doc-eyebrow"><span class="node"></span> Development Stage</div>
+    <h2>Stage determines which categories of evidence remain collectable</h2>
+    <p class="sec-lead">Regulatory status is the most consequential variable, because it determines what can still be generated. Randomisation, a pre-exposure baseline, blinded assessment and a pre-specified primary endpoint are available only during study design and cannot subsequently be reconstructed. Operational and health-economic evidence has the opposite property: it requires a service in routine delivery and cannot be produced in advance of one.</p>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Post-approval</span>
+        <h3>Approved, with limited adoption</h3>
+        <p>A CE, UKCA or FDA-cleared technology in established use in other health systems and without meaningful UK or US deployment. Efficacy is not the limiting factor; the constraint is the absence of local operational and economic evidence, which cannot be generated without a provider willing to deploy the technology first.</p>
+        <ul class="dot-list">
+          <li><strong>Evidence required:</strong> utilisation and throughput, staffing and training burden, completion and attrition, cost and revenue per session, and payback period</li>
+          <li><strong>Mechanism:</strong> deployment into Verada care delivery at Verada commercial risk, with the resulting operational and economic data published</li>
+          <li><strong>Time dependency:</strong> none absolute, though adoption evidence accrues only from the point of first deployment</li>
+        </ul>
+        <div class="aud-foot"><a href="clinics.html">Verada Rehab Clinics &rarr;</a></div>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Pre-approval</span>
+        <h3>Under investigation, endpoints not yet fixed</h3>
+        <p>A device, small molecule, biologic or advanced therapy in development, where the endpoint architecture remains open and assessment frequency is constrained by participant travel to study sites.</p>
+        <ul class="dot-list">
+          <li><strong>Evidence required:</strong> objective endpoint capture at a sampling density sufficient to characterise a trajectory rather than two timepoints</li>
+          <li><strong>Mechanism:</strong> instrumented delivery in the participant environment, with all four clinical outcome assessment types recorded against a single participant timeline</li>
+          <li><strong>Time dependency:</strong> absolute. Randomisation, baseline, blinding and endpoint pre-specification are not retrospectively recoverable</li>
+        </ul>
+        <div class="aud-foot"><a href="research.html">Verada Clinical Research &rarr;</a></div>
+      </div>
+    </div>
+
+    <p class="sec-lead" style="margin-top:30px;margin-bottom:0">Most technologies traverse both stages. Where the same instrumentation, population and data infrastructure are retained across the transition, the resulting record is continuous from pre-exposure baseline through to a reimbursement decision, which is not achievable where the two phases are contracted to different providers.</p>
+  </section>
+
+  <section class="ent-sec" id="test">
+    <div class="doc-eyebrow"><span class="node"></span> Criteria</div>
+    <h2>Three conditions, applied conjunctively</h2>
+    <p class="sec-lead">Applicability is assessed against the following conditions, all of which must hold. The framework constrains the assessment to mechanism rather than diagnostic category, which would otherwise admit any condition with a neurological or musculoskeletal component.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">1</span>Measurable axis</div>
+        <div class="sval">The condition, or its treatment, is expressed in cortical state, neuromuscular control, or the coupling between them. This is the physiological layer the instrumentation records. For musculoskeletal applications the relevant axis is muscle activation with joint range of motion, recorded by a different device.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">2</span>Weak incumbent</div>
+        <div class="sval">The endpoints in current use are subjective, rater-dependent, or episodic in sampling. Where an objective and validated measure is already established, the instrumentation is competing with an incumbent rather than addressing a measurement gap, and is assessed on that basis.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">3</span>Signal sensitivity</div>
+        <div class="sval"><strong>The recorded signal changes in proportion to therapeutic effect rather than to the presence of the intervention.</strong> This condition is the most frequently assumed and least frequently demonstrated. A psychoactive compound will alter cortical activity irrespective of clinical response; demonstrating target engagement is therefore straightforward, while establishing an efficacy correlate requires prospective evidence that is rarely available at the point of first proposal.</div>
+      </div>
+    </div>
+
+    <div class="doc-note" style="margin-top:30px"><p style="margin-bottom:0"><strong>Principal failure mode.</strong> Inference from diagnostic category rather than from mechanism. A condition may be neurological in classification while its therapeutic target lies outside the cortical and neuromuscular pathway, in which case condition three fails irrespective of how the indication is described.</p></div>
+  </section>
+
+  <section class="ent-sec" id="instruments">
+    <div class="doc-eyebrow"><span class="node"></span> Instrumentation</div>
+    <h2>Two devices, recording different physiological layers</h2>
+    <p class="sec-lead">Applicability follows from mechanism rather than therapeutic area. The two devices are not interchangeable and address different axes.</p>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Device 1</span>
+        <h3>Paired EEG and surface EMG</h3>
+        <p>Simultaneous recording of cortical state and neuromuscular control during upper-limb activity, permitting expression of the coupling between them.</p>
+        <ul class="dot-list">
+          <li><strong>Records:</strong> scalp EEG at standard 10-20 positions and surface EMG across defined forearm and hand muscle groups, time-aligned</li>
+          <li><strong>Applicable to:</strong> neurological and CNS interventions in which cortical engagement forms part of the mechanism of action</li>
+          <li><strong>Not applicable to:</strong> mechanisms acting outside the cortical to neuromuscular pathway. Recording is limited to the upper limb</li>
+        </ul>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Device 2</span>
+        <h3>Surface EMG with joint mobility</h3>
+        <p>Muscle activation, recruitment pattern, symmetry, co-contraction and fatigue indices, recorded alongside active range of motion at any major muscle group or joint.</p>
+        <ul class="dot-list">
+          <li><strong>Records:</strong> surface EMG with simultaneous range of motion, resolved per muscle rather than as an aggregate index</li>
+          <li><strong>Applicable to:</strong> a substantially wider anatomical range, including regions conventionally assessed by strength testing, timed function tests or imaging</li>
+          <li><strong>Not applicable to:</strong> questions concerning cortical state, which this device does not record</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="role">
+    <div class="doc-eyebrow"><span class="node"></span> Role</div>
+    <h2>Verada operates as a measurement layer</h2>
+    <p class="sec-lead">Efficacy claims arising from any study Verada supports remain with the sponsor. This holds including where a device manufacturer is separately pursuing a therapeutic indication for the same instrument.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">What we do</div>
+        <div class="sval"><strong>Objective capture of change across an intervention, pre and post.</strong> The intervention is the sponsor's. Verada holds no position on whether it is effective, and that independence is what makes the resulting data usable in a regulatory or publication context.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What a manufacturer may separately claim</div>
+        <div class="sval">Device manufacturers pursue therapeutic indications on their own evidence and under their own regulatory files. Such claims are not adopted by Verada and do not determine where the instrument is considered applicable. Applicability is assessed on measurement grounds alone.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Where we would not sit</div>
+        <div class="sval">In any study where the same device functions as both the intervention under test and the instrument recording the outcome. This configuration is declined rather than mitigated.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="neuro-1">
+    <div class="doc-eyebrow"><span class="node"></span> Applications: EEG and EMG</div>
+    <h2>Category A: the recorded axis coincides with the therapeutic target</h2>
+    <p class="sec-lead">In the following categories the instrumentation records the physiological layer on which the intervention acts, rather than a downstream consequence of it. The measurement is therefore direct rather than proxy.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Neuromodulation &amp; rehabilitation devices</h3>
+        <p>Brain-computer interfaces, functional electrical stimulation, robotic rehabilitation, transcranial stimulation, paired neurostimulation, neurofeedback. These act directly on cortical excitability and brain-muscle coupling. Cleanest mechanistic fit on the map.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Cell, gene &amp; advanced therapies</h3>
+        <p>Neuro-restoration in stroke, TBI and neurodegeneration. Large functional-restoration claims on very small participant numbers, graded on the motor scales that drift most. Rater noise a large trial averages out is fatal to a forty-patient study.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Recovery &amp; antispasticity pharmacology</h3>
+        <p>Plasticity-enhancing agents, botulinum toxin and antispasticity drugs. These are dosed precisely to change agonist-antagonist balance and co-contraction, which is exactly what the instrument quantifies. The measurement is of the intended effect, not a downstream proxy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="neuro-2">
+    <div class="doc-eyebrow"><span class="node"></span> Applications: EEG and EMG</div>
+    <h2>Category B: the recorded axis is secondary to the therapeutic target</h2>
+    <p class="sec-lead">In these categories the measurement addresses a real and often under-instrumented dimension that is not the primary efficacy target. Two entries compete with established tools rather than addressing a gap, and are labelled accordingly.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Antipsychotics &amp; psychiatry</h3>
+        <p>Drug-induced parkinsonism, akathisia and tardive dyskinesia. The motor signal moves adversely with the drug, which is precisely why it is measurable. The vulnerability in current scales is that they are episodic and clinic-based, not that raters are incompetent.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Cognition-targeting CNS drugs</h3>
+        <p>Schizophrenia cognition, mild cognitive impairment and dementia assets. Cognitive batteries carry well-documented ceiling and practice effects and systematically omit the motor dimension. We supply what the battery misses rather than replacing it.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge competes">Competes</span>
+        <h3>Movement disorders</h3>
+        <p>Validated motor scales and actigraphy already exist here and are well established. Claiming superiority as a motor quantifier would invite immediate and deserved pushback. The defensible wedge is cognitive-motor coupling and between-visit home capture, which the incumbents do not address.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge partial">Partial</span>
+        <h3>Multiple sclerosis</h3>
+        <p>The functional and cognitive-fatigue layer only. Disability scales capture that layer coarsely and fatigue is under-instrumented relative to its impact on daily life. We say nothing about the immunological disease activity the drug actually modifies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="muscle">
+    <div class="doc-eyebrow"><span class="node"></span> Applications: EMG and Range of Motion</div>
+    <h2>Categories in which the incumbent measure is a strength test, questionnaire or static scan</h2>
+    <p class="sec-lead">Surface EMG with range of motion is a less complex measurement than paired cortical and neuromuscular capture, with a correspondingly lower analytical validation burden and a wider anatomical range.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Musculoskeletal &amp; orthopaedic</h3>
+        <p>Knee and shoulder arthroplasty, ligament reconstruction, frozen shoulder, back and paraspinal dysfunction. Imaging shows structure; this shows whether the muscle around it is actually working, and which one is compensating.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Orthobiologics &amp; injectables</h3>
+        <p>Platelet-rich plasma, biologic and regenerative injection. The biological effect is invisible; the functional recovery is not. Baseline before injection, then interval reassessment against it, gives an objective recovery trajectory where the usual endpoint is a pain score.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Sarcopenia &amp; muscle preservation</h3>
+        <p>Grip strength does not say which muscle. Chair-stand is confounded by balance and pain. Imaging gives mass, not function. For any intervention intended to preserve or restore muscle, including alongside therapies that cause lean mass loss, activation and recruitment are the layer the incumbent measures miss.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Pelvic floor</h3>
+        <p>Continence and pelvic floor rehabilitation, including after prostate surgery or radiotherapy. Training is standard care and adherence is largely unverifiable, because neither patient nor clinician can see whether the right muscle contracted. Biofeedback makes an invisible muscle group measurable.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Respiratory muscle function</h3>
+        <p>Diaphragm and accessory muscle activation in pulmonary rehabilitation, obstructive and restrictive lung disease, and recovery of respiratory strength after critical illness. Spirometry measures the output; this measures the muscle producing it.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Cerebral palsy &amp; spasticity management</h3>
+        <p>Spasticity, co-contraction and selective motor control. Incumbent measures are ordinal spasticity scales with documented inter-rater variability. Botulinum toxin and antispasticity agents are titrated specifically to alter agonist and antagonist balance, which is the quantity the instrumentation records directly rather than through a graded clinical impression.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Neuromuscular disease</h3>
+        <p>Muscular dystrophies, spinal muscular atrophy and related disorders. Gene, antisense and enzyme therapies making large functional claims on very small participant numbers, graded on timed function tests and observer-rated motor scales that are effort-dependent and prone to ceiling. Muscle activation is the layer the therapy is trying to change. This is also the clearest case for paired capture, described below.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Oncology supportive care &amp; survivorship</h3>
+        <p>We cannot measure a tumour. We can often measure what treating it leaves behind: pelvic floor dysfunction after prostate treatment, shoulder restriction after axillary surgery, radiation fibrosis, treatment-related deconditioning, and the functional impact of chemotherapy-induced neuropathy.</p>
+      </div>
+    </div>
+
+    <p class="sec-lead" style="margin-top:30px"><strong>Note on population.</strong> Two of these categories are wholly or predominantly paediatric. Paediatric research carries distinct consent, ethics and device-suitability requirements, and would not be undertaken as a first engagement.</p>
+
+    <div class="doc-note" style="margin-top:34px">
+      <p><strong>Known dependency.</strong> For clinical use, this device reports in graded ordinal bands, which is appropriate for clinical interpretation. For use as a trial endpoint it is not, since a banded output reintroduces the ordinal ceiling characteristics that an objective measure is intended to remove.</p>
+      <p style="margin-bottom:0">Sponsor-facing deployment therefore requires access to the continuous underlying values with structured machine-readable export, rather than the clinical report layer. This is under discussion with the manufacturer and its status would be disclosed before protocol design.</p>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="paired">
+    <div class="doc-eyebrow"><span class="node"></span> Combined Instrumentation</div>
+    <h2>Separating central from peripheral contribution to reduced output</h2>
+    <p class="sec-lead">In several conditions, reduced functional output may originate centrally, peripherally, or from both, and measures of output alone cannot discriminate between them. Simultaneous recording of cortical drive permits expression of <strong>output per unit of drive</strong>, a quantity with a more specific mechanistic interpretation than output measured in isolation.</p>
+
+    <div class="doc-note" style="margin-top:30px"><p style="margin-bottom:0"><strong>On effort as a confound.</strong> Timed function tests, strength measures and most motor scales are effort-dependent: variation in participant motivation or fatigue on the assessment day propagates directly into the score. Simultaneous recording of cortical drive renders that variation observable rather than requiring it to be treated as unexplained variance.</p></div>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Neuromuscular disease</div>
+        <div class="sval"><strong>The lesion is located distal to the cortex.</strong> Motor command generation is intact; execution at the motor unit is impaired. A therapy restoring functional protein would be expected to increase muscle response to equivalent neural drive. This is a mechanistically specific quantity, in contrast to improvement on a timed test, which effort alone is sufficient to produce.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Sarcopenia &amp; age-related weakness</div>
+        <div class="sval">Whether the deficit lies in the muscle or in the drive reaching it is not resolvable by grip strength or chair-stand testing, though the therapeutic implication differs substantially. Loss attributable to a catabolic process and loss attributable to deconditioning present identically on the incumbent measures.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Critical-illness weakness</div>
+        <div class="sval">Recovery trajectories following intensive care or prolonged immobility are highly variable and the source of that variability is rarely established. Discrimination between central and peripheral contribution has direct implications for rehabilitation targeting and timing.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Fatigue that may be central</div>
+        <div class="sval">Including in demyelinating disease, where fatigue is a substantial contributor to disability and is assessed almost exclusively by patient-reported instruments. Whether the origin is central or peripheral remains unresolved and is directly addressable by paired recording.</div>
+      </div>
+    </div>
+
+    <p class="sec-lead" style="margin-top:30px"><strong>Limitations.</strong> Paired recording is currently restricted to the upper limb. Where the clinically meaningful endpoint is ambulatory or respiratory, the measure supplements rather than substitutes for the primary. The relationship between cortical drive and muscle output is a hypothesis requiring establishment per condition and per intervention; it is at present exploratory rather than a validated readout.</p>
+  </section>
+
+  <section class="ent-sec" id="open">
+    <div class="doc-eyebrow"><span class="node"></span> Unresolved</div>
+    <h2>Conditions one and two satisfied, condition three not established</h2>
+    <p class="sec-lead">The following categories present a credible measurable axis and a demonstrably limited incumbent endpoint, but no published evidence that the recorded signal covaries with therapeutic effect rather than with the presence of the intervention. They are listed as unresolved rather than omitted.</p>
+
+    <div class="ent-grid two">
+      <div class="ent-card">
+        <span class="fit-badge open">Exploratory only</span>
+        <h3>Attention &amp; executive function</h3>
+        <p>Cortical markers in attention disorders have an extensive literature, and incumbent endpoints are parent and clinician rated, so conditions one and two hold. Condition three does not: stimulant medication alters cortical activity independently of clinical response, and reported effect sizes in the diagnostic literature have attenuated as methodological quality has improved. Deployable as an exploratory measure; not presentable as a validated endpoint.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge open">Exploratory only</span>
+        <h3>Cognitive-motor coupling in neurodevelopmental conditions</h3>
+        <p>Where an intervention acts on the coupling between cortical state and motor control, the measurement is applicable in principle. Whether it is informative is intervention-specific. In paediatric and neurodevelopmental populations, consent and research ethics requirements are substantial and independent of the measurement question. Assessed individually.</p>
+      </div>
+    </div>
+
+    <div class="doc-note" style="margin-top:30px">
+      <p style="margin-bottom:0"><strong>On qualification.</strong> Formal qualification of a clinical outcome assessment is granted against a defined context of use, comprising a specified measure, concept of interest, population and role within the endpoint hierarchy. It does not constitute general acceptance of a signal. Qualification therefore accrues narrowly, and evidence generated by exploratory deployment in one indication does not transfer to another without a separate submission.</p>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="no">
+    <div class="doc-eyebrow"><span class="node"></span> Outside Scope</div>
+    <h2>Categories in which the criteria are not satisfied</h2>
+    <p class="sec-lead">The following fail one or more of the conditions above for reasons that are structural rather than provisional. They are listed so that the preceding categories can be interpreted against a defined boundary.</p>
+
+    <p class="sec-lead"><strong>Exclusions are defined by mechanism, not by therapeutic area.</strong> Tumour response is not recordable by this instrumentation; functional impairment arising from oncological treatment frequently is, and constitutes a distinct and under-instrumented endpoint. The relevant question is therefore which axis the intervention acts upon, not which specialty it belongs to.</p>
+
+    <ul class="dot-list" style="max-width:70ch">
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Tumour biology as the endpoint.</strong> Response, progression and survival lie outside the recorded axes.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Immunological targets, including disease activity in demyelinating disease.</strong> The mechanism of action lies outside the recorded axes; condition three fails.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Peripheral pain as a primary endpoint.</strong> Neurological in classification, but the mechanism is not on the recorded axis.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Seizure and epilepsy therapeutics.</strong> A distinct electroencephalographic question requiring different instrumentation, montage and interpretation. A history of EEG abnormality is also a contraindication for the devices in use.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Cognitive performance enhancement in healthy populations.</strong> Not undertaken in any form. Where capacity to consent is itself affected by the condition under study, applications are declined on research ethics grounds independently of the measurement case.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Any application in which the signal is present in the population but does not covary with treatment effect.</strong> Presence of a measurable signal is not sufficient for condition three.</li>
+    </ul>
+
+    <p class="sec-lead">Further exclusions are maintained on research ethics grounds and are not subject to commercial assessment.</p>
+
+  </section>
+
+  <section class="ent-sec" id="capacity">
+    <div class="doc-eyebrow"><span class="node"></span> Capacity</div>
+    <h2>Applicability and operational capacity are separate</h2>
+    <p class="sec-lead">The preceding sections describe where the instrumentation is applicable. They do not describe current operational capacity, and the distinction is material to anyone planning a study.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">What we are</div>
+        <div class="sval"><strong>A small organisation, operating deliberately narrowly at outset.</strong> Current intent is one clinical service and one to two sponsor engagements, rather than distributed activity across multiple categories. Verada is not a contract research organisation with a portfolio of concurrent programmes.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Why the map is wider than the queue</div>
+        <div class="sval">Applicability is a property of the instrumentation and is independent of current activity. Inclusion of a category above indicates that the measurement applies, not that a programme is running in it.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">If you are in an area we have not started</div>
+        <div class="sval">Enquiries are welcome. First deployment in a category is how applicability moves from assessed to demonstrated, and sequencing is discussed openly rather than implied.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What you can hold us to</div>
+        <div class="sval">A prompt negative assessment where the criteria are not met; no assertion of validation that has not been obtained; and no commitment beyond deliverable capacity.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec" id="questions">
+    <div class="doc-eyebrow"><span class="node"></span> Assessment</div>
+    <h2>Information required for an applicability assessment</h2>
+    <p class="sec-lead">The following five items are generally sufficient to reach a determination. None requires disclosure of confidential material. A negative determination is returned at first contact rather than after extended engagement.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Stage</div>
+        <div class="sval">Where is the asset? Pre-clinical, early phase, pivotal, approved but not scaled, or in routine use. This decides which door you are at and how much of the evidence architecture is still open.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Mechanism</div>
+        <div class="sval">Does the intervention act on cortical state, neuromuscular control, or the coupling between them? If the honest answer is no, condition three fails and nothing else matters.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Current endpoint</div>
+        <div class="sval">What are you measuring today, and is its weakness a recognised risk in your programme or a theoretical one? Sponsors who have already felt an ambiguous readout need no persuading.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Participant burden</div>
+        <div class="sval">How far do participants travel, how often, and what is your retention doing? Decentralised delivery is worth most where site visits are the binding constraint.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Timeline</div>
+        <div class="sval">When does the protocol lock, or when do you need a UK presence? Some of what we offer cannot be retrofitted after those dates.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ent-cta">
+    <h2>Enquiries</h2>
+    <p>Development stage, mechanism of action and current primary endpoint are sufficient for an initial determination. Where the criteria are not met, that assessment is returned promptly.</p>
+    <a href="index.html#contact" class="vbtn">Enquire <span class="arrow">&rarr;</span></a>
+  </div>
+
+  <div class="division-note">
+    <strong>About this page.</strong> Verada Rehab Clinics, Verada Clinical Research and Verada Healthcare IT are trading divisions of Verada Health Ltd, registered in England &amp; Wales under company number 17137766. They are not currently separate legal entities. Nothing on this page is medical advice, an offer of treatment, or an offer or invitation to invest. Fit assessments describe where our instrumentation plausibly applies; they are not claims of validated efficacy or of a qualified clinical outcome assessment for any intervention. See our <a href="terms.html">Terms of Use</a>.
+  </div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Site">
+      <a href="index.html">Group</a>
+      <a href="applicability.html">Applicability check</a>
+      <a href="fit.html">Scope</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada Health, Verada Healthcare IT, Verada Rehab Clinics and Verada Clinical Research are brands and trading divisions of Verada Health Ltd.
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.pg-nav a'));
+  if (!links.length) return;
+  var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function spy() {
+    var best = 0;
+    targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top < 220) best = i; });
+    links.forEach(function (a, i) { a.classList.toggle('active', i === best); });
+  }
+  window.addEventListener('scroll', spy, { passive: true }); spy();
+})();
+</script>
+<script src="assets/verada.js" defer></script>
+</body>
+</html>
