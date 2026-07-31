@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verada Clinical Research | Decentralised trials &amp; objective endpoints</title>
+<meta name="description" content="Verada Clinical Research delivers decentralised trials with standardised, instrumented rehabilitation and objective performance-outcome measurement across neuro, MSK and orthopaedic indications.">
+<link rel="canonical" href="https://verada.health/research.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verada">
+<meta property="og:url" content="https://verada.health/research.html">
+<meta property="og:title" content="Verada Clinical Research | Decentralised trials &amp; objective endpoints">
+<meta property="og:description" content="Rehabilitation is the largest uncontrolled variable in neuro and MSK recovery trials. We deliver it to protocol, and evidence that we did.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaPaintBrand(t) {
+    var b = document.getElementById('themeBtn'); if (b) b.innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+    var m = document.getElementById('brandMark'); if (m) m.src = 'assets/verada-logo-' + t + '.png';
+  }
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    veradaPaintBrand(n);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    veradaPaintBrand(document.documentElement.getAttribute('data-theme'));
+  });
+</script>
+</head>
+<body class="doc-page ent-page is-research">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><img src="assets/verada-logo-dark.png" alt="Verada" id="brandMark"></a>
+    <nav class="ent-nav" aria-label="Divisions">
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html" class="current">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+    </nav>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Group</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+
+  <section class="ent-hero">
+    <span class="ent-chip"><span class="cdot"></span> Opening for sponsor conversations</span>
+    <p class="ent-sub">Verada Clinical Research</p>
+    <h1>Most of what a trial measures is someone's opinion.</h1>
+    <p class="ent-lead">Motor function rated by a clinician on an ordinal scale. Cognitive and affective state inferred from a questionnaire completed in a waiting room. Adherence taken on trust. For interventions that act on the brain and the body, the measurements that would actually demonstrate an effect are often the ones nobody is capturing, because capturing them has meant a laboratory, a technician and a site visit.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Where Are You?</div>
+    <h2>Technologies enter at the stage they are actually at</h2>
+    <p class="sec-lead">The evidence you can collect depends entirely on where a technology sits, and some of it cannot be collected later at any price. There is no single entry point, and no requirement to choose only one.</p>
+
+    <div class="stage-router">
+      <div class="stage-card active">
+        <span class="sq">Still in trials</span>
+        <span class="sa">Randomisation, a clean baseline and a blinded assessment can only be captured while the study is running. Design the evidence you will need in 2031 into the protocol you are writing now.</span>
+        <span class="sgo2">You are here</span>
+      </div>
+      <a class="stage-card" href="clinics.html">
+        <span class="sq">Approved, not adopted</span>
+        <span class="sa">Utilisation, staffing, cost per session and payback can only be produced by an organisation actually running the service, in the health system you are trying to enter.</span>
+        <span class="sgo2">Rehab Clinics &rarr;</span>
+      </a>
+      <div class="stage-card">
+        <span class="sq">Both, in sequence</span>
+        <span class="sa">Enter in trials and continue through approval into routine care. Same instrumentation, same population, same data layer, and one unbroken record from first baseline to a commissioning decision.</span>
+        <span class="sgo2">The reason both exist</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> The Measurement Problem</div>
+    <h2>Interventions fail trials they should have passed</h2>
+    <p class="sec-lead">A negative result is usually read as a statement about the intervention. Often it is a statement about the instrument.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Attenuation</div>
+        <div class="sval"><strong>Measurement error does not just add noise, it shrinks the effect you can see.</strong> Observed effect size falls with the reliability of the instrument, so a modestly reliable scale costs you a share of your true effect before anything has gone wrong. That loss comes straight out of your power calculation and is paid for in participants.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Resolution</div>
+        <div class="sval"><strong>The noise floor sits close to the signal.</strong> For upper-limb recovery measures, the smallest change an instrument can reliably detect is often near the smallest change that matters clinically. A real improvement can be meaningful to the participant and still be indistinguishable from a rater having a different sort of morning.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Ceiling and floor</div>
+        <div class="sval"><strong>The scale runs out of room.</strong> A participant improves in a way they themselves notice and scores identically, because the instrument has nothing left to record.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Latency</div>
+        <div class="sval"><strong>Daily-living scales measure the last thing to change.</strong> An intervention acts on neural and neuromuscular activity. That becomes altered activation, which becomes a movement, which becomes a completed task, which finally moves a score. Each step takes time. A twelve-week trial can end before an effect it genuinely created has surfaced at the level being measured.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">The question is not only whether your intervention works. It is whether your instrument could have told you if it did.</div>
+
+    <p class="sec-lead">Activities-of-daily-living scales were built to decide what support a person needs at home, not to detect the effect of an intervention. They sit at the level of activity and participation, several steps downstream of where a neurological or musculoskeletal intervention actually acts. We measure at the level of body function, continuously, and let the relationship between the two become visible rather than assumed.</p>
+
+    <p class="sec-lead"><strong>We are not claiming a physiological change substitutes for a functional one.</strong> We are claiming it appears sooner, is measured far more finely, and that a study carrying both can show how one becomes the other. That relationship is itself worth establishing, and it is the evidence a surrogate endpoint would eventually be built on.</p>
+
+    <p class="sec-lead" style="margin-bottom:0">Sensitivity cuts both ways, which is the part sponsors tend to value most. Where an intervention does not work, a finer instrument shows that sooner and more definitively. That is the difference between stopping a programme at Phase 2 and discovering it at Phase 3.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> What We Capture</div>
+    <h2>Four modalities, one participant timeline</h2>
+    <p class="sec-lead">The value is not any single stream. It is that they are captured on the same person, in the same session, on one clock, so that a change in one can be read against a change in another.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Neurophysiological</div>
+        <div class="sval"><strong>Brain and muscle signal, time-aligned.</strong> EEG at standard scalp positions and surface EMG across defined muscle groups, sampled continuously through the session rather than sampled once at a visit. Established measures, captured in a wearable rather than a shielded room.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Functional</div>
+        <div class="sval"><strong>What the body actually did.</strong> Range of motion, movement quality, activation as a percentage of the participant's own calibrated maximum, and dose recorded per repetition rather than per session. Adherence becomes an observation instead of a diary entry.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Reported</div>
+        <div class="sval"><strong>Every outcome type, from every source.</strong> Validated instruments completed by the participant, by the people who care for them, and by the clinicians who treat them, captured in-session rather than recalled at a monthly visit. Set out in full below.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Biological</div>
+        <div class="sval"><strong>Linked to the same timeline.</strong> Where a protocol calls for molecular or biochemical sampling, results are carried on the same participant record through partner laboratories, so a biological change can be read against a functional and neurophysiological one.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">A sponsor testing something that acts on the nervous system currently has to choose between what is easy to measure and what actually matters. That trade-off is a limitation of instrumentation, not of science.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Outcome Assessment</div>
+    <h2>All four outcome types, one record</h2>
+    <p class="sec-lead">Regulators recognise four kinds of clinical outcome assessment. Most trials in neurological and musculoskeletal recovery run on three of them, because the fourth has been impractical to capture outside a laboratory.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">PRO</div>
+        <div class="sval"><strong>Patient-reported.</strong> Straight from the participant with no interpretation in between. Depression and anxiety screens such as PHQ-9 and GAD-7, pain and fatigue scales, tolerability, sleep, and quality of life instruments, completed on the same device that captured the session.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">ObsRO</div>
+        <div class="sval"><strong>Caregiver and observer-reported.</strong> From a partner, family member or paid carer who sees what a clinic visit cannot: whether the affected arm is actually being used at home, whether help is still needed to dress or eat, and how the demands of caring are changing. For participants with communication or cognitive difficulty, this is often the only reliable route to a daily-life outcome.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">ClinRO</div>
+        <div class="sval"><strong>Clinician-reported.</strong> Structured assessment by a trained clinician, recorded against the same participant timeline as the device signal rather than in a separate system that has to be reconciled later. Where blinding is required, assessment is performed by someone independent of the delivery team.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">PerfO</div>
+        <div class="sval"><strong>Performance outcome.</strong> The participant performs a defined task and the result is measured rather than judged. This is where our instrumentation sits, and it is the type most trials in this space go without.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">Three of the four depend on recall, observation or judgement. The fourth does not. A trial that carries all four can show whether what the instrument measured is the same thing the participant, the carer and the clinician noticed.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Beyond The Participant</div>
+    <h2>Measures that decide whether a result travels</h2>
+    <p class="sec-lead">A trial can produce a real effect that never reproduces anywhere else, because what actually made it work was the site rather than the intervention. These measures tell a sponsor which of the two they had, before they commit to a larger programme.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="cnum">1</span>
+        <h3>Fidelity</h3>
+        <p>Whether the protocol was delivered as designed, evidenced from the session record rather than attested on a form. Deviations become visible and quantifiable instead of invisible, and per-participant rather than per-site.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">2</span>
+        <h3>Deliverability</h3>
+        <p>Time to competence for site staff, setup and takedown burden, and where a protocol starts to break down under real clinical conditions. What a sponsor needs to know before committing to twenty sites rather than two.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">3</span>
+        <h3>Transferability</h3>
+        <p>Whether a site with no prior exposure can reach the same delivery standard, and what it costs in training and supervision to get there. The difference between a finding that reproduces and one that was really about the people who ran it.</p>
+      </div>
+    </div>
+
+    <p class="sec-lead" style="margin-top:30px; margin-bottom:0">These are study-integrity measures, and they answer a sponsor. Operational and economic evidence about running a service in routine care, including utilisation, cost per session and payback period, is a different question with a different buyer, and it sits with <a href="clinics.html">Verada Rehab Clinics</a>.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Decentralised By Design</div>
+    <h2>Measurement stops being rationed by site visits</h2>
+    <p class="sec-lead">In a conventional trial, how often you measure is set by how often a participant can reasonably travel to a site. That turns measurement frequency into a budget line and a dropout risk, and it means the data is episodic when the biology is continuous.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="cnum">1</span>
+        <h3>Where the participant is</h3>
+        <p>Instrumented sessions delivered in a local clinic or at home, under trained supervision, without requiring travel to a central site for every data point.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">2</span>
+        <h3>Continuous, not episodic</h3>
+        <p>Every session produces a full record. Trajectory becomes visible between visits, and a change can be dated rather than bracketed between two assessments months apart.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">3</span>
+        <h3>Lower burden, better retention</h3>
+        <p>Reduced travel and site time for participants, reduced coordinator load for sites, and a population that is not filtered down to whoever lives near a research centre.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> A Specific Case</div>
+    <h2>When rehabilitation is part of your intervention</h2>
+    <p class="sec-lead">One category deserves separate mention. In neurological and musculoskeletal recovery trials, both arms receive rehabilitation, written into the protocol as usual care and then delivered differently at every site. A sponsor can specify a regimen. What they cannot do is confirm it was delivered as specified, because their sites are ordinary clinics with no instrumentation.</p>
+
+    <ul class="dot-list" style="max-width:66ch">
+      <li><strong>Unstandardised:</strong> it varies by country, site, therapist and school of practice</li>
+      <li><strong>Unmeasured:</strong> captured as hours attended, not as dose, intensity or quality</li>
+      <li><strong>Unverifiable:</strong> no objective record exists to audit against the protocol</li>
+    </ul>
+
+    <p class="sec-lead">The consequence is inflated within-group variance, which drives sample size, which drives cost and timeline. It also creates a validity problem: where rehabilitation differs systematically between arms or between sites, the treatment effect is confounded by an unmeasured co-intervention.</p>
+
+    <div class="ent-pull">For any intervention that must be <em>paired</em> with rehabilitation to work, such as neurostimulation, cell therapy in chronic stroke, or recovery-phase pharmacology, rehabilitation is not a nuisance variable. It is part of the intervention.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> What We Offer</div>
+    <h2>Two capabilities, one site</h2>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Site services</span>
+        <h3>Rehabilitation delivered to protocol, and evidenced</h3>
+        <p>The same trained staff, instrumentation and protocols that run our clinical service, made available to your study as a controlled delivery environment.</p>
+        <ul class="dot-list">
+          <li><strong>Protocolised delivery</strong>, identical across every participant and every session</li>
+          <li><strong>Dose and adherence</strong> quantified per repetition, per session, per participant</li>
+          <li><strong>Single provider, single SOP:</strong> no site-to-site drift</li>
+          <li><strong>Objective adherence</strong> rather than participant diaries</li>
+        </ul>
+        <div class="aud-foot">Available from clinic launch. Requires no novel endpoint, no qualification programme, and no change to your existing outcome measures.</div>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Objective endpoints</span>
+        <h3>Performance outcomes captured, not rated</h3>
+        <p>Wearable instrumentation recording neuromuscular and neurophysiological signal during the session, in the participant's own environment rather than at a site visit.</p>
+        <ul class="dot-list">
+          <li><strong>Surface EMG</strong> across defined muscle groups, normalised to each participant's calibrated maximum</li>
+          <li><strong>EEG</strong> at standard scalp positions, time-aligned with the muscle signal</li>
+          <li><strong>Range of motion</strong> for musculoskeletal and orthopaedic indications</li>
+          <li><strong>Structured export</strong> designed for a sponsor's data management team, not a PDF report</li>
+        </ul>
+        <div class="aud-foot">Offered as exploratory endpoints first. Neither the signals nor the derived measures are novel. The instrument is.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> How We Talk About Measurement</div>
+    <h2>Established measures, new instrument</h2>
+    <p class="sec-lead">Scalp EEG and surface electromyography are among the best-characterised measurements in clinical neuroscience. Decades of normative data, standard electrode positions, and processing conventions everyone in the field already accepts.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Not novel</div>
+        <div class="sval">The <strong>signals</strong> and the <strong>standard derived measures</strong>: RMS envelope, activation as a percentage of maximum voluntary contraction, co-contraction ratio, band power. These have literature definitions and prior use in trials.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What is new</div>
+        <div class="sval">Capturing them <strong>simultaneously, in a wearable, clinic-deployable form</strong>, operated by a therapist rather than a technician, during ordinary treatment rather than in a shielded laboratory.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What that means</div>
+        <div class="sval">The evidence burden sits on <strong>demonstrating the instrument is fit for purpose</strong>, not on requalifying the underlying science. That is bench and analytical work, and it is a considerably shorter path than establishing a novel biomarker.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">How we sequence it</div>
+        <div class="sval"><strong>Exploratory endpoints first.</strong> Exploratory data carries no regulatory weight and therefore almost no risk to a sponsor. Secondary and primary use follow only where the validation evidence supports it.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Response Patterns</div>
+    <h2>Response is a trajectory, not an endpoint</h2>
+    <p class="sec-lead">A before-and-after score tells you the size of a change. It cannot tell you when the change began, how quickly it accumulated, whether it plateaued, or whether it had started at all by the time you stopped looking. Continuous capture makes the shape visible, and the shape is where the useful distinctions live.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Early responders</div>
+        <div class="sval">Physiological change appears within the first few sessions and continues. On a conventional endpoint these look like your successes, and they are the group most trials are effectively powered to find.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Late responders</div>
+        <div class="sval"><strong>The group that costs you the trial.</strong> Nothing moves for weeks, then it does. Measured only at a fixed endpoint, a late responder is indistinguishable from a failure. If a meaningful share of your non-responders were simply slower, your intervention appears weaker than it is, and what you needed was a longer study rather than a different molecule.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Non-responders</div>
+        <div class="sval">No physiological change at any point in the series. Identifying these confidently, and separately from the late group, is what lets an effect estimate reflect the intervention rather than the observation window.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">Misclassifying late responders as failures does not just lose you those participants. It drags down the effect estimate for everyone.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Prediction</div>
+    <h2>What follows from that, and in what order</h2>
+    <p class="sec-lead">Distinguishing response patterns after the fact is not the same as predicting them beforehand. The second is worth considerably more and has to be earned in a specific sequence. We would rather set that out than imply we have skipped it.</p>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">The sequence</span>
+        <h3>How a predictor actually gets built</h3>
+        <ul class="dot-list">
+          <li><strong>Describe.</strong> Characterise the trajectory classes present in the data. Hypothesis-generating, reported as such.</li>
+          <li><strong>Associate.</strong> Test whether baseline features, including neurophysiological ones, distinguish those classes. This produces a candidate, not a tool.</li>
+          <li><strong>Validate.</strong> Test the candidate in an independent cohort that played no part in building it.</li>
+          <li><strong>Apply.</strong> Only then does prospective stratification become defensible, and only within the population it was validated in.</li>
+        </ul>
+        <div class="aud-foot">We do not hold a validated predictor and do not claim one. What we offer is the data density that makes the first two steps possible inside a study you are already running.</div>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">What it is worth</span>
+        <h3>Why sponsors fund this</h3>
+        <ul class="dot-list">
+          <li><strong>Adaptive design.</strong> Interim trajectory data supports pre-specified futility stopping, rather than running a full programme to find out.</li>
+          <li><strong>Enrichment.</strong> A responder phenotype lets the next study recruit the population the intervention actually serves, which is often the difference between a dead programme and an approvable one.</li>
+          <li><strong>Duration.</strong> Evidence on when response emerges tells you how long the confirmatory study needs to be, instead of guessing and paying for the error.</li>
+          <li><strong>Clinical use.</strong> Post-approval, the same signal supports stopping or changing a course of treatment early rather than completing one that is not working.</li>
+        </ul>
+        <div class="aud-foot">Each of these depends on measurement dense enough to see a trajectory. None of them can be recovered from two assessments twelve weeks apart.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">Rich data with many candidate measures can be dredged, and any competent statistician will assume it will be.</div>
+
+    <p class="sec-lead">So the discipline comes first. Primary and secondary endpoints are pre-specified and hierarchically tested. Trajectory and subgroup work is labelled exploratory and reported as such. Responder definitions built on change scores are handled with explicit attention to regression to the mean, because that is the standard way this analysis goes wrong.</p>
+
+    <p class="sec-lead" style="margin-bottom:0">Your confirmatory analysis stays protected. What you gain is a dataset rich enough to design the next study from, and to answer questions you cannot currently formulate. You will collect from these participants once.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Where We Work</div>
+    <h2>Indications and instruments</h2>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="cnum">N</span>
+        <h3>Neurological &amp; CNS</h3>
+        <p>Stroke, traumatic brain injury and related motor impairment. Paired EEG and EMG capture during upper-limb rehabilitation, with objective adherence and dose recorded per session.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">M</span>
+        <h3>Musculoskeletal</h3>
+        <p>Surface EMG with range of motion for post-surgical and conservative MSK recovery, where function is currently assessed by intermittent clinician-rated scales.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">O</span>
+        <h3>Orthopaedic &amp; orthobiologics</h3>
+        <p>Regenerative and injectable interventions where the outcome that matters is restored function, and the measurement is usually the weakest part of the trial design.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Independence</div>
+    <h2>How we handle the obvious conflict</h2>
+    <p class="sec-lead">Verada both delivers care and generates evidence. That is the source of the capability, and it is also a fair question for any sponsor's governance function to ask. Our answer is structural rather than reassuring.</p>
+
+    <ul class="dot-list" style="max-width:70ch">
+      <li><strong>Data custody sits outside Verada</strong> where a study warrants it. An academic partner or clinical trials unit holds the master dataset and runs the analysis</li>
+      <li><strong>Outcome assessment is blinded</strong> and, where practical, performed by assessors independent of the delivery team</li>
+      <li><strong>Analysis plans are pre-specified</strong> and lodged before database lock</li>
+      <li><strong>Studies are pre-registered</strong>, with the primary outcome named before first participant</li>
+      <li><strong>Publication is unconditional:</strong> no sponsor or manufacturer veto on results, in any agreement we sign</li>
+      <li><strong>Commercial relationships are disclosed</strong>, including where we hold an interest in a technology under evaluation</li>
+    </ul>
+
+    <div class="ent-pull">Where a device is simultaneously the intervention and the measurement instrument, we do not use it as the pivotal endpoint. That closed loop is not something a methodologist should have to point out to us.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Where We Are</div>
+    <h2>Honest status</h2>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Stage</div>
+        <div class="sval"><strong>Pre-launch.</strong> We have no sponsor contracts in place and are not claiming otherwise. We are opening exploratory conversations with sponsors working on interventions paired with rehabilitation.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Capability sequence</div>
+        <div class="sval">Site services become available with the clinic. Endpoint capture follows as the instrument validation evidence accumulates, generated inside sponsor studies rather than ahead of them.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Geography</div>
+        <div class="sval">United States first, where the instrumentation is already lawfully marketed. United Kingdom activity follows the relevant regulatory approvals.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Platform</div>
+        <div class="sval">Data capture, electronic consent and outcome assessment run on established, validated clinical trial infrastructure rather than tooling we built ourselves. Our own development effort goes into the instrumentation layer and the linkage between modalities, which is where the gap actually is.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Academic partners</div>
+        <div class="sval">Working with Northumbria University and the University of the West of England, Bristol on our feasibility programme.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What we will not claim</div>
+        <div class="sval">That any measure we offer is a qualified clinical outcome assessment. Qualification is a regulatory process with a defined evidence bar and we have not been through it. Nor that a neurophysiological signal is a direct readout of a mental state: EEG and EMG are physiological measurements with established relationships to function, and interpretation always depends on context and validation.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> The Rest Of The Group</div>
+    <h2>What sits alongside</h2>
+    <p class="sec-lead">Research runs on infrastructure built for care delivery. The same site, the same session and the same participants serve both.</p>
+
+    <div class="sib-grid">
+      <a class="sib-card" href="clinics.html">
+        <span class="sk">Verada Rehab Clinics</span>
+        <span class="sn">The first UK deployment</span>
+        <span class="sd">The care service that provides the site, the trained staff and the standardised delivery this research capability depends on.</span>
+        <span class="sgo">Read more &rarr;</span>
+      </a>
+      <a class="sib-card" href="technology.html">
+        <span class="sk">Verada Healthcare IT</span>
+        <span class="sn">The data layer underneath</span>
+        <span class="sd">Capture, audit trail and structured export: the difference between interesting data and data a sponsor can put in a submission.</span>
+        <span class="sgo">Read more &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="ent-cta">
+    <h2>Talk to us about a study</h2>
+    <p>If rehabilitation sits inside your intervention rather than beside it, or your motor outcome measures depend on a human rater four times across the trial, there is a conversation worth having.</p>
+    <a href="index.html#contact" class="vbtn">Start a conversation <span class="arrow">&rarr;</span></a>
+  </div>
+
+  <div class="division-note">
+    <strong>About this division.</strong> Verada Clinical Research is a trading division of Verada Health Ltd, registered in England &amp; Wales under company number 17137766. It is not currently a separate legal entity. Verada Health Ltd intends to incorporate its divisions as separate companies within the Verada group as each reaches operational scale. Nothing on this page is an offer or invitation to invest, and statements about future plans, timelines and regulatory outcomes are targets rather than commitments. See our <a href="terms.html">Terms of Use</a>.
+  </div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Site">
+      <a href="index.html">Group</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada Health, Verada Healthcare IT, Verada Rehab Clinics and Verada Clinical Research are brands and trading divisions of Verada Health Ltd.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>
