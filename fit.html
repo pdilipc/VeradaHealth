@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who It's For | Verada</title>
+<meta name="description" content="How Verada decides whether a technology fits: the qualifying test, where the fit is strongest, and where we say no.">
+<link rel="canonical" href="https://verada.health/fit.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verada">
+<meta property="og:url" content="https://verada.health/fit.html">
+<meta property="og:title" content="Who It's For | Verada">
+<meta property="og:description" content="Two doors, one qualifying test, and an honest list of where we do not fit.">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaPaintBrand(t) {
+    var b = document.getElementById('themeBtn'); if (b) b.innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+    var m = document.getElementById('brandMark'); if (m) m.src = 'assets/verada-logo-' + t + '.png';
+  }
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    veradaPaintBrand(n);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    veradaPaintBrand(document.documentElement.getAttribute('data-theme'));
+  });
+</script>
+</head>
+<body class="doc-page ent-page">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><img src="assets/verada-logo-dark.png" alt="Verada" id="brandMark"></a>
+    <nav class="ent-nav" aria-label="Divisions">
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+    </nav>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Group</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+
+  <section class="ent-hero">
+    <span class="ent-chip"><span class="cdot"></span> Qualification</span>
+    <p class="ent-sub">Who it's for</p>
+    <h1>Is this you?</h1>
+    <p class="ent-lead">We are not useful to everyone, and a measurement partner who claims otherwise is worth less than one who tells you where they stop. This page is the test we apply before we take a conversation any further, published so you can apply it yourself.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Two Doors</div>
+    <h2>Where your technology is decides what we can do</h2>
+    <p class="sec-lead">The single most important fact about a technology is not what it does. It is whether it has been approved yet, because that determines which evidence is still collectable and which has already closed.</p>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Door one</span>
+        <h3>Approved, and going nowhere</h3>
+        <p>A CE, UKCA or FDA-cleared technology that works in other health systems and has no meaningful UK or US footprint. The science is settled. The barrier is that nobody will buy what nobody has run.</p>
+        <ul class="dot-list">
+          <li><strong>What you need:</strong> a named reference site, operational and economic proof, a deployment blueprint, and clinicians who will speak to their peers</li>
+          <li><strong>What we do:</strong> adopt it into our own care delivery at our commercial risk, and publish what it actually takes to run</li>
+          <li><strong>What you cannot do later:</strong> nothing is lost by waiting, but every quarter without a reference site is a quarter of adoption you do not get back</li>
+        </ul>
+        <div class="aud-foot"><a href="clinics.html">Verada Rehab Clinics &rarr;</a></div>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Door two</span>
+        <h3>Investigational, protocol still open</h3>
+        <p>A device, drug, biologic or advanced therapy in development, where the endpoint architecture has not yet locked and the measurement burden falls on participants who have to travel to be assessed.</p>
+        <ul class="dot-list">
+          <li><strong>What you need:</strong> decentralised delivery, objective endpoints, and signal dense enough to see a trajectory rather than two timepoints</li>
+          <li><strong>What we do:</strong> instrumented delivery in the participant's own environment, with all four outcome-assessment types on one record</li>
+          <li><strong>What you cannot do later:</strong> randomisation, a clean baseline, a blinded assessment and a pre-specified endpoint cannot be reconstructed afterwards at any price</li>
+        </ul>
+        <div class="aud-foot"><a href="research.html">Verada Clinical Research &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="ent-pull">Most technologies pass through both doors. Enter in trials, continue through approval into routine care, and the record runs unbroken from first baseline to a commissioning decision.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> The Test</div>
+    <h2>Three conditions, and all of them have to hold</h2>
+    <p class="sec-lead">This is the filter we run before proposing anything. It exists to stop the fit map becoming a list of every neurological indication, which is what it would otherwise be.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">1</span>Measurable axis</div>
+        <div class="sval">The condition, or its treatment, expresses in cortical state, neuromuscular control, or the coupling between them. That is the specific physiological layer our instrumentation reads. For musculoskeletal and orthopaedic work the axis is muscle activation and range of motion, and the instrument is different.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">2</span>Weak incumbent</div>
+        <div class="sval">The endpoints currently in use are subjective, rater-dependent or episodic. If your existing measure is already objective and well validated, we are competing rather than filling a gap, and we will say so.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel"><span class="cond-num">3</span>Signal sensitivity</div>
+        <div class="sval"><strong>The signal plausibly moves with the intervention's effect, not merely with its presence.</strong> This is the condition most often assumed and least often true. A psychoactive dose will change an EEG whether or not the participant improves, so demonstrating target engagement is easy and demonstrating an efficacy correlate is the real work.</div>
+      </div>
+    </div>
+
+    <div class="ent-pull">Neurological-sounding is not the same as brain and muscle measurable. Conflating the two is the fastest way a measurement proposal loses a methodologist.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Two Instruments</div>
+    <h2>Different devices read different axes</h2>
+    <p class="sec-lead">We work with two instruments, and conflating them is the fastest way to a wasted conversation. Which one applies to you follows entirely from where your intervention acts.</p>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Brain and muscle</span>
+        <h3>Paired EEG and surface EMG</h3>
+        <p>Cortical state, neuromuscular control, and the coupling between them, captured simultaneously during upper-limb activity.</p>
+        <ul class="dot-list">
+          <li><strong>Reads:</strong> scalp EEG at standard positions, surface EMG across defined forearm and hand muscle groups</li>
+          <li><strong>Applies to:</strong> neurological and CNS interventions where cortical engagement is part of the mechanism</li>
+          <li><strong>Does not apply to:</strong> anything outside the brain-to-muscle pathway</li>
+        </ul>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Muscle and movement</span>
+        <h3>Surface EMG with joint mobility</h3>
+        <p>Muscle activation, recruitment pattern, symmetry, co-contraction and fatigue, alongside active range of motion, at any major muscle group or joint.</p>
+        <ul class="dot-list">
+          <li><strong>Reads:</strong> surface EMG with simultaneous range of motion, muscle by muscle rather than as a global score</li>
+          <li><strong>Applies to:</strong> a considerably wider body map, including areas conventionally measured by strength tests and imaging</li>
+          <li><strong>Does not read:</strong> cortical activity, so questions about brain state are outside its scope</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Brain &amp; Muscle: Strongest Fit</div>
+    <h2>Where the axis we measure is the axis you are treating</h2>
+    <p class="sec-lead">In these categories the instrument is not a proxy. It reads the layer the intervention acts on, which means it can answer the question the trial is actually asking rather than inferring it from an observed movement.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Neuromodulation &amp; rehabilitation devices</h3>
+        <p>Brain-computer interfaces, functional electrical stimulation, robotic rehabilitation, transcranial stimulation, paired neurostimulation, neurofeedback. These act directly on cortical excitability and brain-muscle coupling. Cleanest mechanistic fit on the map.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Cell, gene &amp; advanced therapies</h3>
+        <p>Neuro-restoration in stroke, TBI and neurodegeneration. Large functional-restoration claims on very small participant numbers, graded on the motor scales that drift most. Rater noise a large trial averages out is fatal to a forty-patient study.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strongest</span>
+        <h3>Recovery &amp; antispasticity pharmacology</h3>
+        <p>Plasticity-enhancing agents, botulinum toxin and antispasticity drugs. These are dosed precisely to change agonist-antagonist balance and co-contraction, which is exactly what the instrument quantifies. The measurement is of the intended effect, not a downstream proxy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Brain &amp; Muscle: Secondary Axis</div>
+    <h2>Where we measure something real, but not your primary target</h2>
+    <p class="sec-lead">Here the fit is genuine and the honest framing differs by category. Two of these compete with tools that already exist, and we would rather say so than discover it in a methods discussion.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Antipsychotics &amp; psychiatry</h3>
+        <p>Drug-induced parkinsonism, akathisia and tardive dyskinesia. The motor signal moves adversely with the drug, which is precisely why it is measurable. The vulnerability in current scales is that they are episodic and clinic-based, not that raters are incompetent.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Cognition-targeting CNS drugs</h3>
+        <p>Schizophrenia cognition, mild cognitive impairment and dementia assets. Cognitive batteries carry well-documented ceiling and practice effects and systematically omit the motor dimension. We supply what the battery misses rather than replacing it.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge competes">Competes</span>
+        <h3>Movement disorders</h3>
+        <p>Validated motor scales and actigraphy already exist here and are well established. Claiming superiority as a motor quantifier would invite immediate and deserved pushback. The defensible wedge is cognitive-motor coupling and between-visit home capture, which the incumbents do not address.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge partial">Partial</span>
+        <h3>Multiple sclerosis</h3>
+        <p>The functional and cognitive-fatigue layer only. Disability scales capture that layer coarsely and fatigue is under-instrumented relative to its impact on daily life. We say nothing about the immunological disease activity the drug actually modifies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Muscle &amp; Movement: Where It Fits</div>
+    <h2>A wider body map, and a lower validation burden</h2>
+    <p class="sec-lead">Surface EMG with range of motion is a simpler measurement than paired brain and muscle capture, which makes it easier to defend and applicable across far more of the body. These are the areas where the incumbent measure is a strength test, a questionnaire, or a static scan.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Musculoskeletal &amp; orthopaedic</h3>
+        <p>Knee and shoulder arthroplasty, ligament reconstruction, frozen shoulder, back and paraspinal dysfunction. Imaging shows structure; this shows whether the muscle around it is actually working, and which one is compensating.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Orthobiologics &amp; injectables</h3>
+        <p>Platelet-rich plasma, biologic and regenerative injection. The biological effect is invisible; the functional recovery is not. Baseline before injection, then interval reassessment against it, gives an objective recovery trajectory where the usual endpoint is a pain score.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Sarcopenia &amp; muscle preservation</h3>
+        <p>Grip strength does not say which muscle. Chair-stand is confounded by balance and pain. Imaging gives mass, not function. For any intervention intended to preserve or restore muscle, including alongside therapies that cause lean mass loss, activation and recruitment are the layer the incumbent measures miss.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Pelvic floor</h3>
+        <p>Continence and pelvic floor rehabilitation, including after prostate surgery or radiotherapy. Training is standard care and adherence is largely unverifiable, because neither patient nor clinician can see whether the right muscle contracted. Biofeedback makes an invisible muscle group measurable.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Respiratory muscle function</h3>
+        <p>Diaphragm and accessory muscle activation in pulmonary rehabilitation, obstructive and restrictive lung disease, and recovery of respiratory strength after critical illness. Spirometry measures the output; this measures the muscle producing it.</p>
+      </div>
+      <div class="ent-card">
+        <span class="fit-badge strong">Strong</span>
+        <h3>Oncology supportive care &amp; survivorship</h3>
+        <p>We cannot measure a tumour. We can often measure what treating it leaves behind: pelvic floor dysfunction after prostate treatment, shoulder restriction after axillary surgery, radiation fibrosis, treatment-related deconditioning, and the functional impact of chemotherapy-induced neuropathy.</p>
+      </div>
+    </div>
+
+    <div class="doc-note" style="margin-top:34px">
+      <p><strong>One dependency we would rather state than discover mid-study.</strong> For clinical use this instrument reports in graded bands, which is the right output for a clinician and a patient conversation. For a trial endpoint it is not, because a banded score reintroduces exactly the ordinal ceiling problem an objective measure is supposed to remove.</p>
+      <p style="margin-bottom:0">Sponsor-facing work therefore requires continuous underlying values with structured, machine-readable export rather than the report layer. Establishing that is a prerequisite we are working through with the manufacturer, and we would tell you where it stands before you designed anything around it.</p>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Where We Do Not Fit</div>
+    <h2>Where we say no</h2>
+    <p class="sec-lead">Every measurement vendor claims to serve everyone. Ours is a narrow instrument, and the categories below fail the test above for reasons that will not change.</p>
+
+    <p class="sec-lead"><strong>The exclusions are about mechanism, not therapy area.</strong> Asking "do you cover oncology?" is the wrong question. The right one is "which axis is the intervention acting on?" We cannot measure a tumour. We can often measure the functional damage caused by treating it, which is a different and frequently under-instrumented endpoint.</p>
+
+    <ul class="dot-list" style="max-width:70ch">
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Tumour biology as the endpoint.</strong> Response, progression and survival are not on any axis we read.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Immunological targets, including MS disease activity.</strong> The drug acts where the signal cannot reach. Fails condition three.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Peripheral pain as a primary endpoint.</strong> Neurological-sounding, but the mechanism is not on our axis.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Seizure and epilepsy therapeutics.</strong> A different EEG question requiring different instrumentation and interpretation. It is also a safety exclusion for our own devices.</li>
+      <li><span class="fit-badge no" style="margin:0 10px 0 0">No fit</span><strong>Anything where the signal is present in the population but does not move with treatment.</strong> The population being neurological is not sufficient.</li>
+    </ul>
+
+    <p class="sec-lead">We also maintain internal exclusions on ethical rather than commercial grounds, where an application would require consent from people whose capacity to give it is part of the condition being treated. Those are not sized, they are declined.</p>
+
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> How Much Of This We Can Actually Do</div>
+    <h2>We are smaller than this page looks</h2>
+    <p class="sec-lead">The maps above describe where the instruments apply. They do not describe a company with the resources to pursue all of it, and we would rather be clear about that now than have you find out later.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">What we are</div>
+        <div class="sval"><strong>Small, and deliberately narrow to begin with.</strong> Our intention is one clinical service and one or two sponsor relationships, done properly, rather than a thin presence across a dozen categories. We are not a contract research organisation with a hundred programmes running.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Why the map is wider than the queue</div>
+        <div class="sval">Because the instrument does not care which of these you are in, and you should be able to see whether your work is in scope without having to ask. A category appearing above means the measurement applies, not that we have a programme running in it.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">If you are in an area we have not started</div>
+        <div class="sval"><strong>Tell us anyway.</strong> Being the first study in a category is frequently the better conversation for both sides, and it is how a category stops being theoretical. We would rather tell you where you sit in the queue than pretend there is not one.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What you can hold us to</div>
+        <div class="sval">That we will say no quickly where the fit is poor, that we will not claim validation we do not have, and that we will not take on more than we can deliver in order to look larger than we are.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Getting To An Answer</div>
+    <h2>What we would ask you first</h2>
+    <p class="sec-lead">Five questions settle most of it, and none of them require you to share anything confidential. If the answers point the wrong way we will tell you in the first conversation rather than the fourth.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Stage</div>
+        <div class="sval">Where is the asset? Pre-clinical, early phase, pivotal, approved but not scaled, or in routine use. This decides which door you are at and how much of the evidence architecture is still open.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Mechanism</div>
+        <div class="sval">Does the intervention act on cortical state, neuromuscular control, or the coupling between them? If the honest answer is no, condition three fails and nothing else matters.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Current endpoint</div>
+        <div class="sval">What are you measuring today, and is its weakness a recognised risk in your programme or a theoretical one? Sponsors who have already felt an ambiguous readout need no persuading.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Participant burden</div>
+        <div class="sval">How far do participants travel, how often, and what is your retention doing? Decentralised delivery is worth most where site visits are the binding constraint.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Timeline</div>
+        <div class="sval">When does the protocol lock, or when do you need a UK presence? Some of what we offer cannot be retrofitted after those dates.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ent-cta">
+    <h2>Think you are on the list?</h2>
+    <p>Tell us the stage, the mechanism and the measure you are using now. If we are not a fit we will say so quickly, which is worth more to both of us than a longer conversation.</p>
+    <a href="index.html#contact" class="vbtn">Start a conversation <span class="arrow">&rarr;</span></a>
+  </div>
+
+  <div class="division-note">
+    <strong>About this page.</strong> Verada Rehab Clinics, Verada Clinical Research and Verada Healthcare IT are trading divisions of Verada Health Ltd, registered in England &amp; Wales under company number 17137766. They are not currently separate legal entities. Nothing on this page is medical advice, an offer of treatment, or an offer or invitation to invest. Fit assessments describe where our instrumentation plausibly applies; they are not claims of validated efficacy or of a qualified clinical outcome assessment for any intervention. See our <a href="terms.html">Terms of Use</a>.
+  </div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Site">
+      <a href="index.html">Group</a>
+      <a href="fit.html">Who It's For</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada Health, Verada Healthcare IT, Verada Rehab Clinics and Verada Clinical Research are brands and trading divisions of Verada Health Ltd.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>
