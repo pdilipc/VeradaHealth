@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verada Healthcare IT | The evidence layer</title>
+<meta name="description" content="Verada Healthcare IT is the capture, structuring and audit infrastructure that turns routine rehabilitation care into evidence a regulator, sponsor or commissioner will accept.">
+<link rel="canonical" href="https://verada.health/technology.html">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Verada">
+<meta property="og:url" content="https://verada.health/technology.html">
+<meta property="og:title" content="Verada Healthcare IT | The evidence layer">
+<meta property="og:description" content="Data is only evidence if someone will accept it. This is the layer that makes the difference: capture, provenance, audit trail and structured export.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/verada.css">
+<script>
+  (function () {
+    var t = 'dark';
+    try { t = localStorage.getItem('verada-theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  function veradaPaintBrand(t) {
+    var b = document.getElementById('themeBtn'); if (b) b.innerHTML = t === 'dark' ? '&#9728;' : '&#9790;';
+    var m = document.getElementById('brandMark'); if (m) m.src = 'assets/verada-logo-' + t + '.png';
+  }
+  function veradaToggleTheme() {
+    var h = document.documentElement;
+    var n = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', n);
+    try { localStorage.setItem('verada-theme', n); } catch (e) {}
+    veradaPaintBrand(n);
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    veradaPaintBrand(document.documentElement.getAttribute('data-theme'));
+  });
+</script>
+</head>
+<body class="doc-page ent-page is-tech">
+
+<a class="skip-link" href="#doc-main">Skip to content</a>
+<div class="doc-ambient"></div>
+
+<header class="doc-header">
+  <div class="doc-header-inner">
+    <a class="doc-brand" href="index.html"><img src="assets/verada-logo-dark.png" alt="Verada" id="brandMark"></a>
+    <nav class="ent-nav" aria-label="Divisions">
+      <a href="fit.html">Who It's For</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html" class="current">Healthcare IT</a>
+    </nav>
+    <div class="doc-header-actions">
+      <a class="doc-back" href="index.html">&larr; Group</a>
+      <button class="doc-theme" id="themeBtn" onclick="veradaToggleTheme()" aria-label="Toggle colour theme">&#9728;</button>
+    </div>
+  </div>
+</header>
+
+<main class="doc-wrap" id="doc-main">
+
+  <section class="ent-hero">
+    <span class="ent-chip"><span class="cdot"></span> In development</span>
+    <p class="ent-sub">Verada Healthcare IT</p>
+    <h1>Data is not evidence until someone will accept it.</h1>
+    <p class="ent-lead">A rehabilitation session generates a great deal of information. Almost none of it survives contact with a regulator, a sponsor's data management team or a commissioner's business case, because it was never captured in a form built to be relied on. This is the layer that fixes that, and it is the reason the rest of Verada is saleable.</p>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> The Problem</div>
+    <h2>Most clinical data fails at the point it matters</h2>
+    <p class="sec-lead">The failure is rarely in the measurement. It is in everything around it: provenance, immutability, structure and the ability to answer, months later, exactly what happened in a given session and who changed what.</p>
+
+    <div class="ent-grid">
+      <div class="ent-card">
+        <span class="cnum">1</span>
+        <h3>Editable outputs</h3>
+        <p>Session reports produced as documents a clinician can amend after the fact are not source records. A sponsor's data management team will identify that in minutes, and it disqualifies the dataset.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">2</span>
+        <h3>Unlogged overrides</h3>
+        <p>Clinically sensible features, such as adjusting a calibration value or disabling a sensor with poor contact, are silent data manipulations unless the system records that they happened, when, and by whom.</p>
+      </div>
+      <div class="ent-card">
+        <span class="cnum">3</span>
+        <h3>Trapped structure</h3>
+        <p>Data locked in device-specific formats or PDFs cannot be pooled, compared across technologies, or delivered in the shape an analyst needs. It becomes an archive rather than an asset.</p>
+      </div>
+    </div>
+
+    <div class="ent-pull">The whole proposition of an operator-generated evidence business is "we can prove it." That claim is only as good as the record underneath it.</div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> What It Does</div>
+    <h2>Four functions</h2>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Capture</div>
+        <div class="sval"><strong>Multimodal, at source.</strong> Device signal, clinician-entered assessment, patient-reported measures and operational metadata (session timing, staff grade, completion) brought together as a single session record rather than four disconnected systems.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Assure</div>
+        <div class="sval"><strong>Provenance and immutability.</strong> Attributable, contemporaneous, original and accurate records with a complete audit trail of every change, override and disabled channel. Built to the standards regulated research already requires.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Structure</div>
+        <div class="sval"><strong>Evidence-ready output.</strong> Machine-readable export in the shape an analyst, a statistician or a submission actually needs. Device-agnostic and vendor-agnostic, so evidence can be pooled across technologies rather than siloed by manufacturer.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Characterise</div>
+        <div class="sval"><strong>Cohort identification.</strong> Finding and describing real-world patient populations from routine health records, for feasibility assessment, site selection, and understanding who a technology is actually likely to help.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Design Principles</div>
+    <h2>What we are building toward</h2>
+
+    <div class="ent-grid two" style="margin-top:34px">
+      <div class="aud-card">
+        <span class="atag">Non-negotiable</span>
+        <h3>Governance is the product, not a feature</h3>
+        <p>An evidence platform that is convenient but not defensible has no value. These constraints come first and shape everything else.</p>
+        <ul class="dot-list">
+          <li><strong>Data protection by design:</strong> documented impact assessments, minimisation, and lawful basis established at collection rather than retrofitted</li>
+          <li><strong>Consent architecture</strong> that anticipates secondary research use, because it cannot be obtained retrospectively</li>
+          <li><strong>Full audit trail</strong> on every record, every amendment, every export</li>
+          <li><strong>Interoperability:</strong> semantic and syntactic, so records mean the same thing across systems</li>
+          <li><strong>Separation of regimes:</strong> regulated research, service evaluation and routine care held to their own standards rather than a blended one</li>
+        </ul>
+      </div>
+
+      <div class="aud-card">
+        <span class="atag">Deliberately not</span>
+        <h3>What we are not building</h3>
+        <p>Restraint here is what keeps the platform buildable by a small team on a real timeline.</p>
+        <ul class="dot-list">
+          <li><strong>Not an electronic health record.</strong> We integrate with clinical systems rather than replacing them</li>
+          <li><strong>Not a diagnostic.</strong> The platform structures and presents measurement; clinical interpretation stays with clinicians</li>
+          <li><strong>Not a general analytics suite.</strong> Narrow scope, built around rehabilitation evidence, deep rather than broad</li>
+          <li><strong>Not an autonomous decision system.</strong> Models support human judgement and are documented as such</li>
+        </ul>
+        <div class="aud-foot">Where machine learning is applied, whether for signal quality, cohort matching or pattern detection, it is scoped, documented and validated as a component, not presented as a capability in its own right.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Who It Serves</div>
+    <h2>Internal first, licensable later</h2>
+    <p class="sec-lead">The platform earns its place by making the other two divisions work. Its external value follows from that, and not before.</p>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Rehab Clinics</div>
+        <div class="sval">Turns routine treatment into an operational and economic dataset (utilisation, throughput, cost per session, completion) without adding administrative burden to clinical staff.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Clinical Research</div>
+        <div class="sval">Provides the audit trail, provenance and structured export that make instrumented delivery usable in a sponsor's study rather than merely interesting.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Manufacturers</div>
+        <div class="sval">Post-market clinical follow-up is a standing regulatory obligation. A platform that produces it as a by-product of care is considerably cheaper than commissioning it as a project.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Other providers</div>
+        <div class="sval"><strong>The eventual product.</strong> Packaging the protocols, instrumentation standard and data layer so that other clinics can deliver to the same standard. That is how one site becomes a national capability without building fifty clinics.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> Where We Are</div>
+    <h2>Honest status</h2>
+
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="slabel">Stage</div>
+        <div class="sval"><strong>Earliest of the three divisions.</strong> In development, with no external customers and none claimed. It will be proven internally on our own clinical service before it is offered to anyone else.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Sequence</div>
+        <div class="sval">Capture and audit first, because they are the prerequisite for everything downstream. Cohort characterisation and analytics follow once there is a real dataset to work on.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">Governance foundation</div>
+        <div class="sval">A Trust-level data protection impact assessment has been completed, and data protection expertise sits within the leadership team rather than being outsourced.</div>
+      </div>
+      <div class="stat-row">
+        <div class="slabel">What we will not claim</div>
+        <div class="sval">Any regulatory clearance, assurance standard or certification we do not hold. Where a claim requires an assessment we have not completed, we say so.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ent-sec">
+    <div class="doc-eyebrow"><span class="node"></span> The Rest Of The Group</div>
+    <h2>What sits alongside</h2>
+    <p class="sec-lead">The platform has no independent value. It exists because two operating businesses need it, and it is built against their real requirements rather than a specification written in the abstract.</p>
+
+    <div class="sib-grid">
+      <a class="sib-card" href="clinics.html">
+        <span class="sk">Verada Rehab Clinics</span>
+        <span class="sn">The first UK deployment</span>
+        <span class="sd">The care service that generates the data, and the first customer this platform has to satisfy.</span>
+        <span class="sgo">Read more &rarr;</span>
+      </a>
+      <a class="sib-card" href="research.html">
+        <span class="sk">Verada Clinical Research</span>
+        <span class="sn">Decentralised trials &amp; objective endpoints</span>
+        <span class="sd">The division whose sponsor requirements set the evidential bar this platform is designed to clear.</span>
+        <span class="sgo">Read more &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="ent-cta">
+    <h2>Building in this space?</h2>
+    <p>If you work on health data interoperability, evidence infrastructure or real-world data in rehabilitation, we would be glad to compare notes.</p>
+    <a href="index.html#contact" class="vbtn">Start a conversation <span class="arrow">&rarr;</span></a>
+  </div>
+
+  <div class="division-note">
+    <strong>About this division.</strong> Verada Healthcare IT is a trading division of Verada Health Ltd, registered in England &amp; Wales under company number 17137766. It is not currently a separate legal entity. Verada Health Ltd intends to incorporate its divisions as separate companies within the Verada group as each reaches operational scale. Nothing on this page is an offer or invitation to invest, and statements about future plans, timelines and technical capability are targets rather than commitments. See our <a href="terms.html">Terms of Use</a>.
+  </div>
+
+</main>
+
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <nav class="doc-footer-nav" aria-label="Site">
+      <a href="index.html">Group</a>
+      <a href="fit.html">Who It's For</a>
+      <a href="clinics.html">Rehab Clinics</a>
+      <a href="research.html">Clinical Research</a>
+      <a href="technology.html">Healthcare IT</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Notice</a>
+      <a href="cookie-policy.html">Cookie Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="accessibility.html">Accessibility</a>
+    </nav>
+    &copy; 2026 Verada Health Ltd &middot; Registered in England &amp; Wales (Company No. 17137766) &middot; 71&ndash;75 Shelton Street, Covent Garden, London, WC2H 9JQ<br>
+    Verada Health, Verada Healthcare IT, Verada Rehab Clinics and Verada Clinical Research are brands and trading divisions of Verada Health Ltd.
+  </div>
+</footer>
+
+<script src="assets/verada.js" defer></script>
+</body>
+</html>
