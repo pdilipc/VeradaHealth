@@ -65,6 +65,13 @@
 }
 .skip-link:focus { left: 0; }
 
+/* ---------- card order ---------- */
+
+.sme-card.clinic    { order: 1; }
+.sme-card.research  { order: 2; }
+.sme-card.tech      { order: 3; }
+
+
 /* ============================================================
    LEGAL / DOCUMENT PAGES
    ============================================================ */
