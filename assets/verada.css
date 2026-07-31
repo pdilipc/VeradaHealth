@@ -689,3 +689,18 @@ select:focus-visible, textarea:focus-visible {
   display: block; font-size: 12px; font-weight: 500; color: var(--text-3); margin-top: 2px;
 }
 .nav-menu a:hover { background: var(--surface-hi); }
+
+/* Typographic refinements for section heads */
+.section-head h2 { text-wrap: balance; }
+.section-head .lead { text-wrap: pretty; max-width: 66ch; }
+
+/* Division names carry their card's accent */
+.lead .n-clinic   { color: #e07bc4;          font-weight: 700; }
+.lead .n-research { color: var(--amethyst);  font-weight: 700; }
+.lead .n-tech     { color: var(--primary-bright); font-weight: 700; }
+[data-theme="light"] .lead .n-clinic   { color: var(--tertiary); }
+[data-theme="light"] .lead .n-research { color: #9c2880; }
+[data-theme="light"] .lead .n-tech     { color: var(--primary); }
+
+/* Closing beat */
+.lead .coda { display: block; margin-top: 14px; color: var(--text); font-weight: 600; }
