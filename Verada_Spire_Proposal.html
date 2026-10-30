@@ -1,0 +1,524 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Verada for Spire</title>
+<style>
+/* Layout: shared cover + status, then four audience tabs (Operations/Clinical/Finance/Governance). Register follows the audience. Verada brand, committed light design on warm paper. */
+:root{
+  --purple:#3D1450;
+  --magenta:#C21A7B;
+  --teal:#1A6E63;
+  --tint:#F2E9F4;
+  --tint2:#FBF4F8;
+  --ink:#222222;
+  --grey:#595959;
+  --paper:#FBFAF7;
+  --card:#FFFFFF;
+  --border:#E7DDEC;
+  --rule:#D9C9E0;
+  color-scheme: light;
+  --maxw: 900px;
+}
+/* Commits to one light world; stay legible on a dark host background with an explicit paper ground. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ color-scheme: light; }
+}
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:Arial,"Helvetica Neue",Helvetica,sans-serif; line-height:1.55; margin:0}
+.wrap{max-width:var(--maxw); margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));}
+section.block{padding-block:40px; border-bottom:1px solid var(--border)}
+h1,h2,h3,h4{text-wrap:balance; margin:0}
+.eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--magenta); font-weight:bold}
+.rule{height:3px; width:64px; background:var(--magenta); border:none; margin:14px 0 20px}
+.muted{color:var(--grey)}
+.tiny{font-size:11px; color:var(--grey)}
+h2.sec{font-size:25px; color:var(--purple)}
+.sec-sub{font-size:16px; color:var(--grey); margin-top:4px; max-width:64ch}
+p{margin:0 0 14px}
+
+/* ---- Cover ---- */
+.cover{background:linear-gradient(160deg,var(--purple) 0%, #2a0e38 100%); color:#fff}
+.cover .wrap{padding-block:52px}
+.brandrow{display:flex; align-items:center; gap:14px; margin-bottom:36px}
+.logo{width:44px;height:44px;border-radius:11px;background:#fff;display:grid;place-items:center;flex:0 0 auto}
+.logo svg{width:30px;height:30px}
+.brandname{font-weight:bold; font-size:18px; letter-spacing:.02em}
+.brandsub{font-size:11px; color:#d9c2e6; letter-spacing:.04em}
+.cover h1{font-size:38px; line-height:1.1; margin-top:8px; max-width:17ch}
+.cover .accent{color:#F39FD0}
+.cover .coversub{font-size:17px; color:#e6d6ef; margin-top:16px; max-width:56ch}
+.preparedfor{margin-top:34px; display:inline-flex; flex-direction:column; gap:3px; border-left:3px solid var(--magenta); padding:8px 0 8px 16px}
+.preparedfor .k{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#d9c2e6}
+.preparedfor .v{font-size:20px; font-weight:bold}
+.coverfoot{margin-top:38px; display:flex; flex-wrap:wrap; gap:10px}
+.coverfoot .pill{border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:5px 12px; font-size:12px; color:#d9c2e6}
+
+/* ---- status ---- */
+.status{background:var(--tint2); border:1px solid var(--rule); border-left:4px solid var(--magenta); border-radius:8px; padding:14px 16px; font-size:13px}
+.status b{color:var(--purple)}
+
+/* ---- tabs ---- */
+.tabsbar{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:var(--paper); border-bottom:1px solid var(--border)}
+.tabsbar .wrap{display:flex; flex-wrap:wrap; gap:4px; padding-block:8px}
+.tab{appearance:none; border:none; background:transparent; font-family:inherit; cursor:pointer;
+  font-size:13.5px; font-weight:bold; color:var(--grey); padding:9px 14px; border-radius:8px; letter-spacing:.01em}
+.tab small{display:block; font-weight:normal; font-size:10.5px; letter-spacing:.04em; color:var(--grey); margin-top:1px}
+.tab[aria-selected="true"]{background:var(--purple); color:#fff}
+.tab[aria-selected="true"] small{color:#d9c2e6}
+.tab:focus-visible{outline:2px solid var(--magenta); outline-offset:2px}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); background:var(--paper); z-index:10}
+
+.panel[hidden]{display:none!important}
+
+/* ---- shared components ---- */
+.grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.cardbox{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px}
+.cardbox h3{font-size:16px; color:var(--purple); margin-bottom:6px}
+.cardbox p{font-size:14px; color:var(--grey); margin:0}
+.leadin{color:var(--ink); font-weight:bold}
+
+.statband{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:8px}
+.stat{border-left:3px solid var(--teal); padding:4px 0 4px 16px}
+.stat .fig{font-size:28px; font-weight:bold; color:var(--magenta); line-height:1; font-variant-numeric:tabular-nums}
+.stat p{margin:8px 0 0; font-size:13.5px; color:var(--ink)}
+
+.chips{display:flex; flex-wrap:wrap; gap:9px; margin:4px 0 0}
+.chip{border:1px solid var(--rule); border-radius:8px; padding:8px 12px; font-size:12.5px; font-weight:bold; color:var(--purple); background:var(--tint2)}
+
+.metrics{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+.metric{display:flex; gap:12px; align-items:baseline; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px}
+.metric .fig{font-size:21px; font-weight:bold; color:var(--magenta); flex:0 0 auto; font-variant-numeric:tabular-nums}
+.metric .lab{font-size:13px; color:var(--grey)}
+
+.attrib{margin-top:14px; font-size:11.5px; color:var(--grey); font-style:italic}
+
+ul.list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px}
+ul.list li{font-size:14px; color:var(--grey); padding-left:16px; position:relative}
+ul.list li::before{content:""; position:absolute; left:0; top:9px; width:7px; height:2px; background:var(--magenta)}
+ul.list li b{color:var(--ink)}
+
+.flow{display:flex; flex-wrap:wrap; align-items:stretch; gap:10px}
+.node{flex:1 1 150px; min-width:0; background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px; text-align:center}
+.node .ic{width:32px;height:32px;margin:0 auto 8px; color:var(--teal)}
+.node .t{font-weight:bold; font-size:13px; color:var(--purple)}
+.node .d{font-size:12px; color:var(--grey); margin-top:4px}
+.arrow{align-self:center; color:var(--rule); font-weight:bold; flex:0 0 auto}
+
+.params{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+.param{border:1px solid var(--border); border-radius:8px; padding:11px 13px; font-size:13px; background:var(--tint2)}
+.param b{color:var(--purple)}
+.param .tag{display:block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:3px}
+
+.boundary{display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:12px; overflow:hidden}
+.boundary > div{padding:18px}
+.boundary .verada{background:var(--tint2)}
+.boundary .hosp{background:var(--card); border-left:1px solid var(--border)}
+.boundary h4{margin:0 0 10px; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase}
+.boundary .verada h4{color:var(--magenta)}
+.boundary .hosp h4{color:var(--purple)}
+.boundary ul{margin:0; padding-left:18px; font-size:13px; color:var(--grey)}
+.boundary li{margin-bottom:7px}
+
+.audiencenote{font-size:12px; color:var(--teal); font-weight:bold; letter-spacing:.02em; margin-bottom:6px}
+
+/* illustrative case panel */
+.illnote{display:inline-block; font-size:11px; font-weight:bold; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); border:1px solid var(--teal); border-radius:999px; padding:3px 10px; margin-bottom:14px}
+.case{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px}
+.case h3{font-size:16px; color:var(--purple); margin-bottom:12px}
+.caseflow{display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin-bottom:14px}
+.step{flex:1 1 120px; min-width:0; background:var(--tint2); border:1px solid var(--border); border-radius:8px; padding:10px 12px}
+.step .s{font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--magenta); font-weight:bold; margin-bottom:4px}
+.step .x{font-size:13px; color:var(--ink)}
+.case .outcome{font-size:13.5px; color:var(--grey)}
+.case .outcome b{color:var(--ink)}
+
+/* comparison grid */
+.cmp-scroll{overflow-x:auto; margin-top:6px}
+table.cmp{border-collapse:collapse; width:100%; min-width:520px; font-size:13px}
+table.cmp th,table.cmp td{border:1px solid var(--border); padding:9px 11px; text-align:center}
+table.cmp thead th{background:var(--purple); color:#fff; font-weight:bold}
+table.cmp tbody th{background:var(--tint2); color:var(--purple); text-align:left; font-weight:bold}
+table.cmp tr:nth-child(even) td{background:var(--tint2)}
+table.cmp .yes{color:var(--teal); font-weight:bold}
+table.cmp .no{color:var(--grey)}
+table.cmp .part{color:var(--magenta)}
+table.cmp tr.verada th,table.cmp tr.verada td{background:var(--tint); font-weight:bold}
+
+/* ---- close ---- */
+.close{background:var(--purple); color:#fff}
+.close .wrap{padding-block:44px}
+.close h2{font-size:24px; color:#fff; max-width:24ch}
+.close .accent{color:#F39FD0}
+.close p{color:#e6d6ef; max-width:60ch; font-size:15px}
+.contact{margin-top:22px; display:flex; flex-wrap:wrap; gap:10px 28px; font-size:14px}
+.contact .k{color:#d9c2e6; font-size:11px; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:2px}
+.contact .v{font-weight:bold}
+.disc{font-size:11px; color:var(--grey); line-height:1.55}
+.disc + .disc{margin-top:8px}
+
+@media (max-width:640px){
+  .cover h1{font-size:29px}
+  .grid2,.statband,.metrics,.boundary,.params{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .params{grid-template-columns:1fr 1fr}
+  h2.sec{font-size:21px}
+  .arrow{display:none}
+}
+</style>
+
+<!-- ============ COVER ============ -->
+<section class="block cover">
+  <div class="wrap">
+    <div class="brandrow">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M6 6c3 0 5 2 6 6 1 4 2 8 4 11 2-3 3-7 4-11 1-4 3-6 6-6" stroke="#3D1450" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="25" r="2.2" fill="#C21A7B"/></svg>
+      </span>
+      <span>
+        <span class="brandname">VERADA HEALTH</span><br>
+        <span class="brandsub">Command Centre as a Service</span>
+      </span>
+    </div>
+
+    <p class="eyebrow" style="color:#F39FD0">Continuous patient monitoring as a service</p>
+    <h1>Continuous surveillance for the <span class="accent">deteriorating ward patient</span></h1>
+    <p class="coversub">A continuous, clinician-reviewed monitoring layer for non-critical wards and post-operative and step-down beds. The monitoring technology and the clinical team that interprets and escalates it are provided together, as one managed service.</p>
+
+    <div class="preparedfor">
+      <span class="k">Prepared for</span>
+      <span class="v">Spire Healthcare</span>
+    </div>
+
+    <div class="coverfoot">
+      <span class="pill">Contactless continuous monitoring</span>
+      <span class="pill">24/7 clinical Command Centre</span>
+      <span class="pill">Device-neutral, service-led</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATUS ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="status">
+      <b>About this document.</b> Verada Health Ltd is preparing for registration with the Care Quality Commission. This is an expression of interest in providing Spire Healthcare with a device-neutral <b>Command Centre as a Service</b>, so that Spire's administration can lead and drive adoption. Regulated activity would begin only once CQC registration is in place. It is not an offer of a regulated service.
+    </div>
+    <p class="tiny" style="margin-top:14px">This brochure is organised by reader. Select the view that fits you. The service is one service; each tab presents it in the terms that matter to that function.</p>
+  </div>
+</section>
+
+<!-- ============ TABS ============ -->
+<div class="tabsbar">
+  <div class="wrap" role="tablist" aria-label="Choose your view">
+    <button class="tab" role="tab" id="tab-ops" aria-controls="panel-ops" aria-selected="true">Operations<small>COO · Director of Nursing</small></button>
+    <button class="tab" role="tab" id="tab-clin" aria-controls="panel-clin" aria-selected="false">Clinical<small>Medical Director · governance</small></button>
+    <button class="tab" role="tab" id="tab-fin" aria-controls="panel-fin" aria-selected="false">Finance<small>Finance Director</small></button>
+    <button class="tab" role="tab" id="tab-gov" aria-controls="panel-gov" aria-selected="false">Governance &amp; IG<small>DPO · Caldicott · assurance</small></button>
+  </div>
+</div>
+
+<!-- ============ PANEL: OPERATIONS (default) ============ -->
+<div class="panel" id="panel-ops" role="tabpanel" aria-labelledby="tab-ops">
+  <section class="block">
+    <div class="wrap">
+      <p class="audiencenote">For operational leadership</p>
+      <h2 class="sec">Continuous monitoring run by our team, not more equipment for yours to manage</h2>
+      <hr class="rule">
+      <p class="sec-sub">We monitor every bed in the service continuously from our command centre, and we contact your ward team only when a patient needs attention, with a signal one of our clinicians has already reviewed. Your staff are not asked to watch another screen or learn another system. The aim is to reduce the monitoring workload on the ward, not add to it.</p>
+
+      <p class="eyebrow" style="margin-top:28px">What changes on the ward</p>
+      <div class="chips" style="margin-bottom:24px">
+        <span class="chip">Monitoring that continues overnight</span>
+        <span class="chip">Fewer sudden emergencies</span>
+        <span class="chip">Less time spent on manual observations</span>
+        <span class="chip">Earlier, planned step-down</span>
+        <span class="chip">One service instead of several systems</span>
+      </div>
+
+      <div class="grid2">
+        <div class="cardbox"><h3>Monitoring that does not depend on the roster</h3><p>Monitoring done by ward staff is only as consistent as the staffing on a given shift. Our command centre watches to the same standard at every hour, which matters most overnight, at weekends and when the ward is short-staffed.</p></div>
+        <div class="cardbox"><h3>Less time spent on manual observations</h3><p>Continuous monitoring replaces a share of the manual observation rounds and hand-written charting. Comparable sites report around one hour per nurse per shift returned to direct patient care.</p></div>
+        <div class="cardbox"><h3>Problems recognised earlier</h3><p>A developing problem is visible as a trend before it becomes an emergency, so the response can be a planned review rather than an emergency call. Fewer emergencies means a safer, calmer ward.</p></div>
+        <div class="cardbox"><h3>Monitoring continues while you wait for transfer</h3><p>A site without on-site critical care sometimes has to stabilise and hold an acutely unwell patient until an HDU or ITU bed, or an ambulance, is available. We keep that patient under continuous, clinician-reviewed monitoring throughout the wait and flag any further change immediately.</p></div>
+        <div class="cardbox"><h3>A single service to run</h3><p>One managed service across your non-critical beds, with the devices provided and supported as part of it. There is nothing for your teams to build, staff or maintain.</p></div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:30px">What comparable sites report</p>
+      <div class="metrics">
+        <div class="metric"><span class="fig">8–10</span><span class="lab">early-warning alerts per 100 monitored beds, catching deterioration while it is still a trend</span></div>
+        <div class="metric"><span class="fig">~1 hr</span><span class="lab">nursing time reported back per nurse per shift, with less time on recording vitals</span></div>
+        <div class="metric"><span class="fig">fewer<br>ICU returns</span><span class="lab">reported drop in critical-care readmissions through earlier recognition on the ward</span></div>
+        <div class="metric"><span class="fig">fewer<br>crash calls</span><span class="lab">one site reported no emergency resuscitation calls over about 200 days on the programme</span></div>
+      </div>
+      <p class="attrib">These figures come from a large independent-sector hospital group in India and are reported by the operator, not independently verified here. They show how the service works rather than predict a UK result. Any effect at Spire would be agreed and measured in a pilot.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PANEL: CLINICAL ============ -->
+<div class="panel" id="panel-clin" role="tabpanel" aria-labelledby="tab-clin" hidden>
+  <section class="block">
+    <div class="wrap">
+      <p class="audiencenote">For the Medical Director and clinical governance</p>
+      <h2 class="sec">Physiological deterioration is frequently occult between intermittent observations</h2>
+      <hr class="rule">
+      <p class="sec-sub">In the non-critical inpatient setting, vital-sign surveillance is predominantly intermittent: observations are performed at scheduled intervals and recorded manually. The physiological antecedents to a serious adverse event commonly develop in the interval between observations. On the overnight ward or in the post-operative bay this period is frequently unobserved, and these are the settings in which continuous monitoring is least often established.</p>
+
+      <div class="grid2" style="margin-bottom:28px">
+        <div class="cardbox"><h3>Occult antecedent deterioration</h3><p>Derangement in vital signs frequently precedes symptomatic presentation by several hours and is not captured by intermittent observation.</p></div>
+        <div class="cardbox"><h3>Delay in the afferent limb</h3><p>Later recognition produces later escalation. Delay in the recognition-and-response pathway is associated with increased in-hospital mortality.</p></div>
+        <div class="cardbox"><h3>Burden on the general ward</h3><p>The majority of in-hospital cardiac arrests occur on general wards rather than in critical care, and a substantial proportion are considered potentially preventable.</p></div>
+        <div class="cardbox"><h3>The stabilise-and-transfer interval</h3><p>A facility without on-site HDU or ITU must stabilise and safely hold an acutely unwell patient pending escalation or inter-hospital transfer. This interval, which can be prolonged by critical-care bed and ambulance availability, is a defined period in which close and continuous observation is clinically important.</p></div>
+        <div class="cardbox"><h3>Variation with staffing</h3><p>Surveillance contingent on bedside staffing varies with the roster and is least robust overnight, at weekends and during reduced staffing.</p></div>
+      </div>
+
+      <p class="eyebrow">Evidence from the peer-reviewed literature</p>
+      <div class="statband" style="margin-bottom:12px">
+        <div class="stat"><div class="fig">66%</div><p>of patients sustaining cardiac arrest exhibit documented physiological abnormality up to six hours beforehand; the responsible clinician is notified in approximately one quarter of cases.</p></div>
+        <div class="stat"><div class="fig">~50%</div><p>of general-ward patients may have abnormal vital signs of which nursing staff are unaware, attributable to competing clinical demands within the shift.</p></div>
+        <div class="stat"><div class="fig">35%</div><p>of at-risk patients discharged from critical care subsequently die on the general ward.</p></div>
+        <div class="stat"><div class="fig">60%</div><p>relative increase in hospital cost is associated with delayed transfer to critical care following late recognition.</p></div>
+      </div>
+      <p class="attrib">Values are drawn from the peer-reviewed deterioration and patient-safety literature (Downey CL et al., Int J Nurs Stud 2018; Resuscitation Council and American Heart Association statistics; Bates DW et al., BMJ Qual Saf). These are independent published sources and are not results attributable to Verada or to any device manufacturer.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Mechanism of the service</p>
+      <h2 class="sec">Continuous acquisition, clinical adjudication, ward-level escalation</h2>
+      <hr class="rule">
+      <div class="flow">
+        <div class="node">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-5 3 10 2-5h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="t">Contactless acquisition</div>
+          <div class="d">Sub-mattress ballistocardiographic sensor. No patient-worn component.</div>
+        </div>
+        <span class="arrow">→</span>
+        <div class="node">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18" stroke="currentColor" stroke-width="2"/></svg></div>
+          <div class="t">Early-warning scoring</div>
+          <div class="d">Continuous trending of the physiological parameters, with threshold-based flagging.</div>
+        </div>
+        <span class="arrow">→</span>
+        <div class="node">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="t">Clinical adjudication</div>
+          <div class="d">A registered clinician reviews and validates each signal before it reaches the ward.</div>
+        </div>
+        <span class="arrow">→</span>
+        <div class="node">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="t">Ward-level escalation</div>
+          <div class="d">A defined clinical signal is directed into the hospital's existing escalation protocol.</div>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:30px">Acquired physiological parameters</p>
+      <div class="params">
+        <div class="param"><span class="tag">Contactless</span><b>Heart rate.</b> Validated against electrocardiographic reference to a mean absolute error of the order of a few beats per minute.</div>
+        <div class="param"><span class="tag">Contactless</span><b>Respiratory rate.</b> Frequently the earliest parameter to deviate in evolving respiratory and septic compromise.</div>
+        <div class="param"><span class="tag">Contactless</span><b>Heart-rate variability,</b> bed occupancy and gross movement.</div>
+        <div class="param"><span class="tag">Contactless</span><b>Blood-pressure trend.</b> A trend indicator for surveillance, not a diagnostic blood-pressure measurement.</div>
+        <div class="param"><span class="tag">Accessory</span><b>SpO₂, cuff NIBP and temperature</b> where clinically indicated.</div>
+        <div class="param"><span class="tag">Accessory</span><b>Single-lead ECG</b> patch for rhythm assessment and atrial-fibrillation screening.</div>
+      </div>
+      <p class="attrib">The scored parameters represent the physiological components of an early-warning score. They do not constitute a complete validated NEWS2, which additionally requires level of consciousness and inspired-oxygen status. The intended scope is non-critical: adult inpatients on general wards and in post-operative and step-down beds, including the interval in which an acutely unwell patient is stabilised and held pending escalation or transfer. The service supports surveillance during that interval; it does not provide critical-care treatment, and it does not alter the availability of critical-care beds or inter-hospital transport.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Illustrative pathways</p>
+      <h2 class="sec">How continuous monitoring changes the recognition window</h2>
+      <hr class="rule">
+      <span class="illnote">Illustrative examples, not Verada case data</span>
+      <p class="sec-sub" style="margin-bottom:22px">The following are constructed examples of the mechanism of benefit on two physiologically-expressed pathways. They are not Verada patients or Verada outcomes. Verada holds no clinical track record in the United Kingdom; any effect would be measured prospectively in an agreed evaluation.</p>
+
+      <div class="case">
+        <h3>Post-operative sepsis: recognition at the trend stage</h3>
+        <div class="caseflow">
+          <div class="step"><div class="s">Signal</div><div class="x">Recurrent tachycardia develops over several hours and is visible as a continuous trend.</div></div>
+          <div class="step"><div class="s">Review</div><div class="x">The Command Centre clinician recognises a sustained, unexplained rise and communicates it to the ward.</div></div>
+          <div class="step"><div class="s">Response</div><div class="x">The ward team examines the patient, investigates, and begins treatment earlier in the course.</div></div>
+          <div class="step"><div class="s">Outcome</div><div class="x">A developing infection is addressed before it reaches an emergency, within the facility.</div></div>
+        </div>
+        <p class="outcome"><b>Why it matters:</b> on intermittent observation the same trend is frequently not apparent until a scheduled round or until the patient is overtly unwell. Continuous monitoring makes the trajectory visible earlier. In a UK setting the value is in avoided deterioration and avoided emergency transfer, not a reimbursement claim.</p>
+      </div>
+
+      <div class="case">
+        <h3>Fluid overload: a measured response, titrated to the signal</h3>
+        <div class="caseflow">
+          <div class="step"><div class="s">Signal</div><div class="x">Respiratory rate rises steadily, tracking fluid status before overt respiratory distress.</div></div>
+          <div class="step"><div class="s">Review</div><div class="x">The trend is recognised and communicated with the supporting data.</div></div>
+          <div class="step"><div class="s">Response</div><div class="x">The responsible clinician orders a diuretic; the respiratory-rate trend is followed as it settles.</div></div>
+          <div class="step"><div class="s">Outcome</div><div class="x">The episode is managed within the facility, with the response guided by the continuous signal.</div></div>
+        </div>
+        <p class="outcome"><b>Why it matters:</b> continuous respiratory-rate trending both surfaces the problem earlier and provides an objective measure of the response to treatment. The prescribing decision remains with the responsible clinician throughout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Monitoring approach</p>
+      <h2 class="sec">Why a contactless approach suits ward and post-operative beds</h2>
+      <hr class="rule">
+      <p class="sec-sub" style="margin-bottom:18px">Contactless monitoring is well matched to the non-critical ward because it requires nothing of the patient and nothing of the ward team to maintain. The comparison below sets it against the common alternatives on the attributes that matter for continuous ward surveillance.</p>
+      <div class="cmp-scroll">
+        <table class="cmp">
+          <thead>
+            <tr><th scope="col">Approach</th><th scope="col">Continuous vitals</th><th scope="col">No patient compliance needed</th><th scope="col">Bed-exit / movement</th><th scope="col">Alarm burden</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Intermittent manual observation</th><td class="no">No</td><td class="yes">n/a</td><td class="no">No</td><td class="no">Low</td></tr>
+            <tr><th scope="row">Wearable sensor</th><td class="part">Partial</td><td class="no">Requires wear and charging</td><td class="no">Limited</td><td class="no">Higher</td></tr>
+            <tr><th scope="row">Camera / radar</th><td class="part">Partial</td><td class="yes">Yes</td><td class="part">Partial</td><td class="no">Variable</td></tr>
+            <tr class="verada"><th scope="row">Contactless bed sensor</th><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Low</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="attrib">The contactless sensor is the monitoring technology supplied within the service; it is a third-party CE-marked device, not Verada's own product. The manufacturer reports a low alarm burden (of the order of a small number of amber alerts per 100 monitored beds per day); this figure would be confirmed with the manufacturer before being relied upon in a Spire setting.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Clinical governance and accountability</p>
+      <h2 class="sec">A surveillance layer that supports Spire's clinical teams rather than supplanting them</h2>
+      <hr class="rule">
+      <p class="sec-sub">Spire remains the registered provider and retains the duty of care for its patients. Alerts function as decision support and are adjudicated by a registered clinician before communication to the ward. No clinical decision is automated, and no unreviewed data is passed to ward staff for interpretation. The division of clinical responsibility is defined jointly and documented, consistent with the governance standards Verada is establishing for CQC registration.</p>
+      <div class="boundary">
+        <div class="verada">
+          <h4>Verada provides</h4>
+          <ul>
+            <li>Continuous monitoring and the Command Centre clinical staffing</li>
+            <li>Clinician-adjudicated early-warning signals into Spire's pathway</li>
+            <li>An auditable monitoring and escalation record</li>
+            <li>Devices provisioned and supported within the service</li>
+          </ul>
+        </div>
+        <div class="hosp">
+          <h4>Spire retains</h4>
+          <ul>
+            <li>Ownership of each patient's care</li>
+            <li>Its clinical teams and its escalation protocols</li>
+            <li>Every bedside clinical decision</li>
+            <li>The setting, the interface and the agreed endpoints</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PANEL: FINANCE ============ -->
+<div class="panel" id="panel-fin" role="tabpanel" aria-labelledby="tab-fin" hidden>
+  <section class="block">
+    <div class="wrap">
+      <p class="audiencenote">For the Finance Director</p>
+      <h2 class="sec">A managed cost you can size and control, set against the cost of late deterioration</h2>
+      <hr class="rule">
+      <p class="sec-sub">The service is bought as an operating cost, not a capital project. There is no monitoring estate to buy, build or depreciate: the devices and the command centre come as one managed service, priced per monitored bed. The case for it rests on cost you already carry when a patient deteriorates late.</p>
+
+      <div class="grid2" style="margin-bottom:26px">
+        <div class="cardbox"><h3>Operating cost, not capital</h3><p>A predictable per-bed service charge in place of the fixed overhead of building and staffing an equivalent capability in house. You scope it, and you can scale it up or down.</p></div>
+        <div class="cardbox"><h3>Protects your most expensive beds</h3><p>Earlier recognition and timely step-down reduce avoidable escalations into high-dependency and intensive-care beds, which are the costliest to run in a private facility.</p></div>
+        <div class="cardbox"><h3>Lowers the cost of the event</h3><p>A complication caught as a trend is, on average, cheaper to manage than one caught late, in both length of stay and intensity of care.</p></div>
+        <div class="cardbox"><h3>Returns clinical time</h3><p>Reviewed signals replace a share of manual observation and charting, returning nursing time to direct care rather than to watching data.</p></div>
+      </div>
+
+      <p class="eyebrow">The shape of the case</p>
+      <ul class="list" style="margin-top:12px">
+        <li><b>Avoided escalations.</b> Each avoided unplanned admission to HDU or ICU is a direct saving against the highest bed-day cost in the hospital.</li>
+        <li><b>Avoided length of stay.</b> Earlier intervention shortens the deterioration episodes that otherwise extend a stay.</li>
+        <li><b>Staffing efficiency.</b> Time returned to the bedside reduces reliance on additional or agency cover at the margin.</li>
+        <li><b>Medico-legal exposure.</b> A documented, time-stamped record of continuous monitoring and defined escalation supports the hospital's position if an outcome is later questioned.</li>
+      </ul>
+      <p class="attrib">The service commits to service levels (surveillance cover, signal-review and escalation turnaround, uptime and reporting), not to clinical outcomes. The financial case would be built with Spire against its own cost base and measured over an agreed pilot, rather than asserted here.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PANEL: GOVERNANCE & IG ============ -->
+<div class="panel" id="panel-gov" role="tabpanel" aria-labelledby="tab-gov" hidden>
+  <section class="block">
+    <div class="wrap">
+      <p class="audiencenote">For information governance, the DPO, Caldicott and assurance</p>
+      <h2 class="sec">Data protection, clinical safety and assurance, defined before any patient is monitored</h2>
+      <hr class="rule">
+      <p class="sec-sub">The service processes special-category health data and provides a clinical surveillance function. Both carry defined obligations. Verada's position is to agree the data-protection and clinical-safety arrangements with Spire in writing before any patient is monitored, and to keep them under joint review.</p>
+
+      <div class="grid2" style="margin-bottom:26px">
+        <div class="cardbox"><h3>Data protection</h3><p>Processing is governed by UK GDPR and the Data Protection Act 2018. A Data Protection Impact Assessment is completed for the deployment, with lawful basis, roles and data flows defined with Spire, and a data-processing agreement in place. UK data residency is confirmed before go-live.</p></div>
+        <div class="cardbox"><h3>Information security</h3><p>The underlying monitoring platform holds ISO/IEC 27001 and SOC 2 Type II. Alignment with the Data Security and Protection Toolkit at the service layer is confirmed as part of onboarding.</p></div>
+        <div class="cardbox"><h3>Clinical safety</h3><p>Clinical-risk management follows the DCB0129 and DCB0160 standards: the manufacturer's clinical-safety case for the device, and Verada's own clinical-safety case for the monitoring and escalation service, each with a named Clinical Safety Officer and a maintained hazard log.</p></div>
+        <div class="cardbox"><h3>Device regulatory status</h3><p>The monitoring technology is a CE-marked medical device recognised for the Great Britain market. Any regulatory approvals are held by the manufacturer. The specific device, its GB conformity and Verada's CQC registration are confirmed before any service is provided.</p></div>
+      </div>
+
+      <p class="eyebrow">Responsibilities, defined jointly</p>
+      <ul class="list" style="margin-top:12px">
+        <li><b>A written responsibilities agreement</b> names the accountable person on each side and the point at which responsibility passes from the Command Centre to the ward team.</li>
+        <li><b>Shared elements</b> are governed jointly: the escalation protocol, the incident and patient-safety process, clinical audit of monitored patients, and the data-sharing arrangements.</li>
+        <li><b>Documented before go-live.</b> These are agreed and recorded before any patient is monitored, consistent with the standards Verada is putting in place for CQC registration.</li>
+      </ul>
+      <p class="attrib">Verada is preparing for CQC registration; regulated activity would begin only once that registration is in place. Pre-registration work is limited to agreements, impact assessments and protocol and governance design.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CLOSE ============ -->
+<section class="block close">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#F39FD0">Proposed next step</p>
+    <h2>A defined, measured <span class="accent">pilot</span> on a specified set of Spire beds</h2>
+    <p style="margin-top:14px">Verada would welcome an introductory discussion with the relevant people in Spire's operational and clinical leadership, to assess whether a Command Centre service of this kind is of value and, if so, to define a time-limited pilot on a specified set of beds or a single unit. Clinical, operational and cost measures would be agreed in advance and measured over the pilot.</p>
+    <div class="contact">
+      <div><span class="k">From</span><span class="v">Verada Health Ltd</span></div>
+      <div><span class="k">Registered office</span><span class="v">71–75 Shelton Street, Covent Garden, London, WC2H 9JQ</span></div>
+      <div><span class="k">Company no.</span><span class="v">17137766</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISCLAIMER ============ -->
+<section class="block">
+  <div class="wrap">
+    <hr style="border:none;border-top:1px solid var(--rule);margin-bottom:14px">
+    <p class="disc"><b>Disclaimer.</b> This document is provided for information only and should be treated as an expression of interest. It does not constitute an offer of a regulated service, a clinical service, a product or a contract, and it creates no obligation on either party. Verada Health Ltd is preparing for registration with the Care Quality Commission; any regulated activity would commence only once that registration is in place.</p>
+    <p class="disc">The service described is a managed monitoring and early-warning capability reviewed by a registered clinician. It is a decision-support function: it does not make automated clinical decisions, and it does not replace the hospital's clinical staff, clinical judgement, escalation protocols or responsibility for the care of its patients. Monitoring is intended for adult patients in non-critical settings and is not a substitute for the dedicated monitoring used in intensive care.</p>
+    <p class="disc">Verada provides the monitoring as part of the service and is not tied to any single manufacturer. Any device regulatory approvals relate to the monitoring technology and are held by its manufacturer, not Verada. The specific device applicable to the United Kingdom, its conformity marking for the Great Britain market, and Verada's own CQC registration would be confirmed before any service is provided. Figures and outcomes attributed to deployments in other health systems are reported by their operators, are not independently verified by Verada, and are not a prediction of outcomes in any UK setting.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = {
+    'tab-ops':'panel-ops','tab-clin':'panel-clin','tab-fin':'panel-fin','tab-gov':'panel-gov'
+  };
+  function select(id){
+    tabs.forEach(function(t){
+      var on = t.id === id;
+      t.setAttribute('aria-selected', on ? 'true':'false');
+      var p = document.getElementById(panels[t.id]);
+      if(p) p.hidden = !on;
+    });
+    try{ localStorage.setItem('verada_spire_tab', id); }catch(e){}
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ select(t.id); });
+    t.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(t);
+      if(e.key==='ArrowRight'){ e.preventDefault(); tabs[(i+1)%tabs.length].focus(); }
+      if(e.key==='ArrowLeft'){ e.preventDefault(); tabs[(i-1+tabs.length)%tabs.length].focus(); }
+    });
+  });
+  var saved;
+  try{ saved = localStorage.getItem('verada_spire_tab'); }catch(e){}
+  select(saved && panels[saved] ? saved : 'tab-ops');
+})();
+</script>
+
+</body></html>
