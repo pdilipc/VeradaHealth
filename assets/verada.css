@@ -479,13 +479,33 @@ select:focus-visible, textarea:focus-visible {
 .section[id] { scroll-margin-top: 90px; }
 
 /* Brand logo image in the legal-page header */
-.doc-brand img { height: 32px; width: auto; display: block; }
-.brand-logo {
+/* Verada logo */
+.doc-brand img,
+.brand-lockup .brand-logo {
   display: block;
-  width: 124px;
+  width: 145px;
   height: auto;
-  max-height: 40px;
+  max-height: 38px;
   object-fit: contain;
+}
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+.brand-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(255,255,255,.25);
+}
+
+.brand-service {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 /* ============================================================
