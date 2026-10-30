@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /spire.html
+Disallow: /spire_proposal.html
