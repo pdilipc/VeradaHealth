@@ -480,6 +480,13 @@ select:focus-visible, textarea:focus-visible {
 
 /* Brand logo image in the legal-page header */
 .doc-brand img { height: 32px; width: auto; display: block; }
+.brand-logo {
+  display: block;
+  width: 124px;
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
 
 /* ============================================================
    ENTITY PAGES  —  clinics.html · research.html · technology.html
