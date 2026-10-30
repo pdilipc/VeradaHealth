@@ -68,6 +68,7 @@
     .tab:focus-visible{outline:2px solid var(--magenta); outline-offset:2px}
     body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); background:var(--paper); z-index:10}
 
+    /* Controls structural panel visibility */
     .panel[hidden]{display:none!important}
 
     /* ---- shared components ---- */
@@ -76,14 +77,11 @@
     .cardbox{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin-bottom:16px}
     .cardbox h3{font-size:16px; color:var(--purple); margin-bottom:6px}
     .cardbox p{font-size:14px; color:var(--grey); margin:0}
-    
-    /* Fixed trailing brace and added trailing semicolon */
     .illnote{display:inline-block; font-size:11px; font-weight:bold; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); border:1px solid var(--teal); border-radius:999px; padding:3px;}
   </style>
 </head>
 <body>
 
-  <!-- Header Banner Cover Component -->
   <header class="cover">
     <div class="wrap">
       <div class="brandrow">
@@ -94,7 +92,6 @@
       </div>
       <h1>Clinical Adoption Proposal for <span class="accent">Spire</span></h1>
       <p class="coversub">Accelerating real-world evidence pipelines and deployment coordination layouts.</p>
-      
       <div class="preparedfor">
         <span class="k">Prepared For</span>
         <span class="v">Spire Healthcare Group</span>
@@ -102,40 +99,98 @@
     </div>
   </header>
 
-  <!-- Sticky Tabs Navigation Layer -->
-  <nav class="tabsbar">
+  <!-- Navigation Hub matching ARIA specifications -->
+  <nav class="tabsbar" role="tablist" aria-label="Proposal Audiences">
     <div class="wrap">
-      <button class="tab" aria-selected="true">Operations<small>Performance</small></button>
-      <button class="tab" aria-selected="false">Clinical<small>Governance</small></button>
-      <button class="tab" aria-selected="false">Finance<small>Commercial</small></button>
-      <button class="tab" aria-selected="false">Governance<small>Compliance</small></button>
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-ops" id="tab-ops">Operations<small>Performance</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-clinical" id="tab-clinical">Clinical<small>Governance</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-finance" id="tab-finance">Finance<small>Commercial</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-gov" id="tab-gov">Governance<small>Compliance</small></button>
     </div>
   </nav>
 
-  <!-- Structural Layout Presentation Content -->
   <main class="wrap" style="padding-top:24px;">
     <div class="status">
-      <b>Status Profile:</b> Core framework components initialized. Commits light theme layouts across target devices.
+      <b>Status Profile:</b> Core framework components initialized. Interactive presentation layers active.
     </div>
 
-    <section class="block">
-      <span class="eyebrow">Overview Engine</span>
-      <div class="rule"></div>
-      <h2 class="sec">Operational Overview Matrix</h2>
-      <p class="sec-sub">Review deployment parameters, cross-system validation pipelines, and data delivery networks.</p>
-      
-      <div class="grid2" style="margin-top:24px;">
-        <div class="cardbox">
-          <h3>Integration Layer</h3>
-          <p>Coordinates backend delivery data pipelines safely with existing digital operational hubs.</p>
+    <!-- TAB PANEL 1: OPERATIONS -->
+    <div id="panel-ops" role="tabpanel" aria-labelledby="tab-ops" class="panel">
+      <section class="block">
+        <span class="eyebrow">Operations Platform</span>
+        <div class="rule"></div>
+        <h2 class="sec">Operational Overview Matrix</h2>
+        <p class="sec-sub">Review deployment parameters, cross-system validation pipelines, and data delivery networks.</p>
+        <div class="grid2" style="margin-top:24px;">
+          <div class="cardbox">
+            <h3>Integration Layer</h3>
+            <p>Coordinates backend delivery data pipelines safely with existing digital operational hubs.</p>
+          </div>
+          <div class="cardbox">
+            <h3>Evidence Platform</h3>
+            <p>Maps treatment compliance milestones seamlessly against targeted clinical indications.</p>
+          </div>
         </div>
-        <div class="cardbox">
-          <h3>Evidence Platform</h3>
-          <p>Maps treatment compliance milestones seamlessly against targeted clinical indications.</p>
+      </section>
+    </div>
+
+    <!-- TAB PANEL 2: CLINICAL -->
+    <div id="panel-clinical" role="tabpanel" aria-labelledby="tab-clinical" class="panel" hidden>
+      <section class="block">
+        <span class="eyebrow">Clinical Workflow</span>
+        <div class="rule"></div>
+        <h2 class="sec">Clinical Efficacy Engines</h2>
+        <p class="sec-sub">Standardised patient data coordination maps optimized for complex provider configurations.</p>
+        <div class="cardbox" style="margin-top:24px;">
+          <h3>Protocol Automation</h3>
+          <p>Enforces local clinical guidelines dynamically within clinical trial tracking interfaces.</p>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
+    <!-- TAB PANEL 3: FINANCE -->
+    <div id="panel-finance" role="tabpanel" aria-labelledby="tab-finance" class="panel" hidden>
+      <section class="block">
+        <span class="eyebrow">Financial Impact</span>
+        <div class="rule"></div>
+        <h2 class="sec">Commercial Yield Analysis</h2>
+        <p class="sec-sub">Resource tracking parameters constructed to mitigate cost variation and enhance systemic value metrics.</p>
+        <div class="cardbox" style="margin-top:24px;">
+          <h3>Value Realisation Matrix</h3>
+          <p>Identifies processing bottlenecks and quantifies cost-efficiencies across multi-site networks.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB PANEL 4: GOVERNANCE -->
+    <div id="panel-gov" role="tabpanel" aria-labelledby="tab-gov" class="panel" hidden>
+      <section class="block">
+        <span class="eyebrow">Governance Framework</span>
+        <div class="rule"></div>
+        <h2 class="sec">Compliance & Integrity Hub</h2>
+        <p class="sec-sub">Securing data verification paths to meet robust clinical trial validation expectations.</p>
+        <div class="cardbox" style="margin-top:24px;">
+          <h3>Audit Log Engine</h3>
+          <p>Verifies transactional modifications on an unalterable processing timeline structure.</p>
+        </div>
+      </section>
+    </div>
   </main>
 
-</body>
-</html>
+  <!-- Interactive JavaScript Engine Unfreezing the Layout -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Reset all tabs to unselected status
+          tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+          
+          // Hide all data presentation panels
+          panels.forEach(p => p.setAttribute('hidden', ''));
+
+          // Set the clicked tab as primary
+          tab.setAttribute('aria-selected', 'true');
+          
