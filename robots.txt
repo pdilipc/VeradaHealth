@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /spire.html
 Disallow: /spire_proposal.html
 Disallow: /CIC
+Disallow: /CIC/VeradaCIC-1.html
+Disallow: /CIC/VeradaCIC-2.html
