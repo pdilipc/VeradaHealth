@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Verada Sentinel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Verada Sentinel: the consumer site. Same Verada palette and type as verada.health; warmer wording, prices shown, plan finder in the hero. */
+:root{
+  --magenta:#C21A7B; --bright:#E6399B; --pink:#F39FD0; --teal:#3BC9B4; --teal-br:#5fe0cb;
+  --bg:#120216; --bg2:#180320; --card:#231031; --line:#38203f; --ink:#F7ECF4; --muted:#CBAAC6; --faint:#a48aa1; --eyebrow:#5fe0cb; --warn:#E6B23B;
+  --display:'Hanken Grotesk',system-ui,sans-serif; --body:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#FCF5FA;--bg2:#F6EAF3;--card:#ffffff;--line:#E8D3E5;--ink:#23102E;--muted:#6a4f68;--faint:#6f5a70;--eyebrow:#0e7568;--pink:#C21A7B;--warn:#8a5a00;color-scheme:light}}
+:root[data-theme="light"]{--bg:#FCF5FA;--bg2:#F6EAF3;--card:#ffffff;--line:#E8D3E5;--ink:#23102E;--muted:#6a4f68;--faint:#6f5a70;--eyebrow:#0e7568;--pink:#C21A7B;--warn:#8a5a00;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--bright);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--eyebrow)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;border-radius:999px;padding:13px 22px;font-family:var(--display);font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+.btn.primary{background:var(--magenta);color:#fff}.btn.primary:hover{background:var(--bright)}
+.btn.ghost{border-color:rgba(255,255,255,.35);color:#fff}.btn.ghost:hover{border-color:#fff}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:30;background:rgba(18,2,22,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);color:#F7ECF4}
+.nav .wrap{display:flex;align-items:center;gap:18px;padding-block:13px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:20px;color:#fff}
+.brand img{height:30px;width:auto;display:block}
+.brand .sub{font-weight:600;color:var(--teal-br)}
+.navlinks{display:flex;gap:4px;margin-left:auto}
+.navlinks a{font-weight:600;font-size:14px;color:#CBAAC6;text-decoration:none;padding:7px 11px;border-radius:8px}
+.navlinks a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.navcta{background:var(--magenta);color:#fff;border:0;border-radius:999px;padding:9px 16px;font-family:var(--display);font-weight:700;font-size:14px;white-space:nowrap}
+.navcta:hover{background:var(--bright)}
+@media (max-width:860px){.navlinks{display:none}.navcta{margin-left:auto}}
+@media (max-width:420px){.brand{font-size:17px}.brand img{height:24px}.navcta{padding:8px 12px;font-size:13px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#F7ECF4;background:
+  radial-gradient(700px 420px at 12% 10%,rgba(230,57,155,.28),transparent 60%),
+  radial-gradient(600px 420px at 85% 90%,rgba(59,201,180,.18),transparent 60%),
+  linear-gradient(160deg,#1b0423 0%,#120216 60%,#0d0110 100%)}
+.hero .wrap{position:relative;padding-block:56px 64px;display:grid;gap:36px}
+@media (min-width:960px){.hero .wrap{grid-template-columns:minmax(0,1fr) 380px;align-items:center;column-gap:44px;padding-block:72px 84px}}
+@media (min-width:1200px){.hero .wrap{grid-template-columns:minmax(0,1fr) 410px;column-gap:56px}}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;font-family:var(--display);background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);padding:6px 12px;border-radius:999px}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(59,201,180,.55)}70%{box-shadow:0 0 0 8px rgba(59,201,180,0)}100%{box-shadow:0 0 0 0 rgba(59,201,180,0)}}
+.hero h1{font-size:clamp(34px,5vw,54px);font-weight:800;letter-spacing:-.015em;margin-top:20px;max-width:20ch;color:#fff}
+.hero h1 .g{background:linear-gradient(100deg,var(--bright),var(--teal-br));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:clamp(16.5px,2vw,19px);color:#e7d4e4;margin-top:18px;max-width:52ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:28px;font-size:14px;color:#d9c2d6;padding:0;list-style:none}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust li::before{content:"";width:16px;height:16px;flex:none;border-radius:50%;background:rgba(59,201,180,.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%235fe0cb' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+
+/* plan finder card + sheet (shared with the verada.health mockup) */
+.pf{display:flex;flex-direction:column;gap:12px;background:#1d0b28;border:1px solid #3d2446;border-radius:20px;padding:20px 18px 14px;box-shadow:inset 0 3px 0 var(--bright),0 24px 60px rgba(0,0,0,.35);color:#F7ECF4}
+.pf-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pf-k{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#5fe0cb}
+.pf-k .dot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+.pf-k .full{display:none}
+.pf-x{display:none;background:none;border:1px solid #3d2446;color:#F7ECF4;border-radius:999px;padding:8px 14px;font-family:var(--display);font-weight:700;font-size:14px}
+.pf-x:hover{border-color:var(--bright)}
+.pf-x .sm{display:none}@media (max-width:560px){.pf-x .lg{display:none}.pf-x .sm{display:inline}}
+.pf iframe{display:block;width:100%;height:380px;border:0;background:#1d0b28;color-scheme:dark;transition:height .2s ease}
+.pf-note{margin:0;font-size:12px;color:#b89ab4}
+.pf.done .pf-note{display:none}
+.pf:focus{outline:none}
+body.pf-open{overflow:hidden}
+.pf.open{position:fixed;z-index:100;margin:0;padding:0;gap:0;background:#120216;border-radius:20px;transition:top .38s cubic-bezier(.2,.8,.2,1),left .38s cubic-bezier(.2,.8,.2,1),width .38s cubic-bezier(.2,.8,.2,1),height .38s cubic-bezier(.2,.8,.2,1),border-radius .38s}
+.pf.open.full{top:0!important;left:0!important;width:100vw!important;height:100dvh!important;border-radius:0}
+.pf.open .pf-bar{padding:12px max(16px,calc((100vw - 760px)/2));border-bottom:1px solid #3d2446;background:#120216}
+.pf.open .pf-k .short{display:none}.pf.open .pf-k .full{display:inline}
+.pf.open .pf-x{display:inline-block}
+.pf.open .pf-note{display:none}
+.pf.open iframe{flex:1;height:auto!important;background:#120216;transition:none}
+@media (prefers-reduced-motion:reduce){.pf.open,.pf iframe{transition:none}.chip .dot{animation:none}html{scroll-behavior:auto}}
+
+/* sections */
+section.band{padding-block:72px;border-top:1px solid var(--line)}
+section.band.alt{background:var(--bg2)}
+.sechead{max-width:62ch;margin-bottom:34px;display:flex;flex-direction:column;gap:10px}
+.sechead h2{font-size:clamp(26px,3.4vw,36px);font-weight:800}
+.sechead p{color:var(--muted);font-size:17px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:st}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.step .n{width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:var(--magenta);color:#fff;font-family:var(--display);font-weight:800}
+.step h3{font-size:19px}
+.step p{color:var(--muted);font-size:15px}
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1100px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;position:relative}
+.plan.pop{box-shadow:inset 0 3px 0 var(--bright);border-color:var(--bright)}
+.plan .tag{position:absolute;top:-11px;left:20px;background:var(--magenta);color:#fff;font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.06em;padding:3px 10px;border-radius:999px}
+.plan h3{font-size:22px;color:var(--pink)}
+.plan .for{font-size:14px;color:var(--muted)}
+.plan .price{font-family:var(--display);font-weight:800;font-size:28px;font-variant-numeric:tabular-nums}
+.plan .price small{font-family:var(--body);font-weight:500;font-size:14px;color:var(--muted)}
+.plan .inst{font-size:13px;color:var(--muted);margin-top:-6px}
+.plan ul{margin:4px 0 0;padding-left:18px;font-size:14.5px;display:flex;flex-direction:column;gap:4px}
+.plan .note{font-size:12.5px;color:var(--warn);font-weight:600}
+.small{font-size:14px;color:var(--muted);margin-top:20px;max-width:80ch}
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.paths{grid-template-columns:1fr}}
+.path{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--c,var(--teal))}
+.path h3{font-size:19px}
+.path p{color:var(--muted);font-size:15px}
+.path .k{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--eyebrow)}
+.path .soon{align-self:flex-start;font-size:12px;font-weight:700;font-family:var(--display);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--warn)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+.cta-row .btn.out{border-color:var(--line);color:var(--ink)}
+.faq{display:flex;flex-direction:column;gap:10px;max-width:820px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 20px}
+.faq summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:17px;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--bright);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--muted);padding-bottom:16px;font-size:15.5px}
+.safety{display:flex;gap:14px;align-items:flex-start;background:rgba(230,178,59,.08);border:1px solid rgba(230,178,59,.4);border-radius:16px;padding:16px 18px;margin-top:22px;max-width:820px}
+.safety b{color:var(--warn)}
+footer{border-top:1px solid var(--line);background:var(--bg)}
+footer .wrap{padding-block:36px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between}
+footer .col{display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:var(--faint)}
+footer .col h5{margin:0 0 4px;font-family:var(--display);font-size:13px;color:var(--muted)}
+footer .col a{color:var(--faint);text-decoration:none}footer .col a:hover{color:var(--ink)}
+footer .brand{color:var(--ink)}
+.disc{border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+.disc .wrap{padding-block:16px;display:block}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top"><img src="data:image/png;base64,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" alt="">Verada <span class="sub">Sentinel</span></a>
+  <nav class="navlinks" aria-label="Main">
+    <a href="#how">How it works</a><a href="#plans">Plans and prices</a><a href="#recovery">Recovery and rehab</a><a href="#questions">Questions</a>
+  </nav>
+  <button class="navcta" type="button" data-pf-open>Find your plan</button>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="chip"><span class="dot"></span>Nurse-led, 24 hours a day</span>
+    <h1>Health support at home, <span class="g">with a clinical team behind you.</span></h1>
+    <p class="sub">Simple monitoring at home, reviewed by registered nurses. If something looks different, we call you, or the people you choose, and help with the next step.</p>
+    <div class="ctas">
+      <button class="btn primary" type="button" data-pf-open>Find your plan &rarr;</button>
+      <a class="btn ghost" href="#plans">See plans and prices</a>
+    </div>
+    <ul class="trust">
+      <li>Every alert checked by a nurse</li>
+      <li>No long contract</li>
+      <li>Equipment, repairs and VAT included</li>
+    </ul>
+  </div>
+  <div class="pf-slot">
+    <aside class="pf" id="pf" aria-label="Plan finder" tabindex="-1">
+      <div class="pf-bar"><span class="pf-k"><span class="dot"></span><span class="short">Find your plan · about a minute</span><span class="full">Verada Sentinel plan finder</span></span><button class="pf-x" type="button" data-pf-close><span class="lg">Back to Verada Sentinel</span><span class="sm">Close</span> ✕</button></div>
+      <iframe id="pf-frame" title="Plan finder questions"></iframe>
+      <p class="pf-note">Pick an answer to start. The plan finder opens full screen, and you can come back here at any time.</p>
+    </aside>
+  </div>
+</div></section>
+
+<section class="band" id="how"><div class="wrap">
+  <div class="sechead"><span class="eyebrow">How it works</span><h2>Three steps, and we do the hard part.</h2></div>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Tell us what matters</h3><p>Answer a few questions about where you live and what you'd like peace of mind about. We suggest the plan that fits, with the price.</p></div>
+    <div class="step"><span class="n">2</span><h3>We set it up</h3><p>A watch or pendant comes by post. Home sensors, such as the bathroom and under-mattress sensors, are installed for you by a technician in a single visit.</p></div>
+    <div class="step"><span class="n">3</span><h3>Our clinical hub keeps watch</h3><p>Readings come to our 24/7 clinical hub. A nurse checks every alert, then calls you, or the people on your contact list in the order you choose.</p></div>
+  </div>
+</div></section>
+
+<section class="band alt" id="plans"><div class="wrap">
+  <div class="sechead"><span class="eyebrow">Plans and prices</span><h2>Plans that match what you need.</h2><p>Plans differ in how closely we watch. You can move up or down any month.</p></div>
+  <div class="plans">
+    <article class="plan"><h3>Assure Safe</h3><p class="for">Falls and safety, at home and out and about</p><p class="price">£95 <small>a month</small></p><p class="inst">Posted to you. No installation needed.</p>
+      <ul><li>Watch or pendant with fall alerts and GPS</li><li>Heart rate and rhythm alerts</li><li>Daily check-in and weekly mood check</li><li>Monitored 24/7, with every alert verified by a nurse</li></ul></article>
+    <article class="plan pop"><h3>Assure Home</h3><p class="for">Safety at home, plus heart and blood pressure</p><p class="price">£159 <small>a month</small></p><p class="inst">Plus a one-off installation visit, £99 (proposed)</p>
+      <ul><li>Everything in Assure Safe</li><li>Bathroom fall and overstay sensor</li><li>Blood pressure monitor</li><li>Finger-prick cholesterol tests and a lab blood panel</li><li>Yearly medication review with a clinical pharmacist</li></ul></article>
+    <article class="plan"><h3>Assure Complete</h3><p class="for">The fullest picture, for people living alone or with several concerns</p><p class="price">£269 <small>a month</small></p><p class="inst">Plus a one-off installation visit, £99 (proposed)</p>
+      <ul><li>Everything in Assure Home</li><li>Under-mattress sleep and breathing sensor</li><li>Weekly 10-minute companion call</li><li>Medication review twice a year and an annual review with your nurse</li></ul></article>
+    <article class="plan"><h3>Assure Sleep</h3><p class="for">Sleep and breathing, including sleep apnoea</p><p class="price">£89–£115 <small>a month</small></p><p class="inst">Plus a one-off installation visit, £99 (proposed)</p>
+      <ul><li>Under-mattress sleep and breathing sensor</li><li>Morning nurse review of any night that looks different</li><li>Monthly sleep picture against your goals</li><li>Yearly medication review with a clinical pharmacist</li></ul><p class="note">New plan. Price to confirm.</p></article>
+  </div>
+  <p class="small">The monthly fee covers VAT, equipment, repairs and replacements, and 24/7 monitoring by our clinical hub. Lab blood tests use a needle-free home kit or a visiting phlebotomist, with results from an accredited lab in about 2 to 3 days.</p>
+  <div class="cta-row"><button class="btn primary" type="button" data-pf-open>Find the right plan for you &rarr;</button></div>
+</div></section>
+
+<section class="band" id="recovery"><div class="wrap">
+  <div class="sechead"><span class="eyebrow">Recovery and rehabilitation</span><h2>Support when you're getting better.</h2><p>For a planned operation, a hospital stay, or rehab after a stroke or a heart or lung condition.</p></div>
+  <div class="paths">
+    <article class="path" style="--c:var(--bright)"><span class="k">After a planned operation</span><h3>Recovery at Home</h3><p>Help getting ready for your operation, then monitoring and nurse check-ins at home for up to six weeks. Some hospitals and insurers include it in the surgery package.</p></article>
+    <article class="path" style="--c:var(--teal)"><span class="k">After a hospital stay</span><h3>A recovery stay</h3><p>When someone isn't well enough to go straight home: a short stay in a partner care home with nurses on hand, then home. Availability depends on the area.</p></article>
+    <article class="path" style="--c:#b9a3ff"><span class="k">Rehabilitation</span><h3>Extra support alongside NHS rehab</h3><p>After a stroke, or for a heart or lung condition, we add monitoring and nurse support around your NHS rehab programme.</p><span class="soon">In development</span></article>
+  </div>
+  <div class="cta-row"><button class="btn primary" type="button" data-pf-open>See what fits &rarr;</button></div>
+</div></section>
+
+<section class="band alt" id="questions"><div class="wrap">
+  <div class="sechead"><span class="eyebrow">Questions</span><h2>Things people often ask.</h2></div>
+  <div class="faq">
+    <details><summary>Is Verada Sentinel an emergency service?</summary><p>No. In an emergency, call 999 straight away. Verada does not send anyone to the home. Our nurses review alerts and contact you, or the people you choose, and help you decide what to do next.</p></details>
+    <details><summary>Who gets a call if something looks wrong?</summary><p>You choose. When you sign up, you set your contact list: who we call, and in what order. You also choose who, if anyone, sees your alerts and monthly picture.</p></details>
+    <details><summary>Does someone need to come to my home?</summary><p>For Assure Safe, no: the watch or pendant comes by post. Assure Home, Complete and Sleep include home sensors, so a technician installs them in one visit.</p></details>
+    <details><summary>Can I change or stop my plan?</summary><p>Yes. There's no long contract, and you can move up or down a plan any month.</p></details>
+    <details><summary>Does it diagnose anything?</summary><p>No. The equipment measures and alerts. It doesn't diagnose any condition. If our nurses think you need a doctor, we'll tell you and help you arrange it.</p></details>
+    <details><summary>Is Verada regulated?</summary><p>Verada is preparing for registration with the Care Quality Commission (CQC). Regulated services will start only once registration is in place.</p></details>
+  </div>
+  <div class="safety" role="note"><span aria-hidden="true">⚠</span><p><b>Call 999 in an emergency.</b> Verada Sentinel is not an emergency service.</p></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="col" style="max-width:320px">
+    <a class="brand" href="#top"><img src="data:image/png;base64,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" alt="">Verada <span class="sub">Sentinel</span></a>
+    <p>Health support at home, from Verada's 24/7 clinical team.</p>
+  </div>
+  <div class="col"><h5>Verada Sentinel</h5><a href="#how">How it works</a><a href="#plans">Plans and prices</a><a href="#recovery">Recovery and rehab</a><a href="#questions">Questions</a></div>
+  <div class="col"><h5>For professionals</h5><a href="https://verada.health/CIC/VeradaCIC-2.html#home" target="_blank" rel="noopener">Hospitals, clinicians and care providers: verada.health</a></div>
+</div>
+<div class="disc"><div class="wrap">Verada Sentinel plans are sold by Verada Health Ltd. Verada is preparing for CQC registration; this page is a draft for discussion, not an offer of a regulated service. Prices are planning figures.</div></div>
+</footer>
+
+<script type="text/plain" id="pf-quiz"><title>Home Assurance Plan Finder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one question per screen with a progress bar; results show the suggested plan, the journey flowchart, then the team's role. Theme matches verada.health: dark plum ground, magenta accent, teal labels, pill buttons. */
+:root{
+  --bg:#120216; --surface:#231031; --ink:#F7ECF4; --muted:#CBAAC6; --line:#3d2446;
+  --brand:#F39FD0; --brand-soft:#2A0E38; --accent:#C21A7B; --bright:#E6399B; --on-accent:#ffffff; --eyebrow:#5fe0cb;
+  --blood:#ff8fa3; --phys:#b9a3ff; --nurse:#5fe0cb; --nurse-soft:#14202b; --you:#E6B23B;
+  --red:#ff7a8a; --amber:#E6B23B; --green:#5fe0cb;
+  --display:"Hanken Grotesk",system-ui,sans-serif; --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#FCF5FA; --surface:#ffffff; --ink:#23102E; --muted:#6a4f68; --line:#E8D3E5;
+  --brand:#C21A7B; --brand-soft:#F6EAF3; --accent:#C21A7B; --bright:#E6399B; --on-accent:#ffffff; --eyebrow:#0e7568;
+  --blood:#b0234a; --phys:#5a3fc0; --nurse:#0e7568; --nurse-soft:#e6f5f2; --you:#8a5a00;
+  --red:#b3261e; --amber:#8a5a00; --green:#0e7568; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#FCF5FA; --surface:#ffffff; --ink:#23102E; --muted:#6a4f68; --line:#E8D3E5;
+  --brand:#C21A7B; --brand-soft:#F6EAF3; --accent:#C21A7B; --bright:#E6399B; --on-accent:#ffffff; --eyebrow:#0e7568;
+  --blood:#b0234a; --phys:#5a3fc0; --nurse:#0e7568; --nurse-soft:#e6f5f2; --you:#8a5a00;
+  --red:#b3261e; --amber:#8a5a00; --green:#0e7568; color-scheme:light}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);text-decoration:none}
+.brand img{height:28px;width:auto;display:block}
+.brandline{font-family:var(--display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;color:var(--eyebrow)}
+p{margin:0}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--bright);outline-offset:2px}
+
+/* Quiz */
+.progress{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--bright));transition:width .3s}
+.screen{display:flex;flex-direction:column;gap:22px;padding-block:5vh 2vh;animation:in .3s ease}
+@keyframes in{from{transform:translateY(8px)}to{transform:none}}
+.qn{font-family:var(--display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12.5px;color:var(--eyebrow)}
+.qt{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,38px);line-height:1.15;margin:0;text-wrap:balance}
+.qt:focus{outline:none}
+.qh{color:var(--muted);font-size:16px}
+.opts{display:flex;flex-direction:column;gap:10px;max-width:520px}
+.opt{display:flex;align-items:center;gap:12px;text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:15px 18px;font-size:16.5px;transition:border-color .15s}
+.opt:hover{border-color:var(--bright)}
+.opt .lt{flex:none;width:28px;height:28px;border:1.5px solid var(--bright);border-radius:999px;display:grid;place-items:center;font-family:var(--display);font-size:13px;font-weight:700;color:var(--brand)}
+.opt[aria-pressed="true"]{border-color:var(--bright);background:var(--brand-soft)}
+.opt[aria-pressed="true"] .lt{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.opt small{display:block;color:var(--muted);font-size:13.5px}
+.nav{display:flex;gap:10px;align-items:center}
+.btn{white-space:nowrap;border:1px solid transparent;background:var(--accent);color:var(--on-accent);border-radius:999px;padding:13px 22px;font-family:var(--display);font-weight:700;font-size:15px}
+.btn:hover:not(:disabled){background:var(--bright)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.kbd{font-size:12.5px;color:var(--muted)}
+
+/* Results */
+.res{display:flex;flex-direction:column;gap:26px;animation:in .3s ease}
+.res h2{font-family:var(--display);font-weight:800;font-size:20px;margin:0}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 3px 0 var(--bright)}
+.plan .k{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--eyebrow)}
+.plan .pn{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,34px);color:var(--brand);line-height:1.1}
+.plan .pp{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.plan ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+.plan .inst{display:block;font-size:14px;font-weight:500;color:var(--muted)}
+.plan .why{font-size:14px;color:var(--muted)}
+.answers{font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px}
+.crumbs.top{margin-bottom:-6px}
+.crumb{font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--brand);border-radius:999px;padding:4px 10px}
+.crumb::after{content:" ✎";opacity:.6}
+.crumb:hover{border-color:var(--brand)}
+.linkbtn{background:none;border:0;color:var(--brand);font-weight:600;text-decoration:underline;padding:0}
+
+.key{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.flow{display:flex;flex-direction:column;align-items:center}
+.arrow{width:2px;height:24px;background:var(--line);position:relative}
+.arrow::after{content:"";position:absolute;left:-5px;bottom:-1px;border:6px solid transparent;border-top-color:var(--line);border-bottom:0}
+.node{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.node h3{margin:0;font-family:var(--display);font-size:15px;font-weight:800}
+.node .k{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.node .d{font-size:13.5px;color:var(--muted)}
+.c-nurse{border-left:5px solid var(--nurse)} .c-nurse .k{color:var(--nurse)}
+.c-you{border-left:5px solid var(--you)} .c-you .k{color:var(--you)}
+.c-phys{border-left:5px solid var(--phys)} .c-phys .k{color:var(--phys)}
+.ongoing{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.ongoing{grid-template-columns:1fr}}
+.cad{border:1px solid var(--line);border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:4px;background:var(--bg)}
+.cad b{font-family:var(--display);font-size:13px;color:var(--brand)}
+.tp{font-size:13.5px;display:flex;gap:7px;align-items:baseline}
+.tp i{flex:none;width:9px;height:9px;border-radius:3px;display:inline-block;transform:translateY(1px)}
+.tp.phys i{background:var(--phys)} .tp.blood i{background:var(--blood)} .tp.nurse i{background:var(--nurse)} .tp.you i{background:var(--you)}
+.tp em{font-style:normal;color:var(--muted);font-size:12px}
+.triage{border-color:var(--nurse);border-width:2px}
+.branches{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;position:relative;padding-top:20px}
+.branches::before{content:"";position:absolute;top:0;left:calc(100%/6);right:calc(100%/6);height:20px;border:2px solid var(--line);border-bottom:0;border-radius:6px 6px 0 0}
+.branches::after{content:"";position:absolute;top:0;left:50%;width:2px;height:20px;background:var(--line)}
+@media (max-width:560px){.branches{grid-template-columns:1fr;padding-top:0}.branches::before,.branches::after{display:none}}
+.br{border-top:5px solid var(--c)} .br h3{color:var(--c)}
+.br.g{--c:var(--green)} .br.a{--c:var(--amber)} .br.r{--c:var(--red)}
+.br .out{font-size:13px;border-top:1px dashed var(--line);padding-top:6px}
+.roles{background:var(--nurse-soft);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.roles h2{color:var(--nurse)}
+.roles ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+.roles .bg{font-size:13.5px;color:var(--muted)}
+.lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:700px){.lines{grid-template-columns:1fr}}
+.fw{font-size:13.5px;color:var(--muted);margin:0}.fw b{color:var(--brand);font-family:var(--display);margin-right:4px}
+.gov ul{margin:4px 0 0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:2px}
+.more{font-size:14.5px;margin:0}.more a{color:var(--brand);font-weight:600}
+.foot{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:4px}
+.foot strong{color:var(--red)}
+@media (prefers-reduced-motion:reduce){.screen,.res{animation:none}.progress i{transition:none}}
+
+/* Embedded on the home page (?embed=1): "card" = compact questions in the hero, "sheet" = full-screen plan */
+html.embed .top{display:none}
+html.embed body{padding:0 0 4px}
+html.embed .wrap{max-width:760px}
+html.card body{background:#1d0b28;padding:0 2px 4px}
+html.card .wrap{gap:10px;max-width:none}
+html.card .screen{padding-block:0;gap:12px}
+html.card .qn{font-size:11px}
+html.card .qt{font-size:21px}
+html.card .qh{font-size:13.5px}
+html.card .opts{gap:8px;max-width:none}
+html.card .opt{padding:10px 13px;font-size:15px;border-radius:14px;background:rgba(255,255,255,.04)}
+html.card .opt .lt{width:24px;height:24px;font-size:12px}
+html.card .opt small{font-size:12.5px}
+html.card .kbd,html.card .crumbs.top{display:none}
+html.card .btn{padding:9px 16px;font-size:14px}
+html.sheet body{padding-block:24px 48px}
+.teaser{display:none}
+html.card.done .res{gap:0}
+html.card.done .res>*:not(.plan),html.card.done .plan>*:not(.k):not(.pn):not(.pp):not(.teaser){display:none}
+html.card.done .plan{padding:16px;box-shadow:inset 0 3px 0 var(--bright)}
+html.card.done .plan .pn{font-size:24px}
+html.card.done .plan .pp{font-size:15px}
+html.card .teaser{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:6px}
+</style>
+
+<div class="wrap">
+  <header class="top"><a class="brand" href="https://verada.health/CIC/VeradaCIC-2.html#home" target="_blank" rel="noopener"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGsAAABICAYAAADxhwuUAAAsFUlEQVR4Xt29CXhU1fk//p7t3jszWQg7soq4BUUtlapVo7VWa62t2qCi1rVhExAR3NqGaFv4ioiAskTcwYW4tLVWq1JI/9alGutGFASq7CAkkGRm7r1n+z3vnZkYIBBEqH/7+uTBzHLPOe973u3zvueEwNcgC5YQIHZmr/FlRpsLDDXvb6N15RWfP+IDAAEA+zUe/22laN1zy+YK9eLK33LJBgU2fHX05qlTwEbvIe0TX+i+cqQcymkkqM43Xu9toXO9bfSsws3uhKL69pUl5eXc7tt8vvVUDuUERRI+vXxmvJ7/2tQFP0okxZ33drqxHIUUvb+PtE9fzGnU9LPLC/g/m5YyTXqY0EgNmrpxl5lO7knDVt7xxkIoZYOhSu/j3L51hBu4AirMlL6jj4pv5h+QtLUStE6IGA89vX1TYerIis9nbczx76sucLeahQMjs7PmrFWKbwNuqRUykFoKzSyzxCgDGnzvq0zEAhAcC8f8Kt870JTjAc5vb8aqhdrM55hIgAaiDW5fzaQfGqMMge4kWt9EmNja89rkQauTyO2Q3ARb2wnRZ0iFmd7xhtlFjbFh20iT8qzLGwuCdxsGpU+p+Etlem/sMzKCtLDhO//+TdHOa95LbSCoLhPLy0X+fdteyk87pzeGSdWBFfJUPJw7sn7qsHKb0b6W69rNWLv4tt3umOkDbjoOGkxBXe/4WxXVFRgw7EDZAWDsCWO9Q1eLG9MN6d9Qj70tD+O/nPD6XSv3dnFox6cPKi+Irw9OSsugbvSmaf/6pgS0M83sOP47DmXttxXpt25aNqVxb+aF66ZA7J0njutMaoN5lpBzRIG486Dvdb9jcNU4H305+vqdn3VFyRXesQ1dB3lNYvvwT3/3fmtj7WB2cCB81j3dxk2NfWbfiW0mS7rUpqqnDBp3MH65HL78fG7AaW9OS4/YcOcdGwu3/2eDs/U/KKhc8NHG4qIZT+0xtj1d3vgKrYMXvXrx5v2db/5NZqxvxiTmxr233bjrYtvJW7TJvJLYoJfc0+2mXugS2poX8uW3UMLHvzF18xavacUmXr/2+jV33zq4alxkaVoKKvssMrfopl4nvNNpcfw/tpqt9t+Z2Wlc5fSzR7mRPFpQs7AWwkKGD5rW74afFWwXN8imkPg6lF6KD6IbzB0ZHcSAZkcFi+y6LWWWwecB0aeVl5c6WTXfo51fCAspmr9E4FySaBKDmlJNoQolAQU3TBkwrjM+oy3G7G9CE4zjTu0xNmaTelwoQ54OgiA/7X0nnoZfohXoD/3b9F8ToToKqgIqTw252mBtOc2uZYcN3D/j42xo5K15vntCsjElU9JneSn3V87S/ItQHiiX3DqbhbUUlkaTcHzxHWaptsZIog0LfF+5ATsKjI0WsmvAsYRixBcw/TphpPuWZ8Xh2R3Y5qKQlFKeIRYMBQLUgqQqlejZUeJ7E2FiW9p5YKhHDwCHGsIoGGKoJQZYjKu9GQytD27CsiMu7WY4HK1j9n0CFaY5+GhBS6E4yrwU00f4NlCEAiWMSscnimhz0s7jNQurP/SPGEMoeUeCZhaso40xwnM4uPQ1oMTajGnagYG1pZ2j303cvsMoA51WF+BnWptcSxoMgw3uZFmgHmjMC94ReY7QRSydiqvJI164pX4vTel+JWQyjjvuzXFpUehMIS5LUoeK7a7/fmOHxoeQPaUweIfgYGeqhdJok7K0PN8RwrEF4k38vbSVmUaaZQG0gHe4yzmTxApJHeJy7sXc13crLGQeTmbE6snPNxXp35oCvp14jKfy1cvpHvp2a9F+7rrTi6uKI2GxduyDtPJ9lZZXXnbmZYkqqGpFC3c0oROhhI39fPq2hli4qF43qO0s+YMbV98zM2eO9qsk9pLQeuD4w9ZPnrOtferE7SyVrueNi6//aMamUiiNtGYPjyJVUGXLy8s5ARia0r5SXEfCirRoJyqFhQY1MTwqNqmuMP08iTMOeSy1pSg1Mz6p/wKcR1YuEbUMMPBhqJb2+vV33ZEa4H6nocDfuCnYWovOsgoGR4jFzgNWQAW+Rqa/9tgaSugb+SzRJ746HIzPwsXtiUf9IdJK0gCN7TfHGsj7/qrl6FQnfo0sf38RMurFaz76tIGnTIoEXfD34lYY3pKy6zVrFnz4M8eKAQr0+/V91af4mSyfdqAMP0vorYsmb13TtP7tTXkN/0kfJY4ZvW7K6MGDB+usH2nmeavMLIVS55bXJq9an7/94bQIrx97yDX90C/txuHbkpISRlChC+kLqH8sBTeVDSyL4+L2lFBWZaZuAy61EpblFyQOam1D/LcJNwtq0Hf/fEiXMGbiSRGqNjQqEi6ut/zcsrgj+W8Z5UBi7KWqqipdmgEXdtnomXy2Wo8//OqDwOW/3iaS88a9OXnFXCgT2TXv8J1WhVUMxQofpAuceTqPKqVSU/HLWT+0S+BwWvVpkckyhfylQAdJ14rDbbr+FjQpaOpwIVmh7fDd4pLN0e86zuo8xwVP8R4txvnGKOdvw1TYnTJKFFcNu5lXtC78OQ1KGK73i+UNt3paDAiUrw2B5/dkMpfAkigGSAepGaoAJC0iDyDf10O3ViG6VoWVy7Arax5daQU8nFDeeSP7XnRTFUS7JBeGNlMuzJ712qO1lsE/rbWWJeGmK48oPbMCqqNdmd2ZaBpZdqeR2s6Z4EQ7ZqPLHWCWHPeNSagFbYbMJvJ1eCxjHKxH1rd4m7RYQ7Qu/KmGalXWf/DpkDI3Wm2sFvBmt84batDMI99aPh/9FPIRvzOy35CbYtS7MHTUjBkfPbkJN8rOCEeOeBvMIcRjv082pn/OGmHy0ENK+dxVVb9H5SyBEt4ZOtucHa+FWl5KSnXQV81hmp7JQyqEVg8MO2LwOfF+7Tb6m+r5rHeqNlbZFhNfCmgeNFGwwQQarKAn4nwWwkITQdffEJ0Gp5lqqAYa2u8bbkG7dF00lWJgUAs6x/yS8hLeZ0nnjh2gSCW3pLqbhtRjRHM35NoqB6bVVnfGzSnQUuU0sxg2E9zAAFUwsvjSG7xGOjnF/NX1MZiGgt2TX9wjR3IYYVmf0jInTeYaB0AyvcCPB7c+VvuX1a3xctSoUa794xeLiSEnSD8gNsG2UUbSJtDUMvsZdUSNz+WfkwPYq2jP0YRcdfiFJ+ZvF68p12yg/dwB9y16bOs3hRHmxh1zzBXtgrrUR5zx7ikvPOvBT555JQqaSkudovfgTJIyP7fGDgRODqKcGePrBBhbILiwRtj3Ur1jJz1SHdX1dqGfn/HzDp1Xi8lOyK5lhkE6L7y88uOq+aixO2thS2pr+yK8QhCwLetbuiCRcoaEWoJxYAtxyBPg0pccR3xu0iELpD4MwJ7CDP8B0fZgLXVCWmkooZjuArEUHMqBUwYhVUAZeyd01bTKZVWPXzbg/M55W/lyRmmhjJkfVy6v+huaiT1N/EARWoxqqNbDDrn4p46kf1LEpG2ed/jspQ+vKes3+CoBbAwN7DFMU0BUXYEGay1oYjA7NY5ilDo8DQRWamsWC+G8QR2+HPJYEKbT3UWanKqMGsIU6SMMh7Qn752zauGotgSF1JYZtBVQAdYCubGvW5b8NMh3Jf9pqGVHGvJRVptRQdIPrDGUGiIYMLDGZCZuNRBCqTHGUkatZUBCFZpAWyCUUmHgu9TCgqF9B5+n4vkjSF3Dv10rTrNWYdj/Ulth8oGirAm0FEipazhI6r/nelKN7HtRFdf8F1JJSGlpaJTmEEItIYZYa7BqboAqbYApFeOWHSUsPYpoPUpJacAHTS0RRFLgaQskwSCVr+bXDbDXl68CWpHJS/dILTUrSqJaC1FzpmHUqLNd9bd202kIQyEwoEMVBXmGGgsUNAAxBEEjShgqE45sNUbv1hKM7fE9dEbagjHG4JaMx+JMM/svqokP0p6q4rBVJPixMz9csHbnUs2Bptx4vzyhtHtiA7wXC9yOQUwttgwKHJ8NTKmUNpl1RYEZE1Gga0CZDAiOBiTTzGAZUG1QhhkUnoEhFNlAGQMSo9rE6ZTZHy24NSoQZWiX0L4FtBe9Fw2aAxlRUK2F2FkBkpkzXwpmL39yGG/nnEPaicWQz63wBHGES13uChcc14l+E5STzH+OcCjjnFHCGLOUCMM1JwwovsQZSytfW20HKalODVSghaYdpC8vwnllQ9v/GuVCdq+BXOwY0dE3gdbanK5DNTApU9pYYAwoFYSjSddEA+GWMs8K5iIuJQTBH5c51LFcxKjrxpnnuPiKIwjJ52lSQP8q27GzZi99/BYgzSDDzoLKofsRUJHLb6PdgC9gZPOdN/oVTHv5gbo9cCfjwxDQJQAjT7z8u2p7eIyWtgcQYNTYRgJ2E7GszlBIY13HUl2oLBQzTX5AUrrEVYIFNrTajbYhIRr3njVoQow2xuEO9YV87/3OqwfV1NTkwNPWdt3+pkxdoeQKd+PnqbedND1KoVcSlhqjDVGEGmEBy+EMKAjOSRpkAGAXUcFeoww+Jq5oRA2zUnsq0IVASRfKoZBQGgKzn5F85/05b8z/KKcgWVRjt2sbfvKQoi3dZLKqqipEOUUTvPqIC3+UH8YmcaBdA6peCwvtyMqaJ7bsrkNpb5zhLoRg2ZGlg2zSTqABXKilAsJoFIAYQDOCWbUFSojhgtO0p85/cOWzf9ynsfaBcuOMPOLS81nSPhsEvkGfaxmaGwuRRaPEME0oOiwTI/NZAb1r7nsLWy0U7tWGb5VLYK/qd3Yn1+ZPE1acBkC2GqJ/c9/KJ/9Mrhtw2cFhXbom5osiyTQ4jgNN8fDJecuqhpRH9R3YneOLtGxJyRLauTqT3O6JssBu9LmhxRddKRrIbBtoTzE07ViTsSg84IZolzosFOYfs1c/dVp2w7TpfL8mZbTKlpMtRyxfzJJwalKlsWpDKdBM1muNccGhoasa0kINf2zFnx7PaUhbFYaISiECvXeX8GaeBbTCgr2m34WPFSa9S0Mr0V1g9NxE28dOINcddvFlJAmP+TJQmmqCHtIk6JaCngVHTK9+ZNv+7P/LIhcoOD12UNnpZkt6oW4IOvpUWusAIQqAWWoJp4hmgNL6B3M3PbPkQGtX7vkjjrzoDOazV8J0AIobAtKCsAyMAEtDIDTOt8oiOO/+9556Hb+DEeuemP8VKXJHpSeUtm+/zizjPi2SjgatjfVcl9MYu46mtVwrqQbOOHOo0MxQwoEtbwd9mrLBRptas7eEQsKfMhgopv2rcjHE2GUYzEYBDAaLUdxoiSLKRCEl49fhsw90GJ97vvT1KOYDsQYj8eaWJksxiHVYoPJgCAoK54/r2I+CiiiKKHtCE03De8zlBOuJ6O0Y4WCYXUEf+A79/2S+neMKh3jGcRJeggrgfAksiUR9IErrlVAjy6GcT1/68N9S+fK3nHPKfWIxT4sGVcCklJYCnHtt79JjkSk5rdzfhM9FR39l//OPZ5acE+jQEkw9FPpPiqmUdYBTFYPfVi596uUyKBM4//09D3Q52KJWVVUlGedWGEYdECLmxQjlZO7mYvUqhaoq/cDHTw9Pcf+HyoXzpasuJ0BOLF7V+UHcXQeqF6ICKqLSQcMxbIoU+i3XChrVz3MJGgEjDHNJqMYcSO3KapUV28gYR3KBvgnngFEEA2qEI2hA5LvbjrP34MathMq9Ku9/Fcrkd2AQKRp5yCX3s4Q4M+mGv7Lt6DmpPHXGPSvmD0NorlW46arDLrimQzpvnvXIU1tO6nPlI49U+FkYZr9ONPfMsv4XXeBto8+oQBoj0OZYIBosIxQ0t2nC1Hdnf/7HT5rThv1EuSR46JGXHMq2q/dA2hiiL4YSwgwAo8wSl5G0CM57YMWzzx8I35njQXFpsVPy1tGzE8S9us5rHP3gsudm7rzM5hJJDvYvhxL+0PJnH0h54W8czS/yFtW+cPVxF/RGOD8L7e+xS/erEGJw6Brcnp1f8Fn4UQTgGKvRsSN8Yyi2dnhxIO6v9qav46tScxTXJK+LUy+Oobm2hjBULUGMAE6U0f9acenWF1Gw2Yh2vxDyG5+JfEVstOTto/+UR7yrGyB5GwoK3USLUkxErWkW1msiEHXYYRePdFP0XqnVVtuOj5z9yeNP5cKNXImkxQL2KRDJ7daygwdf6wb0fqWkNhozTwtAKdpusAI2G9cZMGfV/C/2l3Zltcpe2/387k7IPuCu007qEKRSiK8Ad4RhmtLAhhfN3fTMwq+pVdlGvvKo4IgCykl8+OGX/BR8PTOfxHuHXN1wz8r500pthL5jurIDT5uB3FwggT4qW2Rkc5Y/ed/I/kM+J/VQ6TXRJ6/t84srWJzdObf2qSXVdkeTiBqC5XDcrVizyU0G+yywWWR32fpCqDLopnivjk+aNXU38SbeT3NEgy0NpSTGpTqhvC5pLq8BgEm1ULtf+uGzWmVc6l3hWlLUaNKYuSAkhiCcdg2nKevX+l7en7MFxD3mm7WltaR482YC1ZmV47qxbSG7vojpWR5EPnHE0ZecTCWMd9PivJDC1mRCXnDfRwuey26KSFAtZdKsWS0B01xbdLbhJaqvXP3Dqw/iK5vuciW9BIdV1LwFDnkaPF7NE7Bs5lsLGjH0bss+7C43ac5zDr1kvNtE7lRSa201k1aD8IRxQ0YCT6/5oosdUFVTFZXY9/WMU5YiUG7oD0sLxKfs3yJF+qQhsFgNIAi9MjBxHqMpmhozZ/UzM1rTKuQZCggdf1vrRuGM++FlCX9NeHiY1CWu4aUudU5E5CYU5ukgT02Y90HVf1qO04pMvmzP/b+jxx9uTUhvXjr945aDt3wAlq2FT290tTjH1RxCoiFgEnvA11ANawllmwkhdYyQlLFGEsKaCIcNOp8s1SflL505c2aAz265e7JcjxpURh539UFsc+oDGpL20kiriaHMFUDTVnOHs6DQDpu17Im5XzfYaYaWDrl4pBPwe7GEoaWiRkRlAcOAEsXMRj8Bxzy0ogpht5abo9lN4ItlZWWi4N+mv/aDYh1CN6ohThnhxJC8UMmORunORJIeFKCn4KLQFQ6kbADG6D8pMDNnrX5qUQue7CD4ad/79ZH43ti3fhfJhCxcuJBtHPHWZC9kI0IpqYyb+XSIuW70zBlhtrQeqWOzGSMA1w/4Zf90ffrHxNgTOeUHUUuOY5a5RNpsnSVjBbFQgthawBSq8SeUwp+SnnrwgdqqFfh+y92T+/+x/X45Q6TJqGQ6pa0AhqUVIhFEYFTlwfvBWfnHV1Y2h89tanMrFE1u3Jnj4uEn699mPhypiTZWoaNCfBK0yxyWFMGkOWurbt3dbi876ZeHxLbby6FRn6+JKRaEc0RgiMnUgbB+oS1aPIIdtz4h9J2AyK3EYf80eezFOR/Ox4Cq2X3kup3x4MKMs0c79l0+LSadqxDJSXF5v3vBYeP4mjGvXVQU5N0Y+gFoo2wXr8O1W/6UepMAeQD7rAfD4OZMPTJjtthWvF+xNOpbJABj+l56g25UfUMi20fqgezDYkL0HyGgCeGGcgGsmBFWDAEMv67fkHs2HScnVVRVhDvVrAjvQGem1/pXUiD5gFU9jAqJoaE1Jh7GjuGv+ucCwHP7elBvIZRG7d507dZzHeBHpm3aUEMo1pmw0YdaoJKrpOkSewDWftkTkU2e9bnnnhvv80Herc4aPZwDbx8oBRiYhDaIov7MqiPULrJbjFLgTGzTnn509sqF9+dQzlyST6Jmmqj3MpobAaLv+uj6y9unveHJdAo4FtMS8VHb/7HqA0o0PVkrpQIrJRCQxtfaptX38GHZ/veojIJMzTR7ZM4WjTzqkhNHH3xpNQ/IVGKhM1WWUEkI14Rj5u0Q4TiInyvCtVE6MKH0daBoCO1igZjY/V/OouGHDumbQyeyyTeZ8tbDnxIDz8SYi6tFkDfaocCopZICaZLjSkuxQ2rhPoG7pVBlysvLadAQjMAiqLWZEiEmMdhy7xCHUCGqsLMrF3nmtOua4tJ+B39SsDih3dtoEtqnkmkVyFAKxbRnBFaxhCtcx3EcwZEItlMSQgLb1W2klSN6XPT6dYdd/APkH8YCyM/cSRLk8dLs78KwU3Ra6ZCqMCChkmGobL08lbrCfZ0A4QaMoIo4jSbJksRfjA+bCBVoQ6MCGDITu3Ku6np2p9EHD5lMGuEVmran+ilfKlBWCIfFqcuow41J0LUmn35k43QZdVhDwstjWJRUSjGsEYV+oCBtTo6F7OUbjrriCByrBaxFvIL8+3GXY42LMGJpBPASFpgQS84n9amJn4Yb96tCUPh5VP6NC2rPoIacrHxphOWMCAJKKks0QhYQ0hjMyKU12fxKD+1/2TEFDc4ir5EN8sNQhUIZdG+4IdFsEoc1QZyu0DGy1HJYx4BplwrGLWMYLimppCv5iTQJLw3tPXg65lbIz+zmj3h8e/Z35rDXDX7RUkdoBG0Rf4IX+ZKTVj1x0pIe32VN/ApwILnd8zvVmYZrRvS5eNXE3u778I9H/FFnjXLNZ5t7m8BeaEMznKahp1bKSgLGcR0hQWPfxWtNrnlOx+ySJsH/06F7h1TAA+ZtSHdMp9XJpMmWxf14iQRFQqaBS6pYkznEUnhh/OFXn1KxrGI9MibCyD6pfGNs1yF/dww/I1RaUxGVxdHCGMcIptJqOAAs+qoAb+7zQvPrhGVoWjXF7vWooQeMRx2mPfKXqZ88+u/MWTTsQAFz9XEXH8Tqw2es5r3SOlBcEso4ozTBQRK9iHDyKCjzD50wW5Kd4op/kYrHpNvT+up00OYCytgp3FDhy8BYaqgH3mhSZ38+ok/pPGvp0/zIzqvuffne4IYzLk00fJwsXpPe8LMCEVOecDcLw70wpmePXXP3k8350O8OHdo9JuLptcktJ9CUfdLhIr+BpVdSA+usMQXW2ENccPKVVQhDgyACQiu1deA5cOC++1Y+tWSPISyGrwf/8irVGE43xOZzwoxOKxN3YlzF7At3rXn0vHIoj0r5mDSOOuyys916+Csoaw23VCmN7LNcUyAOlbo9nHjPJwve3ds+jdznri0ecmzhNvovIoFj8wthlBBKwAbaCs8BKBRnTln+4KJcmoHhea+3vL9Ayp6dsj52eVOHCaqp3aLy7A0zVz3+2B7DHMypDr3oDJom1zNNznEMp4EKo4NBlFHwiWoCalcRAo14kD5Px3orqxutYJccVNj+jQ0QOHfVztqIvG3uwfj1p3PXjaudVjft88f+ag6iR0quZlBlO7vEOTWPJ46N81h+FOHhGWZCVkvPzrFF9JT71jxVmhMUhtQtbXDO1+HrCCVNXfXoQ7Sd80OPOuuYxNNIQAOQ2jH8J+MOvuIqNAlYbUQf3f6SQ141LrzlUocwTVFEuPsxuDJCM4c0wPVt5jetkNOornMDLkBh+IIBkAVmqPYQM3b1a/FuK6tx/Jx/7vG2d3Vce2djhd9TgnrEoYrbNbKA/HDmyscfK7cQra/luhEgyFiJaN0wa/lTi+5d++RPRZfYyTpBHuAx8YXDOdbuIM+6eQUmPiAf4t/nXBSafHKf7WCOnrrukRdQHiiolj0Y2SQCYxcSNeXngogRxVd0dQwMpJQcDkCKDDGNxJCPgLA3p9VmejVyyMXe1HYy5YVKOaHfFSeobeHfiKH5hoNxDKPgkNUNHeRxsz58fNvEknJWUV2hJhx51TWijswL0r422PqAgQAnFkILLE+kWA/nO5PfnvdpWxBULvUYfeQl/dhmeJdrmkDrYAy2flhALReuQ5sKwotmLl+wEOtVc6FG3dCjtIhK5z0OvIcGbZihVBFd35inz6pc9eQ7ufW0tWl2zivLS0Z01VvVCVLpI6yBBAho5HH+qe3qvj7p+RmbcnkXoh+ZUl+msaYZbvry9EZFlFchHDOr9hFUvxeyPztQzkzgqb5c6NkWoaBwgXeuqHxzwqHXTKDb1RyZCokixngs1rsoyS8nADOyh2FJrHevqtTmlb+mhPbGsA3DaqWQwUbnhyLRtCm8CgBu6d8GBJWDlliSDUtokZeCQFNOGQkw3DDGZYIGVH7M24d4kIB0g3MtgRp7k8q7QmjSsxFSGivFJOGQoBCuq/xk7wWVi/xyeWXUy14dmbU/tsavFihPtiTyJXzbaokkR2gOBsNg2vLU3s541z5QhAAstAvt+C6XL45J51RJlARtsb9raXJgwXdnvjQT8y8M59VtPa+5mTSZSenA1w7jDLtgpbDGEw4x0mxU7e2xU1fN/6KNnkcY0bu0S34y9gGltGOowuhQPWZxXDEtPMGavGDktLULZiHajbW2EcWlibxtifeEon3TMq2cgAudZ/85ZcuCk0vNL1oFWveWcnxFU5s9owZVpQALq6Ie/90m+nvsyM1+UWfPUTXTHiXcNkWTIYSY23peOYsTfmroyyi8jVHnqML1wU8A4NkNAzcQqAGIH5p4qPGD7Tdwxjtl8QHKjKFaGZ0gXrcmFQ4DgNurojNQu+J0g6MDfVXaU87VruadfCM1lYRh/kY5jbQqDXK9X2SfwCR4A2yIeiESdd75nuaHpIKUYYIxERN4qHYmdmBlaV/Qk4hyfN2BVVXR63vk3n5BsFtV59JM3Sv3b8vPVGUTWn1Y4tVQhhtogKEGYEkC6Da4DpPWuTVzFZqE2/4+YxP3xBMFNh5FHtFisbU3xF4NbSFtr7mpb1nh4NaPxeJxG/OH42/uEPPF0NBIC9JmGnOw989wSzgjhsMjsz98vB41vht00zhnbtlwngJrtTWccGodsjE42MHDCc3zb0HZddrceg8IHTBhZdFom/t3x9mTyC9OXnTfVm3tIk4ZAgmgAmlFmpxGF2w+BXdf0cAinB+J5cXvV1QFRGFYELUmYyRFta9MTPFeTKsL8XWEa1qOkz02auWW7Rfl61gvZTXGf1FzNyXUYg9g2vqNtsDej+PgeBgo9aqJ/cg14gRFtSWcgDDUCisWTXvzgbpMZLaLqcquk+TWe0CorYMJX5UiE4Lgw9WX3Ho9M/xsbdUbeSd3nTRzzBjsKkWKBJe9A4LoOPkzA7iMpjHbAS0I441JfzQQqO5W0w2RDXLbsoqPftPx2mdc6QzxQWq89ABL/1YaAAesSevhcweWPVZaMxeh1Ey3eeYQmxl19ig3fDdZRoBZR3M8IBGBy1RHzaTMF+qJqcvnR+UJ1OZu5d1oMPezG4lviHGJ4ZJRoJTYAvI8bGyed46isUb9dbqbeqLuFrUtOAE4vNRngDujoqL5Gop9Npc7037VrNLSzM6+9Cc3nk/XhncHtVt/xDbb8m0vfH5j9mxTizaCCNuzYb/CVzS16zDZJByoL31rU/rHt/QqOyKL9FNcriyAu3XMIjpIaQAWBMWjRyz0Q+tJ8d1lm/0fZy75yIyR/dd2WWbPoxKOSQYp6xjOELqK+t2A0IBJyQvc2fh51Cr0GeLZukFeKE5LKt/qUJG4dqkBvc7vSV/Fz7XEJHPrrZ/22VCzoqm8cLV/VqKJTvv8c7g4+mzpwv3K3/36sBypOv94uj00KgxSweYGbZIyuoAjdw1D5HcyjGXTq6dv45RXJZwYGA1GgjZxcGMs0EORrf2hNmMyV83DI5+LPOvgUS9DlAHGEIGjwCSBvNAZjb4Oq9KY+zUDtqnU9SyE6FxYlFspg804BpNtQ8lLf/h03nv4/Pqa+szm2Zb+lRMy6iHqF1LrgADmiifRZON8d4jWspGX3pj8vqxLal/6SbU5afXW9KCvapL2hg6IsES+WJxyNOHt81ySxxkrcJ+KJrPTbUK5uyHCjmReyHXACGGEEiJDaamGK8qPG3kQljM2DNzAULscz52FhltbTUACOJoDZ4xir58r+Rl04RenR4fOi0sFZlDhkxtKmCQnamUMHuPDGkbU7WsoGlHL85yogwifj2Dy7UePOZw1kVLfhtY1nAjCqe/INGsfQ5+2610W2ZyGFcVeEN3z2XZivLRnjZfv/i3D/J3j6K9H+1VY0bFTa8mCV+552cTYSCYEI0XOpEdfuutR3PVZO95MuZ7EOz+et1QnYGGCeERYFkVgeUm3iHweJb3QraZb5IPkrzr/TTq6JmYcxLMNnkBB00Ww5Cct8ICOih5eWxz1OYi0HeUFIiqzmVChlAFTNRwHOHmD9uq6GLWwW82yjF+pl2Vx5eRbAOOb0HrMIVDAFvz2w+nLWsMgcb34+oJ/znhUqnCyx13GOrmj73/8jhdxvXtV8v8KtF+FhTSRRBcfEqdAPxfItAm3p2sQMamtzV6cuBNhRo8LzisqmGIFkwy79RgDBHA9ya8ed+a4BCapZVDGKyoqQu6KGczheCslUEwh8XAH+h8/sLzB/qTiuDEnToSJ+tZ+I47l2+EcLbWlglLsiMYYjhs8rkgIi4v7ENIaOrCM410Uvz/5lk48aS/TSltmAGv7LBS6sV286x0tyje7EB7MwCDT1Ifv4iVK8YICRHy+ZiraOu13YeXK/1rGGgFMvVHq1D01txSXFGdwxQJxpNs9jk4CT0RSJYx1mdO3aGnqcvx+N8hoV2Nv+ZyKwwqh8MadqGyIYTwBA4akLOd1aiT6FdYYjnR95lpqsSqGHdEgCDNOyEmKBcvCQ2zUtZTVWks+b7g8pkTn0EhDOUVzqfN6F3F+lHtUNL+SPfLKkg7OD2yMbvO7O4iZ2oqKTPV3f9J+F1bUQlVeTue/MjVJBFvMiRhcVlYej0xGSTmmCtkDfJZgswnu7meund6jfeeiu/L6FFG3IIb+CdFwi9ctMEmux1tbULsWQzmb8vqDjdzhD2GAYAke1gPgigKWLVIyDbRO//SeQydczANyocTj2cZQGxpETLC8jhEhAU7vr6ie1ZSFtHTZwHPjNAXDpVGg8KStpbRTl07M654Xe++T1XN+dsrwnjjPsoFlInccNaoolJTz6upqNWJEeR6Pub+gBc6LD065qRHX/zW7r1qlAyEsyJk8VuhMF47TNb2qcQb6MlxwrvKMiWVlZaW8/IyRHd76ePXDWtGeSRs2uR3iFRBjjVgOUUbpmBSHxz+Nn4/fW56BgrBN97EUDeq4IhQLDZg3RX0PCCEFtiBc3/QwT0MRXo1HMA/WiFgzi6h5yg03uAUwH5l9UBZa6vdZnwtiKdYvNKFyCSduzG3MP6hwSn2QVEEAPQtjiYVXXnlbz8qaSpmNBjPV8+oKhetqqNl6r+BOR6cdvWd/atLOdEBsK1IUUNxeYS45edTdCRUbG+bpv3gHt/u/bmU/fvf27w1Kjbhjegd/eX1J6u21ExPEPTqt0qrQda6b9f6suZP6jhkf3wx3poJ04Liuo13z2vgt95bgbPHCL4wQb+86bEZiMx2lrda+kIhJZLqKIt3O7H8MPfCcAXC8yI9oBwRr7BD8vmLdvF9jrWkiLNFDy4byQ58SrxEfjg9tKONFeY7fwQy7uXb63MsPuWqcAjol1rU9UXn2P04n7/bY8Z1eOGr06G3ra54X66bVDJBrm25xwT1PtteTHnru/25tLZDaX3TAhNXcw7C4nC2/+YtJHo/fSASFIJ1aDcZutYT2ihfkd9BbU6Ac9aEp4DdiFIkllPvJ/XJS4fDZsRQfppSWIk+woC87d/x7U1+cO7BMDK2plH84YuRhYq19G9ImH+/mwIpvZCeiG79QWhlcVBMLTIIVQoASJqW7Osf8ZsXMVXOhjA+FSnlnj1Fn8+3woh/4KhaPc9mOTJzw2T0VaPJQk4b0v/Zc3rHgLgH8cLyhIOByO084mywlMR7SnsZXQLs5d82r+v0EDK7aOif8deiAmMEsZUzF6RXqibdmjdcdyA8kqPlGaTChOoSAbUo3Nf1JtafXiAt6fh8FhVHXXJirjLUkXd9ppC6k8/PduMBrt826cCQyf30GgqK3fnLfcurx57kQhDosc30QhhvGYoQYYU7Ra1F5GcEOTqRrq36zYuZKxAyjy6zwIESdHe4aAbFYnKfz1GQUFCa/lTWV0WVjjy+d9xdxWveTfEeO9En4EmjdKBuDLkYqYvLIAtNenPzA038Yj1a4RfPLAaEDqVk5+vKEP5rHhx7ytizbkJAHd0hXDh2ayn0Ike4WeUnmTg4K9q4uY+72kmysDlUYdIDjJ6yb8WFWK9SUrmNOsfXh36N2PwyfM8FhhrLbEAMQPPpqHRL47cj3KtbN/gCviEOt+sOhY76Xv5G+iSeH04VmwvjV06bs0ND6ZfdwppyB/RQz781TX/heon+v5LTBg6NLive2D+Tr0n9DWBGhMHY+AN2iX3yXExPZi1KQQfaezmOv8nw+p4Gn/zxh672lubynwlbYSfGhL8Z8cVYaQqysYgPrl1lOBtLVmKym2+tnb90w68Lm70KFubvXuJfjKXZMvWq89pZts5/fPdOx9DEYk9wd5tli/m33u+8H+q8JqwXl7kDBl9rKRZr7yqceOmGQkPZ32jV/GLts6pKcdkzrOubHpN7+NQwDbAOOYozofhuDFhEvviGWxwTRBeSsCRtmvpzzedNPuPlst4GXGaZuHPHh5FVfocM3anHOtZbvBxnsNR1In7U7yt6n2KagImEiZoeMHPfpnf+yP+3x0zCWuU6uDCqju4jiFcWvWpd8ECMu9iwbipchUDxgikG2NQ62zLnm9ePLLvg76tzQmkyffANVnw77+HcXfEVBRXNqEb7/V+mb0Kx9otZMVE4b7i4YNcoN+YwmP6UJIwzzKoMXlxJrYuBRv52+fMLme+e3pj3/LX+zP+hbI6ws5UxQ9qhQ9Pe7oLxkTGHeu+pDJ0V6SITYGVDLwcSkQ5Srl8nj4oMmvH5nUzY+3OG7e2GK/39D34QZ/DqUM0ER5YqNFdXTt1mXVTqOC5xwyxDb02Bd4hBw2ZybXp/SmLk9+0vT+02Zsq9D3zZh7ULZmhgxveGRpBNuF0LgyRjNLaOpPLleHBqPoKXW7lX/ttG3Xli5o0I318xYDTH6NMcmcmM1apV07SOj3p6MFd5d/gzSt5G+9cJCyjbfgNstMcfnKnSAizBhG7Qn5/2vaNX/FEVHdCjA9KLrn3+U32rv7nFDJS4w+9f1/ifof0KzMtpVigVI8FxnVrJIy8BVcw9Uxfabov3dN/iNUbYjF6B7rNpXqdvac/8DDMv/l/5A6P8DhgHmdCi51HYAAAAASUVORK5CYII=" alt="">Verada</a><span class="brandline" id="brandline">Plan finder</span></header>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+  <main id="app"></main>
+</div>
+
+<script>
+/* ---------- Data ---------- */
+const PLANS={
+ sleep:{inst:1,n:"Assure Sleep",p:"about £89–£115 a month",inc:["Under-mattress sleep and breathing sensor","Morning nurse review of any night that looks different","Monthly sleep picture against your goals","Yearly medication review with a clinical pharmacist","Monitored 24/7 by our clinical hub, with every urgent alert verified by a nurse"],note:"New plan. Price to confirm."},
+ safe:{n:"Assure Safe",p:"£95 a month",inc:["Watch or pendant with fall alerts and GPS","Heart rate and rhythm alerts","Daily check-in and weekly mood check","Monitored 24/7 by our clinical hub, with every alert verified by a nurse"]},
+ home:{inst:1,n:"Assure Home",p:"£159 a month",inc:["Everything in Assure Safe","Bathroom fall and overstay sensor","Blood pressure monitor","Finger-prick cholesterol tests and a lab blood panel","Yearly medication review with a clinical pharmacist"]},
+ complete:{inst:1,n:"Assure Complete",p:"£269 a month",inc:["Everything in Assure Home","Under-mattress sleep and breathing sensor","Weekly 10-minute companion call","Medication review twice a year and an annual review with your nurse"]}
+};
+const GOALS=[["sleep","Sleep and breathing","Including sleep apnoea"],["safe","Falls and safety","At home and out and about"],["cardio","Heart, blood pressure and blood sugar","Including cholesterol"],["mood","Mood and wellbeing",""]];
+const OPS=[["joint","Hip or knee replacement",""],["general","Hernia, gallbladder or another tummy operation",""],["ortho","Other bone or joint surgery","For example shoulder, spine or foot"],["other","Another planned operation","For example a hysterectomy or a prostate operation"]];
+const A={visitor:null,need:null,orgkind:null,role:null,pay:null,hospoffer:null,path:null,where:null,who:null,alone:null,goals:new Set(),bed:null,rtype:null,rnow:null,rprog:null,op:null,when:null,length:null,adult:null};
+let step=0,editing=false;
+function answered(q){return q.multi?A.goals.size>0:A[q.key]!=null;}
+function ansText(q){if(q.key==="alone")return A.alone==="yes"?"Lives alone":"Doesn't live alone";if(q.key==="adult")return A.adult==="yes"?"Adult at home":"No adult at home";return q.multi?[...A.goals].map(x=>lbl(q.opts(),x)).join(", "):lbl(q.opts(),A[q.key]);}
+function crumbs(n,current){
+  const Qs=questions().slice(0,n),w=document.createElement("nav");w.className="crumbs";w.setAttribute("aria-label","Your answers");
+  Qs.forEach((q,i)=>{if(!answered(q))return;const b=document.createElement("button");b.type="button";b.className="crumb";b.title="Change: "+q.title();b.textContent=ansText(q);
+    b.onclick=()=>{editing=true;step=i;render();window.scrollTo({top:0});};w.appendChild(b);});
+  return w;
+}
+const other=()=>A.who==="other";
+
+/* ---------- Questions ---------- */
+/* Verada Sentinel (consumer site): ?sentinel=1 skips the "who are you" question and links results to the Sentinel page. */
+const SENT=/[?&]sentinel=1/.test(location.search)||window.PF_SENTINEL===1;
+const QVIS={key:"visitor",title:()=>"Welcome to Verada. Which of these best describes you?",hint:()=>"So we can show you what's most relevant.",opts:()=>[
+  ["ind","Looking for care for myself or someone I care for","Individuals and families"],
+  ["cons","A clinician","Consultant, GP or specialist nurse, NHS or private"],
+  ["org","From an organisation","A hospital, insurer, care provider, the NHS or a GP practice"]]};
+const QORG={key:"orgkind",title:()=>"Which kind of organisation?",hint:()=>"",opts:()=>[
+  ["hosp","A private hospital or insurer","Leadership, operations, wards or pre-assessment"],
+  ["ch","A care home, care group or home care provider","Including domiciliary care"],
+  ["nhs","The NHS or a council","An ICB, hospital trust, discharge team or local authority"],
+  ["pcn","A GP practice or primary care network","Clinical directors, EHCH leads and managers"]]};
+function V(){return A.visitor==="org"?A.orgkind:A.visitor;}
+const ORG={
+ cons:{site:"home",name:"Clinicians",buy:"",unit:"",pilot:"",lines:[],cta:["Talk to our clinical team","We'll send the pathway summary and arrange a call with our clinical lead."],fw:"",flow:[],pitch:"",
+   roles:[["ortho","Orthopaedics","Clots and wound infections after discharge, patients who aren't ready on the day, and recovery data for your outcome record.","Monitored recovery from pre-assessment to six weeks, with Oxford Hip and Knee Scores collected for you.",
+      {site:"healthcare",pitch:"Your hip and knee patients get one 24/7 clinical contact from pre-assessment to six weeks after surgery. You hear early when something changes, as an SBAR, and you get the recovery scores without chasing them.",buy:"Recovery at Home for your elective hip and knee patients: getting ready for surgery, up to seven monitored nights at home, then check-ins, wound photos and clot-prevention checks to six weeks.",unitLabel:"How patients get it",unit:"Through the hospital's surgery package or the insurer, or self-pay where neither covers it.",pilot:"Your own elective list for six months, measured against your baseline: length of stay, returns to hospital and recovery scores.",
+       flow:[["Before admission","Pre-operative questions reviewed by our nurses. Anaemia, glucose, blood pressure and anticoagulants are flagged to pre-assessment early."],["First nights home","Up to seven nights with a contactless sensor, watched by our 24/7 nurses, so patients go home on plan."],["To six weeks","Check-ins, wound photos, clot-prevention prompts, Oxford Hip and Knee Scores and a short experience survey."],["Something changes","A nurse reviews it and sends you an SBAR with the trend attached. Urgent concerns go to same-day assessment or 999."]],fw:"NEWS2 · SBAR · GIRFT · ERAS · Oxford Hip and Knee Scores · Martha's Rule",lines:[["Decisions stay with you","We watch, filter and escalate. Treatment decisions remain with you and your team."],["A filter, not another alarm","You hear only what needs you, as an SBAR with the trend attached."],["Your outcome data","Recovery scores and complications for your own audit and appraisal."]]}],
+     ["gensurg","General, colorectal or other surgery","Wound infections and complications that surface after discharge, and day cases that become overnight stays.","Overnight monitoring for the first nights home, and nurse-reviewed wound photos and check-ins to six weeks.",
+      {site:"healthcare",pitch:"Your patients go home on plan with one 24/7 clinical contact for the first six weeks. Wound problems and complications are seen days earlier, and you hear about them as an SBAR.",buy:"Recovery at Home for planned general, colorectal, gynaecological and other operations, from pre-assessment to six weeks after discharge.",unitLabel:"How patients get it",unit:"Through the hospital's surgery package or the insurer, or self-pay where neither covers it.",pilot:"One procedure group on your list for six months, measured against your baseline.",
+       flow:[["Before admission","Pre-operative questions reviewed by our nurses, with problems flagged to pre-assessment early."],["First nights home","A contactless sensor for up to seven nights, watched by our 24/7 nurses, so planned day cases stay day cases."],["To six weeks","Check-ins, wound photos, clot-prevention prompts and short recovery and experience questionnaires."],["Something changes","A nurse reviews it and sends you an SBAR. Urgent concerns go to same-day assessment or 999."]],fw:"NEWS2 · SBAR · GIRFT · ERAS · PROMs and PREMs · Martha's Rule",lines:[["Decisions stay with you","We watch, filter and escalate. Treatment decisions remain with you and your team."],["A filter, not another alarm","You hear only what needs you, as an SBAR with the trend attached."],["Your outcome data","Recovery scores and complications for your own audit and appraisal."]]}],
+     ["cardio","Cardiology","What happens to blood pressure, heart rate and rhythm between clinic appointments.","Home trends reviewed by a nurse, with a summary sent to you when something needs your view.",
+      {site:"home",pitch:"Your patients' heart rate, rhythm and blood pressure are watched at home between appointments by our 24/7 nurses. You get a clear summary when a trend needs your view, not a stream of raw readings.",buy:"Home monitoring for patients between appointments: a watch that can flag an irregular rhythm for review, home blood pressure readings, overnight heart rate, finger-prick cholesterol tests, and lab blood tests collected with a home kit or by a visiting phlebotomist.",unitLabel:"How patients get it",unit:"Self-pay through Home Assurance (Assure Home, about £159 a month), or through a hospital or insurer arrangement.",pilot:"A group of your outpatients for six months, with a monthly summary of trends and escalations.",
+       flow:[["Set-up","A nurse agrees goals and alert limits with the patient, in line with your plan."],["Every day and night","The watch and blood pressure monitor send readings. Irregular rhythm alerts go to a nurse for review. They are flags, not a diagnosis."],["Something changes","A nurse calls the patient and, with their agreement, sends you an SBAR with the trend attached."],["Between appointments","A monthly picture for the patient, and a summary to you ahead of their next clinic."]],fw:"SBAR · NICE blood pressure targets · Home Assurance",
+       lines:[["Decisions stay with you","We watch and filter. Diagnosis and treatment remain with you."],["Trends, not raw readings","You get a summary with the trend attached, only when it needs your view."],["Between appointments","Patients are watched in the months between clinics."]]}],
+     ["resp","Respiratory, sleep or ENT","Breathing and sleep at home, patients waiting for a sleep study, and how patients do after treatment starts.","Overnight breathing and sleep trends from a sensor under the mattress, reviewed by a nurse.",
+      {site:"home",pitch:"A contactless sensor under the mattress shows your patients' breathing, heart rate and sleep night after night, reviewed by our 24/7 nurses. It supports your decisions about who needs a sleep study and how treatment is going. It doesn't replace a diagnostic test.",buy:"Assure Sleep: overnight breathing, heart rate and sleep trends at home, with nurse review and a summary to you.",unitLabel:"How patients get it",unit:"Self-pay through Home Assurance (Assure Sleep, about £89–£115 a month, proposed), or through a clinic or insurer arrangement.",pilot:"A co-designed pathway with your clinic: patients on your waiting list or starting treatment, for six months.",
+       flow:[["Set-up","A nurse agrees what to watch, in line with your plan. The sensor learns the patient's normal over two weeks."],["Every night","Breathing rate, heart rate, restlessness and sleep, with nothing to wear."],["Something changes","A nurse reviews any trend outside the agreed limits and, with the patient's agreement, writes to you."],["Before clinic","A summary of nights since the last appointment, to inform your review."]],fw:"SBAR · Home Assurance · co-designed with ENT and sleep clinicians",
+       lines:[["Supports, not replaces","Trends to inform your decisions. Diagnosis stays with a sleep study and with you."],["Nothing to wear","A sensor under the mattress, so patients keep using it."],["Co-designed","We are shaping this pathway with ENT and sleep clinicians."]]}],
+     ["frailty","Elderly care or frailty","Older patients who aren't ready to go home, readmissions, and residents who deteriorate overnight.","Step-down beds with 24/7 clinical cover, care home support, and monitoring at home.",
+      {site:"social",pitch:"We give your frail and older patients 24/7 clinical cover wherever they go next: a step-down bed, a care home or their own home. Problems are found and treated there, and you hear when they need you.",buy:"Step-down beds with full clinical cover, 24/7 support for care home residents, and Home Assurance for people at home.",unitLabel:"How patients get it",unit:"Through the NHS or council for step-down beds and care homes, or self-pay for Home Assurance.",pilot:"A 20-bed step-down pilot or a care home group in your area, reported monthly.",
+       flow:[["After hospital","Same-day acceptance through trusted assessment, and a move to a step-down bed within 24 hours."],["Overnight","Contactless sensors watch patients and residents, including people who can't use a call bell."],["Something changes","Our Virtual RN assesses using RESTORE2 and NEWS2, treats in the home where it can, arranges lab blood tests through a visiting phlebotomist when needed, and links to the 2-hour Urgent Community Response."],["Home","A clear handover to the GP, with readmissions tracked."]],fw:"RESTORE2 · NEWS2 · 2-hour Urgent Community Response · Trusted assessment · EHCH",
+       lines:[["Wherever they go next","One team across step-down beds, care homes and home."],["A filter, not another alarm","We resolve what we can and escalate only when needed."],["Home as the goal","A recovery plan from day one."]]}],
+     ["gp","General practice","Calls about care home residents, especially out of hours, and patients who need watching at home between appointments.","A nurse and prescriber who act before problems reach you, with everything going back to your GP record.",
+      {site:"social",pitch:"We can deliver your Enhanced Health in Care Homes work and add the overnight layer you don't have. For patients at home, our nurses watch between appointments and write to you only when it needs your view.",buy:"Care home support through your PCN (EHCH sessions and overnight cover), and Home Assurance for patients who want monitoring at home.",unitLabel:"How it's funded",unit:"EHCH sessions through national NHS staffing reimbursement (ARRS). Home Assurance is self-pay.",pilot:"Sessions for the care homes aligned to your PCN, alongside a care home group pilot in your area.",
+       flow:[["Weekly round","We prepare and support the EHCH weekly round and care plans."],["Between rounds","Our Virtual RNs watch residents overnight and between visits, using RESTORE2 and NEWS2."],["Medicines","Our clinical pharmacist carries out structured medication reviews."],["Your record","Everything goes back to the GP record. Fewer 3 a.m. calls about residents."]],fw:"EHCH · ARRS · RESTORE2 · NEWS2 · Structured medication reviews",
+       lines:[["Funded through ARRS","Registered clinicians without the recruitment."],["The overnight layer","Residents watched between rounds and overnight."],["Your record stays yours","Everything goes back to the GP record."]]}],
+     ["stroke","Stroke or neurorehabilitation","Rehabilitation after discharge, therapy intensity and safety at home.","A rehab pathway with monitoring and MDT review. This pathway is in development.",
+      {site:"pathways",pitch:"We are developing a post-stroke rehabilitation pathway with continuous monitoring, MDT therapy and safety-netting after discharge. We'd like to shape it with stroke clinicians.",buy:"In development: a monitored rehabilitation pathway from referral to discharge.",unitLabel:"Status",unit:"Not yet available. We're looking for clinicians to help design it.",pilot:"To be designed with you.",
+       flow:[["Referral and baseline","Eligibility and a baseline assessment."],["Rehab and monitoring","MDT therapy with continuous monitoring between sessions."],["Safety-netting","Patient-initiated and clinician-initiated follow-up."],["Review and discharge","MDT review and a clear handover."]],fw:"National Clinical Guideline for Stroke 2023 · NICE NG236 · SSNAP",
+       lines:[["In development","Not yet offered to patients."],["Co-design","Shaped with stroke clinicians from the start."],["Evidence-led","Built around the national guideline."]],cta:["Help shape this pathway","Leave your details and our clinical lead will be in touch."]}]]},
+ hosp:{site:"healthcare",name:"Private hospitals, surgeons and insurers",buy:"Monitored recovery for orthopaedic and general surgery, from pre-assessment to six weeks after discharge.",unit:"Per surgical episode, with extended weeks for higher-risk patients and an optional outcome-linked element.",pilot:"One hospital's elective hip and knee pathway, run end to end for six months (about 100 episodes), measured against your own baseline.",
+   flow:[["Before admission","Patients are optimised before surgery: questionnaires reviewed by our nurses, with anaemia, glucose, blood pressure and anticoagulants flagged to pre-assessment against your ASA criteria. Patients who are ready join a verified theatre-ready pool for short-notice slots."],["On the ward","A contactless sensor trends heart rate and breathing between NEWS2 observation rounds. It is a filter, not another alarm: ward staff see no new alarms, and discharge is judged against agreed NEWS2 thresholds."],["First nights home","Eligible patients take the sensor home for up to seven nights, watched by our 24/7 nurses, so planned day cases stay day cases."],["Recovery to six weeks","Check-ins, wound photos, clot-prevention prompts, PROMs and PREMs, reviewed by a nurse along GIRFT and ERAS pathways. Concerns go to the surgical team as an SBAR. Patients and families can ask for an urgent review at any time, in line with Martha's Rule."]],
+   roles:[["lead","Hospital director or finance","Shorter stays, fewer day-case conversions and fewer readmissions inside fixed-price packages, with no capital outlay.","Length of stay, conversions, cancellations and readmissions against your baseline, by procedure."],
+          ["md","Medical director","Patient safety and governance: deterioration missed between observation rounds, safe discharge and Martha's Rule.","Discharge against agreed NEWS2 thresholds, validated SBAR escalations with a full audit trail, and one clinical safety case for the service."],
+          ["coo","Chief operating officer","Theatre utilisation, short-notice cancellations and beds blocked by patients waiting to go home.","A theatre-ready pool for short-notice slots, discharge on plan, and length of stay against your baseline."],
+          ["surgeon","Consultant surgeon or clinical lead","Earlier sight of infection and clots after discharge, without more calls to manage. Treatment decisions stay with you.","A clear SBAR with the trend attached, and recovery scores for your outcome record."],
+          ["ward","Pre-assessment, ward or discharge team","Fewer cancellations, patients going home on plan, and someone watching after they leave.","A ready pool for short-notice slots, and a named 24/7 team for the first nights home."],
+          ["pmi","Health insurer","Fewer complications and readmissions in the episodes you fund, at a known price per episode.","Readmissions, ED returns and complication rates for your members."]],
+   lines:[["Adopt the capability, not the asset","No capital outlay, no integration work for your teams, and no equipment going out of date."],["A filter, not another alarm","Our nurses review every signal first. Your teams hear only what needs them, as an SBAR."],["A model based on your own data","We model the effect on your own baseline before anything starts."]],cta:["Build a model on your own data","Share a few baseline figures for one pathway and we'll model length of stay, conversions and readmissions for you."],fw:"NEWS2 · SBAR · GIRFT · ERAS · PROMs and PREMs · Martha's Rule",
+   pitch:"We give every surgical patient one 24/7 clinical contact from pre-assessment to six weeks after surgery. Patients go home on plan, problems are seen days earlier, and you get the outcome data, with no capital outlay."},
+ ch:{site:"social",name:"Care homes, care groups and home care providers",buy:"Two offers: 24/7 clinical cover for long-stay residents, and clinically supported recovery beds you can sell at a premium.",unit:"Long-stay cover per monitored bed per month, in tier bands. Recovery beds per occupied bed-week plus a monthly retainer, or a share of the premium.",pilot:"Two or three homes, 80–120 beds, for six months, with baselines taken in the three months before.",
+   flow:[["Overnight","Contactless sensors watch residents between rounds and overnight, including residents who can't use a call bell, such as people living with dementia. Nothing to wear or charge."],["Something changes","Our Virtual RN reviews the alert using RESTORE2 and NEWS2, and may ask a carer for a one-minute spot check, or, when a decision is needed within hours, run a point-of-care test in the home. Scheduled blood tests go to the lab through a visiting phlebotomist."],["Decision","Our GP and clinical pharmacist decide and prescribe, with urgent medicines delivered within hours."],["Records","Everything goes back to the GP record, with a monthly governance report per home for CQC."]],
+   roles:[["ceo","Owner or group CEO","Occupancy, reputation, growth and CQC ratings across the group.","Fewer empty beds after hospital stays, a premium service, and a new recovery-bed product."],
+          ["fd","Finance director","Fee income, agency spend, capital outlay and contract risk.","No capital cost, a per-bed monthly fee, savings on agency and transfers, and recovery-bed income."],
+          ["ops","Operations or quality director","Consistent quality across homes, CQC evidence and incidents.","One clinical contact point for the whole group, documented escalation and outcome data."],
+          ["rm","Registered manager","Night cover, staff confidence, calls with GPs and 111, and family complaints.","A nurse and prescriber on call all night, nothing extra for staff to wear or charge, and clear rules for when to call 999."],
+          ["cl","Clinical lead or nurse manager","Clinical risk, competence of carers and medicines.","Training and competency checks, medicines reviews, and carers never carrying clinical decision-making risk."],
+          ["dom","Domiciliary or home care provider","Clients who deteriorate between visits, nights when nobody is there, and carers left to judge whether someone is unwell.","Contactless monitoring between visits, a 24/7 nurse your carers can call, and escalation through the 2-hour Urgent Community Response when needed."]],
+   lines:[["Begin with a single site","Start with one wing, one night shift, or your highest-acuity residents, then grow."],["Adopt the capability, not the asset","No capital outlay, nothing to wear or charge, and no equipment going out of date."],["A filter, not another alarm","Our nurses review every alert first. Your staff are called only when a resident needs them."]],cta:["Begin with a single site","Tell us about one home and we'll suggest where to start: a wing, a night shift, or your highest-acuity residents."],fw:"RESTORE2 · NEWS2 · 2-hour Urgent Community Response · EHCH · CQC Safe and Responsive",
+   pitch:"We give every home in your group a 24/7 nurse and prescriber who can see how each resident is doing overnight, arrange blood tests and treat in the home, and keep people out of hospital. No capital outlay. And you can open recovery beds that private hospitals, insurers and councils will pay more for."},
+ nhs:{site:"social",name:"NHS and local authorities",buy:"Reserved step-down beds in good care homes with the full clinical layer, under one contract, plus support for care home residents to avoid conveyances.",unit:"Per bed-week for step-down beds, with monthly outcome reporting written into the contract.",pilot:"A 20-bed NHS step-down pilot, with transfers, length of stay and readmissions reported monthly.",
+   flow:[["Referral","Same-day acceptance through trusted assessment; transfer within 24 hours."],["In the step-down bed","24/7 contactless monitoring, blood tests by a visiting phlebotomist and prescribing in the home, with a plan to get each person home."],["Something changes","Our team assesses it using RESTORE2 and NEWS2 and resolves it in the home, linking to the 2-hour Urgent Community Response and escalating only when needed."],["Home","A clear handover, with readmissions tracked and reported back to you."]],
+   roles:[["icbd","ICB discharge or intermediate care commissioner","Beds occupied by people fit to leave, pathway 2 capacity, readmissions from community beds and spot-purchase spend.","Reserved step-down beds with full clinical cover, one provider, one price, monthly outcomes."],
+          ["uec","ICB urgent and emergency care lead","Ambulance call-outs and conveyances from care homes, ED crowding and out-of-hours demand.","Problems resolved in the home: overnight detection, blood tests in the home, prescribing, escalation only when needed."],
+          ["flow","Acute trust discharge or flow lead","Delayed transfers, repeated assessments and patients bouncing back.","Same-day acceptance through trusted assessment, transfer within 24 hours, and readmissions tracked."],
+          ["la","Local authority adult social care","Reablement outcomes, avoiding permanent placements and Care Act assessments.","Recovery in a calmer setting, with home as the default goal and a clear handover."],
+          ["cso","Clinical safety or information governance","Safety of new technology, who the manufacturer is, and data flows.","Verada is a deploying organisation under DCB0160; every device is marked and registered; data stay in the NHS record."]],
+   lines:[["One provider, one price","Reserved beds with the full clinical layer under a single contract."],["A filter, not another alarm","Our team resolves what it can in the home and escalates only when needed."],["A model based on your own data","We model transfers, length of stay and readmissions on your own figures first."]],cta:["Build a model on your own data","Share a few figures on delayed discharges and community beds, and we'll model a step-down pilot for your area."],fw:"Trusted assessment · RESTORE2 · NEWS2 · 2-hour Urgent Community Response · DCB0160",
+   pitch:"We hold one contract for reserved step-down beds in good care homes, and we're accountable for each stay: 24/7 clinical cover, blood tests and prescribing without a hospital trip, and a plan to get each person home. You get monthly data on transfers, length of stay and readmissions."},
+ pcn:{site:"social",name:"GP practices and primary care networks",buy:"Nurse, advanced practitioner, pharmacist and care coordinator sessions for your Enhanced Health in Care Homes work, plus the overnight layer you can't staff.",unit:"Per session, funded through national NHS staffing reimbursement (ARRS).",pilot:"Sessions for the care homes aligned to your PCN, alongside a care home group pilot in your area.",
+   flow:[["Weekly round","We prepare and support the EHCH weekly round and care plans."],["Between rounds","Our Virtual RNs watch residents overnight and between visits."],["Medicines","Our clinical pharmacist carries out structured medication reviews."],["Your record","Everything goes back to the GP record. Your GPs stop getting 3 a.m. calls about residents."]],
+   roles:[["cd","PCN clinical director or EHCH lead","Delivering the weekly round and care plans with limited GP time, medication reviews and overnight calls about residents.","ARRS-funded sessions for EHCH, up to running the whole care home service, plus the overnight layer."],
+          ["pm","Practice or PCN manager","Recruiting ARRS roles and meeting contract requirements.","Ready-made sessions with registered clinicians, without the recruitment."],
+          ["gp","GP","Calls about care home residents, especially out of hours.","A nurse and prescriber who know the resident, acting before problems reach you."]],
+   lines:[["Funded through ARRS","Sessions with registered clinicians, without the recruitment."],["The overnight layer","Our nurses watch residents between rounds and overnight."],["Your record stays yours","Everything goes back to the GP record."]],cta:["Book a conversation","We'll send the relevant whitepaper and arrange a call with our clinical team."],fw:"EHCH · ARRS · Structured medication reviews · RESTORE2",
+   pitch:"We can deliver your EHCH work, from the weekly round and care plans to medication reviews, with nurses, advanced practitioners and pharmacists funded through ARRS, and add the overnight layer you don't have."}
+};
+const QROLE={key:"role",title:()=>A.visitor==="cons"?"What's your speciality?":"What's your role?",hint:()=>A.visitor==="cons"?"We'll show the pathway that fits your patients.":ORG[V()]?ORG[V()].name:"",opts:()=>ORG[V()].roles.map(r=>[r[0],r[1],""])};
+const QNEED={key:"need",title:()=>"What are you looking for?",hint:()=>"",opts:()=>[
+  ["well","Peace of mind about health at home","Ongoing monitoring by our 24/7 clinical hub"],
+  ["recov","Recovering after an operation, illness or hospital stay","Support at home, a short stay with nurses on hand, or rehab"]]};
+const QPATH={key:"path",title:()=>"What's happening at the moment?",hint:()=>"",opts:()=>[
+  ["rec","Having an operation, or just had one","Help getting ready, then support at home for up to six weeks"],
+  ["step","In hospital, but not well enough to go straight home","A short stay in a care home with nurses on hand, then home"],
+  ["rehab","Needing rehab after a stroke, or for a heart or lung condition","Extra support alongside an NHS rehab programme"]]};
+const QWHO={key:"who",title:()=>A.path==="rec"?"Who is having the operation?":A.path==="step"?"Who is leaving hospital?":A.path==="rehab"?(A.rtype==="stroke"?"Who is recovering from a stroke?":"Who is the rehabilitation for?"):"Who is it for?",hint:()=>"",opts:()=>[["me","Myself",""],["other","Someone I care for","A parent, partner or anyone else"]]};
+const QREHAB={key:"rnow",title:()=>other()?"Where are they now?":"Where are you now?",hint:()=>"",opts:()=>[["hosp","Still in hospital",""],["home","Back home",""],["unit","In a care home or rehab unit",""]]};
+const QRTYPE={key:"rtype",title:()=>"What is the rehabilitation for?",hint:()=>"",opts:()=>[["stroke","After a stroke",""],["lung","A lung condition","For example COPD"],["heart","A heart condition","For example after a heart attack, or with heart failure"]]};
+const QPROG={key:"rprog",title:()=>other()?"Are they on a rehabilitation programme?":"Are you on a rehabilitation programme?",hint:()=>"Most NHS heart and lung rehab programmes run for 6 to 12 weeks.",opts:()=>[["on","Yes, it has started",""],["wait","Referred, waiting to start",""],["no","Not referred yet",""]]};
+const QPAY={key:"pay",title:()=>"Who will arrange and pay for the stay?",hint:()=>"If you're not sure, ask the ward's discharge team.",opts:()=>[["nhs","The NHS or council","The ward's discharge team is arranging it"],["self","We're paying ourselves",""],["unsure","Not sure yet",""]]};
+const QHOSP={key:"hospoffer",title:()=>"Has the hospital or insurer offered recovery support from Verada?",hint:()=>"Some hospitals and insurers include it in the surgery package.",opts:()=>[["yes","Yes, it's included",""],["no","No",""],["unsure","Not sure",""]]};
+const WELL=[
+ {key:"where",title:()=>other()?"Where do they live?":"Where do you live?",hint:()=>"",opts:()=>[["own",other()?"In their own home":"In my own home","A house or flat"],["sheltered","Sheltered or extra-care housing","A private flat with a scheme manager or alarm on site"],["carehome","A care home","Residential or nursing home"]]},
+ {key:"alone",title:()=>other()?"Do they live alone?":"Do you live alone?",hint:()=>"If no one else is at home, we add ways to spot a fall or a quiet day, and plan how help can get in.",opts:()=>[["yes","Yes",""],["no","No","With a partner, family or others"]]},
+ {key:"goals",multi:true,title:()=>other()?"What would you like peace of mind about for them?":"What would you like peace of mind about?",hint:()=>"Choose as many as you like.",opts:()=>GOALS},
+ {key:"bed",title:()=>other()?"Do they share a bed?":"Do you share a bed?",hint:()=>"The sleep sensor goes under the mattress and reads best when one person sleeps in the bed.",opts:()=>[["alone",other()?"No, they sleep alone":"No, I sleep alone",""],["shared","Yes, with a partner",""]]}
+];
+const REC=[
+ {key:"op",title:()=>"Which operation?",hint:()=>"Planned operations only. If someone is in hospital after an emergency, their hospital team leads.",opts:()=>OPS},
+ {key:"when",title:()=>"When is the operation?",hint:()=>"",opts:()=>[["before","It's booked, not happened yet",""],["recent","In the last two weeks",""],["later","Two to six weeks ago",""],["past","More than six weeks ago",""]]},
+ {key:"length",title:()=>"How long would you like support after going home?",hint:()=>A.op==="joint"?"Most hip and knee patients choose six weeks: clots and wound infections often show up after the first fortnight.":"Your nurse can extend this at any time.",opts:()=>[["week","The first week at home",""],["six","Six weeks of recovery","Recommended for most operations"],["longer","Longer than six weeks","If recovery is likely to take longer, we extend week by week"]]},
+ {key:"adult",title:()=>other()?"Will another adult be at home with them for the first few nights?":"Will another adult be at home with you for the first few nights?",hint:()=>"The overnight sensor is for people with someone else in the house.",opts:()=>[["yes","Yes",""],["no","No",""]]}
+];
+function questions(){
+  if(SENT&&!A.visitor)A.visitor="ind";
+  if(!A.visitor) return [QVIS];
+  if(A.visitor==="org") return A.orgkind?[QVIS,QORG,QROLE]:[QVIS,QORG];
+  if(A.visitor!=="ind") return [QVIS,QROLE];
+  const V=SENT?[]:[QVIS];
+  if(!A.need) return [...V,QNEED];
+  const P=A.need==="well"?[...V,QNEED]:[...V,QNEED,QPATH];
+  if(!A.path) return P;
+  if(A.path==="step") return [...P,QWHO,QPAY];
+  if(A.path==="rehab") return A.rtype==="stroke"?[...P,QRTYPE,QWHO,QREHAB]:[...P,QRTYPE,QWHO,QPROG];
+  if(A.path==="well"){ if(A.where==="carehome") return [...P,QWHO,WELL[0]]; return [...P,QWHO,WELL[0],WELL[1],WELL[2],...(A.goals.has("sleep")&&A.alone!=="yes"?[WELL[3]]:[])]; }
+  if(A.when==="past") return [...P,QWHO,REC[0],REC[1]];
+  let r=[...P,QWHO,REC[0],REC[1],QHOSP,REC[2],REC[3]];
+  if(A.when==="later") r=r.filter(q=>q.key!=="adult");
+  return r;
+}
+
+/* ---------- Logic ---------- */
+function suggest(){
+  const g=A.goals,n=g.size,al=A.alone==="yes";
+  if(n>=3||(al&&n>=2)) return "complete";
+  if(g.has("cardio")) return "home";
+  if(g.has("sleep")) return "sleep";
+  if(al&&g.has("safe")) return "home";
+  return "safe";
+}
+const lbl=(arr,id)=>(arr.find(x=>x[0]===id)||["",""])[1];
+
+/* ---------- Rendering helpers ---------- */
+const app=document.getElementById("app"),bar=document.getElementById("bar"),brandEl=document.getElementById("brandline"),brand={set textContent(v){const t=String(v).replace(/^Verada\s*/,"");brandEl.textContent=t?t.charAt(0).toUpperCase()+t.slice(1):"Plan finder";}};
+const box=(cls,k,t,d)=>{const x=document.createElement("div");x.className="node "+cls;x.innerHTML=`<span class="k">${k}</span><h3>${t}</h3>${d?`<span class="d">${d}</span>`:""}`;return x;};
+const arrow=()=>{const a=document.createElement("div");a.className="arrow";a.setAttribute("aria-hidden","true");return a;};
+function flowBuilder(f){return (el,first)=>{if(!first)f.appendChild(arrow());f.appendChild(el);};}
+function cadBox(cad,title){
+  const LBL={night:"Every night",day:"Every day",week:"Every week",month:"Every month",quarter:"Every quarter",half:"Twice a year",year:"Every year",d0:"First 7 nights",w1:"Days 1–14",w2:"Weeks 3–6",ext:"Each extra week"};
+  const on=box("","Ongoing",title,"");const grid=document.createElement("div");grid.className="ongoing";
+  Object.entries(cad).forEach(([k,items])=>{if(!items.length)return;const c=document.createElement("div");c.className="cad";
+    c.innerHTML=`<b>${LBL[k]}</b>`+items.map(([t,x])=>`<span class="tp ${t}"><i></i><span>${x}</span></span>`).join("");grid.appendChild(c);});
+  on.appendChild(grid);return on;
+}
+function keyRow(you){return `<div class="key"><span><i class="dot" style="background:var(--phys)"></i>Monitoring</span><span><i class="dot" style="background:var(--blood)"></i>Blood test</span><span><i class="dot" style="background:var(--nurse)"></i>Remote nurse</span><span><i class="dot" style="background:var(--you)"></i>${you}</span></div>`;}
+const roleList=items=>`<h2>What the remote nurse does</h2><ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul><p class="bg">Led by a registered nurse with experience in NHS virtual wards and hospital-at-home care.</p>`;
+function foot(extra){const ft=document.createElement("div");ft.className="foot";ft.innerHTML=`<p><strong>Call 999 in an emergency.</strong> Verada is not an emergency service and does not send anyone to the home. Equipment measures and alerts; it does not diagnose any condition.</p><p>Draft for discussion. Prices and frequencies are planning figures. ${extra||""}</p>`;return ft;}
+
+/* ---------- Question screen ---------- */
+function renderQ(){
+  const Qs=questions(),q=Qs[step],total=(A.visitor&&A.visitor!=="ind")||A.path?Qs.length:0;
+  bar.style.width=total?((step)/(total))*100+4+"%":"4%";
+  brand.textContent=!A.visitor?"Verada":A.visitor==="cons"?"Verada for clinicians":A.visitor!=="ind"?"Verada for organisations":A.path==="rec"?"Verada Recovery at Home":A.path==="step"?"Verada recovery stays":A.path==="rehab"?"Verada rehabilitation":A.path==="well"?"Verada Home Assurance":"Verada";
+  const s=document.createElement("section");s.className="screen";
+  s.innerHTML=`<span class="qn">Question ${step+1}${total?` of ${total}`:""}</span><h1 class="qt" tabindex="-1">${q.title()}</h1>${q.hint()?`<p class="qh">${q.hint()}</p>`:""}`;
+  const opts=document.createElement("div");opts.className="opts";opts.setAttribute("role","group");
+  q.opts().forEach(([id,l,sub],i)=>{
+    const b=document.createElement("button");b.type="button";b.className="opt";
+    b.setAttribute("aria-pressed",String(q.multi?A.goals.has(id):A[q.key]===id));
+    b.innerHTML=`<span class="lt">${String.fromCharCode(65+i)}</span><span>${l}${sub?`<small>${sub}</small>`:""}</span>`;
+    b.onclick=()=>choose(id);opts.appendChild(b);});
+  s.appendChild(opts);
+  const nav=document.createElement("div");nav.className="nav";
+  if(step>0){const bk=document.createElement("button");bk.type="button";bk.className="btn ghost";bk.textContent="Back";bk.onclick=()=>{step--;render();};nav.appendChild(bk);}
+  if(q.multi){const ok=document.createElement("button");ok.type="button";ok.className="btn";ok.textContent=A.goals.has("sleep")&&A.alone!=="yes"?"Next":"See my plan";ok.disabled=!A.goals.size;ok.onclick=()=>{const Qs=questions();if(editing&&Qs.every(answered))step=Qs.length;else step++;render();};nav.appendChild(ok);}
+  const k=document.createElement("span");k.className="kbd";k.textContent=`Tip: press A to ${String.fromCharCode(64+q.opts().length)}${q.multi?", then Enter":""}`;nav.appendChild(k);
+  s.appendChild(nav);
+  if(step>0){const c=crumbs(step);c.classList.add("top");s.prepend(c);}
+  app.replaceChildren(s);if(!(step===0&&document.documentElement.classList.contains("card")))s.querySelector(".qt").focus({preventScroll:true});
+}
+function choose(id){
+  const q=questions()[step];
+  if(q.multi){A.goals.has(id)?A.goals.delete(id):A.goals.add(id);render();return;}
+  if(q.key==="need"){if(id==="well")A.path="well";else if(A.path==="well")A.path=null;}if(q.key==="visitor"&&A.visitor!==id){A.orgkind=null;A.role=null;}if(q.key==="orgkind"&&A.orgkind!==id)A.role=null;A[q.key]=id;render();setTimeout(()=>{const Qs=questions();if(editing&&Qs.every(answered)){step=Qs.length;}else step++;render();},180);
+}
+document.addEventListener("keydown",e=>{
+  const Qs=questions();if(step>=Qs.length||e.metaKey||e.ctrlKey||e.altKey)return;
+  const q=Qs[step],opts=q.opts(),i=e.key.toUpperCase().charCodeAt(0)-65;
+  if(e.key.length===1&&i>=0&&i<opts.length)choose(opts[i][0]);
+  else if(e.key==="Enter"&&q.multi&&A.goals.size&&e.target.tagName!=="BUTTON"){step++;render();}
+});
+
+/* ---------- Home Assurance result ---------- */
+function renderWell(){
+  const plan=suggest(),P=PLANS[plan],inc=(...p)=>p.includes(plan),g=A.goals,o=other();
+  const s=document.createElement("section");s.className="res";
+  const goalsTxt=[...g].map(x=>lbl(GOALS,x)).join("; ");
+  const al=A.alone==="yes",watchIn=plan==="sleep"&&al;
+  const incList=watchIn?[...P.inc,"Watch with fall alerts, added because "+(o?"they live":"you live")+" alone (price to confirm)"]:P.inc;
+  const bedNote=(inc("sleep","complete")&&A.bed==="shared"&&!al)?"Sharing a bed: we place the sensor on "+(o?"their":"your")+" side and check its readings during the first two weeks. If they aren't reliable, we switch to a sleep-tracking watch. ":"";
+  s.innerHTML=`<div class="plan"><span class="k">Suggested plan</span><span class="pn">${P.n}</span><span class="pp">${P.p}${P.inst?`<span class="inst">plus a one-off installation visit, £99 (proposed)</span>`:""}</span>
+    <ul>${incList.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <p class="why">${bedNote}Matched to: ${goalsTxt.toLowerCase()}.${A.alone==="yes"?(o?" They live alone, so we add more checks at home.":" You live alone, so we add more checks at home."):""} ${P.note||""} Plans differ in how closely we watch, and we match the plan to what ${o?"they need":"you need"}. ${o?"They":"You"} can move up or down any month. The monthly fee covers VAT, equipment, repairs and replacements, and 24/7 monitoring by our clinical hub. No long contract.</p></div>
+    <div class="answers"><span>${o?"For someone I care for":"For me"} · ${A.alone==="yes"?"lives alone":"doesn't live alone"} · ${goalsTxt}${A.goals.has("sleep")&&A.alone!=="yes"?(A.bed==="shared"?" · shares a bed":" · sleeps alone"):""}</span><button type="button" class="linkbtn" data-redo>Change answers</button></div>
+    <h2>How it works for ${o?"them":"you"}</h2>${keyRow(o?"They":"You")}`;
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  add(box("c-you","Day 0","Sign up and consent",o?"We talk to them first. They agree to join, choose what you see, and agree their contact list: who we call, and in what order. If they can't decide for themselves, we follow their lasting power of attorney.":"You choose who, if anyone, sees your alerts and monthly picture, and set up your contact list: who we call, and in what order."),true);
+  if(A.where==="sheltered")add(box("c-nurse","Day 0 · Remote nurse","Work with the housing scheme","With agreement, the nurse links up with the scheme manager and any existing alarm or pull-cord, so we add to it rather than duplicate it. We check whether a bathroom sensor is needed."));
+  if(al)add(box("c-nurse","Day 0 · Remote nurse","Plan how help gets in","Because "+(o?"they live":"you live")+" alone, we agree a key safe or a nearby keyholder, so a neighbour or ambulance crew can get in if needed."));
+  add(box("c-nurse","Day 0 · Remote nurse","Welcome call and goals","20–45 minutes. Health, medicines and any diagnosis, then one to three goals in "+(o?"their":"your")+" own words."));
+  const kit=[];if(inc("sleep","complete"))kit.push("under-mattress sensor");if(!inc("sleep")||watchIn)kit.push("watch or pendant");if(inc("home","complete"))kit.push("bathroom sensor","blood pressure monitor");
+  const fixed=kit.filter(k=>/mattress|bathroom/.test(k)),posted=kit.filter(k=>!/mattress|bathroom/.test(k));
+  const cap=t=>t.replace(/^./,c=>c.toUpperCase());
+  add(box("c-you","Week 1",fixed.length?"Installation visit":"Kit arrives, ready to use",fixed.length?"A technician visits to install the "+fixed.join(" and ")+" and checks they work."+(posted.length?" "+cap(posted.join(" and "))+" "+(posted.length>1?"arrive":"arrives")+" by post, ready to use.":""):cap(posted.join(", "))+" "+(posted.length>1?"arrive":"arrives")+" by post, ready to use. We talk "+(o?"them":"you")+" through it on the phone."));
+  add(box("c-nurse","Weeks 1–2 · Remote nurse","Learning "+(o?"their":"your")+" normal","Sensors learn usual sleep, heart rate, breathing and activity. The nurse sets personal alert limits."));
+  const cad={night:[],day:[],week:[],month:[],quarter:[],half:[],year:[]};
+  if(inc("sleep","complete"))cad.night.push(["phys","Under-mattress sensor: heart rate, breathing, restlessness, sleep"]);
+  if(inc("safe","home"))cad.night.push(["phys","Watch: sleep and night-time heart rate"]);
+  if(!inc("sleep"))cad.day.push(["phys","Watch: fall alerts with GPS, heart rate and rhythm"]);else if(watchIn)cad.day.push(["phys","Watch: fall alerts with GPS"]);else if(g.has("safe"))cad.day.push(["phys","Watch with fall alerts <em>(optional extra)</em>"]);
+  if(inc("home","complete"))cad.day.push(["phys","Bathroom fall and overstay sensor"]);
+  if(!inc("sleep"))cad.day.push(["you","Daily check-in call or app prompt"]);
+  if(inc("home","complete"))cad.week.push(["phys","Blood pressure readings, as agreed with the nurse"]);
+  cad.week.push(["you","Mood check, four questions"]);
+  if(inc("complete"))cad.week.push(["nurse","10-minute companion call"]);
+  cad.month.push(["nurse","Monthly picture against the goals, with a nurse note"]);
+  if(inc("home","complete"))cad.quarter.push(["blood","Finger-prick cholesterol test, result on the spot"]);
+  cad.quarter.push(["nurse","Goal check-in call"]);
+  if(inc("home","complete"))cad.half.push(["blood","Lab blood test for blood sugar (HbA1c), kidneys and liver, from a needle-free home kit or a visiting phlebotomist"]);
+  if(inc("complete"))cad.half.push(["nurse","Medication review with a clinical pharmacist"]);else cad.year.push(["nurse","Medication review with a clinical pharmacist"]);
+  cad.year.push(["nurse","Annual review of goals, trends and results"]);
+  if(inc("safe"))cad.year.shift();
+  add(cadBox(cad,"What happens, and how often"));
+  add(box("triage c-nurse","Remote nurse, 24/7","Something changes: a nurse verifies the alert","Every flagged reading, missed check-in or worrying answer is checked by a nurse at our 24/7 clinical hub before anyone else is called. "+(o?"They, or you,":"You, or your family,")+" can also ask for an urgent nurse review at any time, even if the readings look fine."));
+  const br=document.createElement("div");br.className="branches";
+  br.innerHTML=`<div class="node br g"><h3>All steady</h3><span class="d">No call needed.</span><span class="out">Shows in the monthly picture.</span></div>
+   <div class="node br a"><h3>Worth a conversation</h3><span class="d">Drifting readings, a blood result, a low mood score.</span><span class="out">Nurse calls next morning. Advice, keep watching, or a note for the GP or sleep clinic.</span></div>
+   <div class="node br r"><h3>Needs attention now</h3><span class="d">A fall, or readings far from normal.</span><span class="out">Nurse calls within minutes, day or night. In an emergency, 999 straight away. Otherwise the contact list, in the agreed order.</span></div>`;
+  f.appendChild(br);s.appendChild(f);
+  const roles=document.createElement("section");roles.className="roles";
+  roles.innerHTML=roleList([`Welcome call: understands ${o?"their":"your"} health and agrees goals.`,`Sets personal alert limits after two weeks of learning ${o?"their":"your"} normal.`,"Reviews anything flagged overnight each morning and calls if it needs a conversation.","Verifies urgent alerts within minutes, day or night, then calls 999 or the contact list as needed.","Explains blood test results and what they mean for the goals.","Writes the monthly note and checks in on goals each quarter.","Writes to the GP or sleep clinic when needed, with agreement."]);
+  s.appendChild(roles);s.appendChild(foot("Lab panels are tested by an accredited UK lab. Samples are collected with a needle-free home kit posted to the lab, or by a CQC-registered phlebotomist visiting the home. Partners to be agreed."));
+  return s;
+}
+
+/* ---------- Recovery result ---------- */
+function renderRec(){
+  const o=other(),s=document.createElement("section");s.className="res";
+  const they=o?"they":"you",their=o?"their":"your",They=o?"They":"You";
+  if(A.when==="past"){
+    s.innerHTML=`<div class="plan"><span class="k">Our suggestion</span><span class="pn">Home Assurance</span>
+      <p class="why">The main recovery window is the first six weeks, when wound infections and clots usually show up. After that, ongoing peace of mind at home fits better. If ${they} still have wound or recovery problems, please contact ${their} surgical team or GP.</p>
+      <div class="nav"><button type="button" class="btn" id="toWell">Find a Home Assurance plan</button></div></div>
+      <div class="answers"><button type="button" class="linkbtn" data-redo>Change answers</button></div>`;
+    s.appendChild(foot(""));return s;
+  }
+  const joint=A.op==="joint",before=A.when==="before",nights=A.adult==="yes"&&A.when!=="later";
+  const lenTxt={week:"First week at home",six:"Six weeks of recovery",longer:"Six weeks, then extended weekly"}[A.length];
+  const inc=[];
+  if(before)inc.push("Getting ready: pre-operation questions reviewed by a nurse, problems flagged to the hospital early");
+  inc.push(nights?"Up to 7 monitored nights at home with an under-mattress sensor":"Daily nurse check-ins for the first nights at home");
+  if(A.length!=="week")inc.push("Check-ins and wound photos to six weeks, reviewed by a nurse");
+  else inc.push("Check-ins and wound photos for the first week, reviewed by a nurse");
+  inc.push("Reminders and checks on clot-prevention medicine and moving about");
+  if(A.length==="longer")inc.push("Extended monitoring, week by week, for higher-risk recoveries");
+  inc.push("24/7 nurse team, linked to "+their+" surgical team. "+(o?"They, or you,":"You, or your family,")+" can ask for an urgent review at any time");
+  s.innerHTML=`<div class="plan"><span class="k">Suggested package</span><span class="pn">Recovery at Home</span><span class="pp">${lenTxt}</span>
+    <ul>${inc.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <p class="why">For ${lbl(OPS,A.op).toLowerCase()}. ${A.hospoffer==="yes"?"Included in the hospital's surgery package: the hospital sets it up with us.":"Self-pay price per operation, to be confirmed. We can also ask the hospital or insurer about including it."} ${A.adult==="no"?"The overnight sensor needs another adult at home, so we use extra nurse check-ins instead.":""}</p></div>
+    <div class="answers"><span>${o?"For someone I care for":"For me"} · ${lbl(OPS,A.op)} · ${lbl(REC[1].opts(),A.when)}${A.length?" · "+lenTxt:""}</span><button type="button" class="linkbtn" data-redo>Change answers</button></div>
+    <h2>How recovery works for ${o?"them":"you"}</h2>${keyRow(They)}`;
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  add(box("c-you","Sign up","Sign up and consent",(o?"They agree to join and choose what you see. ":"")+"We let "+their+" surgeon's team know, with "+their+" agreement, so concerns reach the right people."),true);
+  if(before){
+    add(box("c-nurse","Before the operation · Remote nurse","Getting ready","Questions about health, medicines, blood pressure and anaemia, completed online and reviewed by a nurse. Anything that could delay the operation is flagged to the hospital early."));
+    if(nights)add(box("c-phys","Before the operation","Baseline at home","Where possible the sensor goes under "+their+" mattress before surgery, so we know "+their+" normal."));
+    add(box("c-you","Operation day","In hospital","The hospital team is responsible for "+their+" care while "+they+" are there."));
+  }
+  if(A.when!=="later"){
+    add(box(nights?"c-phys":"c-nurse","First nights home",nights?"Monitored first nights":"Extra nurse check-ins",nights?"Up to 7 nights with the under-mattress sensor: heart rate, breathing and movement. A nurse watches overnight, so "+they+" can go home on plan.":"Daily nurse calls for the first week, because the overnight sensor needs another adult at home."));
+  }
+  const cad={w1:[],w2:[],ext:[]};
+  cad.w1.push(["you","Daily check-in: pain, wound, fluids, moving about"]);
+  cad.w1.push(["you","Wound photo every few days"]);
+  cad.w1.push(["nurse","Clot-prevention medicine reminders and checks"]);
+  if(A.length!=="week"){cad.w2.push(["you","Check-ins and wound photos, less often as recovery goes well"]);
+    cad.w2.push(["nurse","Questions about calf pain and breathlessness, because clots can appear later"]);
+    cad.w2.push(["you",joint?"Recovery scores (Oxford Hip or Knee Score) and a short survey about "+their+" experience":"Short recovery and experience questionnaires"]);}
+  if(A.length==="longer")cad.ext.push(["phys","Continued sensor monitoring and nurse review, week by week"]);
+  if(A.when==="later")delete cad.w1;
+  add(cadBox(cad,"Recovery, step by step"));
+  add(box("triage c-nurse","Remote nurse, 24/7","Something changes: the nurse sorts it","Every check-in, wound photo and overnight trend goes to the nurse team. "+They+" don't need to decide whether it's worth a call, and can ask for an urgent review at any time."));
+  const br=document.createElement("div");br.className="branches";
+  br.innerHTML=`<div class="node br g"><h3>Recovering well</h3><span class="d">Readings and check-ins on track.</span><span class="out">Encouragement and the next check-in.</span></div>
+   <div class="node br a"><h3>Needs a closer look</h3><span class="d">A change in the wound, pain or fever, or readings creeping up.</span><span class="out">Nurse calls the same or next morning and sends the surgical team a summary for advice or an early review.</span></div>
+   <div class="node br r"><h3>Needs attention now</h3><span class="d">Possible clot (calf swelling, chest pain, breathlessness) or a sharp change overnight.</span><span class="out">Same-day hospital assessment, or 999.</span></div>`;
+  f.appendChild(br);
+  f.appendChild(arrow());
+  f.appendChild(box("c-nurse","End of recovery · Remote nurse","Handover and what next","A short summary to "+their+" GP and surgeon. If "+they+" would like ongoing peace of mind, "+they+" can move to a Home Assurance plan."));
+  s.appendChild(f);
+  const roles=document.createElement("section");roles.className="roles";
+  roles.innerHTML=roleList([before?"Reviews the pre-operation questions and flags problems to the hospital early.":"Calls to welcome "+(o?"them":"you")+" home and agree what to watch.",nights?"Watches the first nights at home, so a planned day case can stay a day case.":"Makes the extra check-in calls in the first week.","Reviews every check-in and wound photo, and asks about clot warning signs.","Answers urgent alerts within minutes, day or night, and arranges same-day assessment or 999.","Sends the surgical team a clear summary when something needs their decision.","Writes the handover summary for the GP and surgeon at the end."]);
+  s.appendChild(roles);s.appendChild(siteLink("healthcare"));s.appendChild(foot("Recovery at Home runs on Verada CIC's surgical recovery pathway. The surgical team stays responsible for treatment decisions."));
+  return s;
+}
+
+/* ---------- Care home stub ---------- */
+function renderCareHome(){
+  const o=other(),s=document.createElement("section");s.className="res";
+  s.innerHTML=`<div class="plan"><span class="k">Care home pathway</span><span class="pn">Verada for care homes</span>
+    <p class="why">In a care home, the home is responsible for ${o?"their":"your"} care day and night, so we don't add a separate home monitoring service. Instead, Verada works with the care home itself.</p>
+    <ul>
+      <li>A contactless sensor under each resident's mattress, watched overnight by our 24/7 remote nurse team, including residents who can't use a call bell</li>
+      <li>Blood tests taken in the home by a visiting phlebotomist, so problems are found without a trip to hospital</li>
+      <li>A remote GP and clinical pharmacist, with urgent medicines delivered within hours</li>
+      <li>Working alongside the home's own staff, so the NHS is called only when it's really needed</li>
+    </ul></div>
+    <div class="answers"><span>${o?"For someone I care for":"For me"} · Lives in a care home</span><button type="button" class="linkbtn" data-redo>Change answers</button></div>
+    <div class="node c-you" style="gap:10px"><span class="k">Next step</span><h3>Tell us which care home</h3>
+      <span class="d">We'll contact the home's manager about working with Verada. Once the home is with us, families can add extras for their relative.</span>
+      <form id="chForm" style="display:flex;flex-direction:column;gap:8px;max-width:420px">
+        <label for="chName" class="d">Care home name</label><input id="chName" required style="font:inherit;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)">
+        <label for="chTown" class="d">Town</label><input id="chTown" style="font:inherit;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)">
+        <div class="nav"><button class="btn" type="submit">Continue</button></div>
+      </form>
+      <p id="chDone" class="why" hidden></p>
+    </div>`;
+  s.appendChild(siteLink("social"));
+  s.appendChild(foot("Care home pathway in design: this screen is the starting point."));
+  setTimeout(()=>{const fm=s.querySelector("#chForm");if(!fm)return;fm.addEventListener("submit",e=>{e.preventDefault();
+    const n=s.querySelector("#chName").value.trim();const d=s.querySelector("#chDone");
+    d.textContent=`Thank you. This is where the care home pathway begins for ${n}: questions about the home and the resident follow here. (Prototype: nothing has been sent.)`;d.hidden=false;fm.style.display="none";});},0);
+  return s;
+}
+
+const ROLE_PITCH={
+ rm:"When a resident looks unwell at 2 a.m., your carer talks to our nurse, runs a one-minute check, and our team decides and prescribes. Your staff aren't left on their own, and nobody goes to A&E just to be safe.",
+ dom:"Your carers see a client for half an hour. We watch the other twenty-three, contactlessly, and call your team or the family when something changes, so problems are caught before the next visit.",
+ flow:"Tell us who's ready, and we'll accept the same day and move them within 24 hours to a bed where someone is watching around the clock. We track every readmission and report it back to you."
+};
+/* ---------- Organisation result ---------- */
+const SITE="https://verada.health/CIC/VeradaCIC-2.html";
+const SITE_SEC={healthcare:"Verada for private hospitals",social:"Verada in care homes and the community",pathways:"Verada clinical pathways",home:"About Verada CIC"};
+function siteLink(sec){const n=document.createElement("p");n.className="more";if(SENT){n.innerHTML=`Read more: <a href="#" data-goto="recovery">Recovery and rehabilitation with Verada Sentinel</a>`;return n;}n.innerHTML=`Read more: <a href="${SITE}#${sec}" target="_blank" rel="noopener">${SITE_SEC[sec]}</a>`;return n;}
+function stubForm(title,desc,fields,doneMsg){
+  const id="f"+Math.random().toString(36).slice(2,7);
+  const inputs=fields.map((f,i)=>`<label for="${id}${i}" class="d">${f}</label><input id="${id}${i}" ${i===0?"required":""} style="font:inherit;padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)">`).join("");
+  const n=document.createElement("div");n.className="node c-you";n.style.gap="10px";
+  n.innerHTML=`<span class="k">Next step</span><h3>${title}</h3><span class="d">${desc}</span><form style="display:flex;flex-direction:column;gap:8px;max-width:420px">${inputs}<div class="nav"><button class="btn" type="submit">Continue</button></div></form><p class="why" hidden></p>`;
+  const fm=n.querySelector("form"),p=n.querySelector("p.why");
+  fm.addEventListener("submit",e=>{e.preventDefault();p.textContent=doneMsg+" (Prototype: nothing has been sent.)";p.hidden=false;fm.style.display="none";});
+  return n;
+}
+function steps(list){
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  list.forEach(([k,d],i)=>add(box("c-nurse",`Step ${i+1}`,k,d),i===0));
+  f.appendChild(arrow());
+  f.appendChild(box("triage c-nurse","Behind every step","One 24/7 Virtual RN hub","The same Verada CIC nurses, GP and clinical pharmacist, acting on every signal, under one clinical safety case."));
+  return f;
+}
+function renderOrg(){
+  const O0=ORG[V()],R=O0.roles.find(r=>r[0]===A.role)||O0.roles[0],O=Object.assign({},O0,R[4]||{});
+  const s=document.createElement("section");s.className="res";
+  s.innerHTML=`<div class="plan"><span class="k">Verada for</span><span class="pn">${A.visitor==="cons"?R[1]:O.name}</span>
+    <p class="why" style="font-size:15.5px;color:var(--ink)">“${(ROLE_PITCH[A.role]||O.pitch)}”</p></div>
+    <div class="answers"></div>
+    <div class="node"><span class="k">${A.visitor==="cons"?"In "+R[1].toLowerCase():"For a "+R[1].toLowerCase()}</span><h3>What you care about</h3><span class="d">${R[2]}</span><h3>What we'd show you</h3><span class="d">${R[3]}</span></div>
+    <div class="ongoing"><div class="cad"><b>${A.visitor==="cons"?"What we offer":"What you'd buy"}</b><span class="tp"><span>${O.buy}</span></span></div><div class="cad"><b>${O.unitLabel||"How it's charged"}</b><span class="tp"><span>${O.unit}</span></span></div><div class="cad" style="grid-column:1/-1"><b>Pilot we'd propose</b><span class="tp"><span>${O.pilot}</span></span></div></div>
+    <div class="lines">${O.lines.map(([h,d])=>`<div class="cad"><b>${h}</b><span class="tp"><span>${d}</span></span></div>`).join("")}</div>
+    <h2>How it works</h2>`;
+  s.appendChild(steps(O.flow));
+  const fw=document.createElement("p");fw.className="fw";fw.innerHTML=`<b>Works with</b> ${O.fw}`;s.appendChild(fw);
+  const gv=document.createElement("div");gv.className="node gov";gv.innerHTML=`<span class="k">Governance</span><ul><li>DCB0160 clinical safety case for the service</li><li>DCB0129 from each device manufacturer</li><li>Data Security and Protection Toolkit and UK GDPR</li><li>Cyber Essentials Plus (in progress)</li><li>Your Clinical Safety Officer signs off before any service starts</li></ul>`;s.appendChild(gv);
+  s.appendChild(siteLink(O.site||"home"));
+  s.appendChild(stubForm(O.cta[0],O.cta[1],["Organisation","Your name","Work email"],"Thank you. This is where an enquiry from your organisation would start."));
+  const ft=document.createElement("div");ft.className="foot";ft.innerHTML=`<p>Verada CIC is preparing for CQC registration. Regulated activity begins only once registration, Clinical Safety Officer sign-off and the go-live gates are in place. Figures and terms are proposals for discussion.</p>`;
+  s.appendChild(ft);return s;
+}
+
+/* ---------- Leaving hospital result ---------- */
+function renderRehab(){
+  const o=other(),s=document.createElement("section");s.className="res";
+  const they=o?"they":"you",their=o?"their":"your",them=o?"them":"you";
+  s.innerHTML=`<div class="plan"><span class="k">In development</span><span class="pn">Stroke rehabilitation with Verada</span>
+    <ul>
+      <li>A therapy plan built around ${their} goals, with physiotherapy, speech and language therapy and memory and thinking support</li>
+      <li>Monitoring between therapy sessions, watched by Verada's 24/7 nurse team</li>
+      <li>A clear way to get help quickly if something changes, and regular reviews by the therapy team</li>
+      <li>A planned handover to ${their} GP and community services at the end</li>
+    </ul>
+    <p class="why">We're building this pathway with stroke specialists, in line with the national stroke guideline. It isn't available to patients yet. Leave your details and we'll let ${them} know when it opens near ${them}. In the meantime, ${their} stroke team and GP remain the people to ask about rehabilitation.</p></div>
+    <div class="answers"></div><h2>How it would work for ${them}</h2>`;
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  const first={hosp:["In hospital","Referral from the stroke team","The stroke team refers before "+they+" leave hospital, with "+their+" agreement."],home:["At home","Referral","A referral from "+their+" stroke team, GP or community team, or "+they+" can contact us directly."],unit:["Care home or rehab unit","Referral","A referral from the unit's team, with a plan for the move home."]}[A.rnow]||["Start","Referral",""];
+  add(box("c-you",first[0],first[1],first[2]),true);
+  add(box("c-nurse","Remote nurse and therapists","Assessment and goals","We check the pathway is right for "+them+", record a starting point, and agree goals in "+their+" own words."));
+  add(box("c-nurse","Before therapy starts","Getting ready","Medicines, blood pressure and other health problems are checked, so "+they+" can get the most from therapy."));
+  add(box("c-phys","Weeks of therapy","Therapy with monitoring","Sessions with the therapy team for movement, speech and thinking, with monitoring between sessions and a nurse watching around the clock."));
+  add(box("triage c-nurse","Remote nurse, 24/7","Something changes","If something worries "+them+" or the readings change, "+they+" can ask for a review at any time. Urgent problems go to 999."));
+  add(box("c-nurse","Regular reviews","Team review","The therapy team reviews progress and adjusts the plan."));
+  add(box("c-you","End of the pathway","Handover","A clear summary to "+their+" GP and community services, with ongoing support at home available if "+they+" want it."));
+  s.appendChild(f);
+  s.appendChild(stubForm("Register interest","We'll let you know when stroke rehabilitation opens in your area.",["Your name","Town or hospital","Email"],"Thank you. This is where registering interest in stroke rehabilitation would start."));
+  s.appendChild(siteLink("pathways"));
+  s.appendChild(foot("Stroke rehabilitation is in design with stroke clinicians and is not yet offered."));
+  return s;
+}
+function renderCardioResp(){
+  const o=other(),s=document.createElement("section");s.className="res";
+  const they=o?"they":"you",their=o?"their":"your",them=o?"them":"you",lung=A.rtype==="lung";
+  const prog=lung?"lung rehab (pulmonary rehabilitation)":"heart rehab (cardiac rehabilitation)",short=lung?"lung rehab":"heart rehab";
+  s.innerHTML=`<div class="plan"><span class="k">In development</span><span class="pn">Extra support alongside ${short}</span>
+    <ul>
+      <li>Works alongside ${their} NHS rehab programme, so ${they} get the most from it and finish it</li>
+      <li>A contactless sensor that tracks night-time breathing, sleep and activity, watched by Verada's 24/7 nurse team</li>
+      <li>Quick checks when something changes: oxygen level, temperature${lung?" and peak flow against "+their+" personal best":" and heart rhythm"}, and lab blood tests when needed, taken at home by a visiting phlebotomist, with results usually in 2 to 3 days</li>
+      <li>A short mood questionnaire, because low mood often holds recovery back</li>
+      <li>Our GP and clinical pharmacist can act quickly, and a summary goes to ${their} GP and rehab team</li>
+    </ul>
+    <p class="why">We're developing this with NHS rehab teams. It isn't available to patients yet. Leave your details and we'll let ${them} know when it opens near ${them}. ${A.rprog==="no"?"In the meantime, ask "+their+" GP or hospital team about a referral to "+prog+".":"In the meantime, "+their+" rehab team and GP remain the people to ask."}</p></div>
+    <div class="answers"></div><h2>How it would work for ${them}</h2>`;
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  const first={on:["Already on the programme","Joining alongside rehab","With "+their+" agreement, we link up with "+their+" rehab team and fit around the sessions."],wait:["While waiting","Starting before the first session","Monitoring can start while "+they+" wait, so the rehab team has a picture from day one."],no:["First","Referral to rehab","Rehab needs a referral from "+their+" GP or hospital team. We can join once "+they+" are referred."]}[A.rprog]||["Start","Referral",""];
+  add(box("c-you",first[0],first[1],first[2]),true);
+  add(box("c-nurse","Remote nurse","Welcome call and goals","Health, medicines and what "+they+" want to get back to doing, in "+their+" own words."));
+  add(box("c-phys","Every night and day","Watching between sessions","Night-time breathing rate, sleep and activity, with a short mood questionnaire every couple of weeks."));
+  add(box("triage c-nurse","Remote nurse, 24/7","Something changes","A one-minute check at "+their+" rehab session or at home. If a blood test is needed, a phlebotomist visits and the lab reports in 2 to 3 days. Anything that can't wait goes to urgent community response or 999. Our GP and pharmacist can adjust medicines once the picture is clear. Low mood is referred to NHS Talking Therapies. Urgent problems go to 999."));
+  add(box("c-nurse","Throughout","Keeping rehab on track","Attendance and progress are shared with the rehab team, so problems that could make "+them+" drop out are caught early."));
+  add(box("c-you","End of the programme","Handover","A clear summary to "+their+" GP, with ongoing support at home available if "+they+" want it."));
+  s.appendChild(f);
+  s.appendChild(stubForm("Register interest","We'll let you know when this opens in your area.",["Your name","Town or hospital","Email"],"Thank you. This is where registering interest in rehabilitation support would start."));
+  s.appendChild(siteLink("home"));
+  s.appendChild(foot("Heart and lung rehabilitation support is in design with NHS rehab teams and is not yet offered. Verada does not replace the NHS rehab programme."));
+  return s;
+}
+function renderStep(){
+  const o=other(),s=document.createElement("section");s.className="res";
+  const they=o?"they":"you",their=o?"their":"your";
+  const nhs=A.pay==="nhs";
+  s.innerHTML=`<div class="plan"><span class="k">${nhs?"Ask the discharge team about":"Suggested next step"}</span><span class="pn">${nhs?"A recovery stay with Verada":"A recovery stay with nurses on hand"}</span>
+    <ul>
+      <li>A room in a partner care home, ${nhs?"arranged by the NHS or council":"for a few weeks of recovery"}</li>
+      <li>Watched day and night by Verada's 24/7 nurse team, with a contactless sensor</li>
+      <li>Blood tests by a visiting phlebotomist and prescribing in the home, so small problems don't mean going back to hospital</li>
+      <li>A recovery plan from day one, with going home as the goal</li>
+    </ul>
+    <p class="why">${nhs?"Where the local NHS has arranged recovery stays with Verada, the discharge team can refer "+(o?"them":"you")+" directly. If they haven't, tell us the hospital and we'll raise it with the local NHS.":"Price per week, set by the care home, to be confirmed. "+(A.pay==="unsure"?"If the NHS or council ends up arranging the stay, ask the discharge team about a recovery stay with Verada.":"")}</p></div>
+    <div class="answers"></div><h2>How it works for ${o?"them":"you"}</h2>`;
+  const f=document.createElement("div");f.className="flow";const add=flowBuilder(f);
+  add(box("c-you","In hospital",nhs?"Discharge team refers":"Tell us about the stay",nhs?"The ward's discharge team refers "+(o?"them":"you")+" to a Verada recovery stay.":"Tell us the hospital and when "+they+" expect to leave. We check the ward's discharge plan with "+their+" agreement."),true);
+  add(box("c-nurse","Within 24 hours · Remote nurse","Accepted and moved","We can usually say yes the same day, using the hospital's own assessment, and arrange the move within 24 hours."));
+  add(box("c-phys","Every day and night","Recovery with 24/7 cover","A sensor under the mattress, our nurses watching overnight, blood tests and prescribing without leaving the home, and therapy goals each week."));
+  add(box("c-nurse","Before going home · Remote nurse","Getting ready for home","Planning with family, the GP and any community services, so "+they+" go home safely."));
+  add(box("c-you","Home","Back home","A clear handover to "+their+" GP. If "+they+" would like someone watching at home too, "+they+" can move to a Home Assurance plan."));
+  s.appendChild(f);
+  s.appendChild(stubForm(nhs?"Tell us the hospital":"Tell us about the stay","We'll check what's available nearby.",["Hospital","Expected leaving date"],"Thank you. This is where the recovery stay enquiry would start."));
+  s.appendChild(siteLink("social"));
+  s.appendChild(foot("Recovery stays are run with partner care homes. Availability depends on the area."));
+  return s;
+}
+
+/* ---------- Router ---------- */
+function render(){
+  const Qs=questions();
+  if(step<Qs.length){renderQ();return;}
+  bar.style.width="100%";
+  if(A.where==="carehome"&&A.path==="well")brand.textContent="Verada for care homes";
+  if(A.visitor!=="ind")brand.textContent=A.visitor==="cons"?"Verada for clinicians":"Verada for organisations";else if(A.path==="step")brand.textContent="Verada recovery stays";else if(A.path==="rehab")brand.textContent="Verada rehabilitation";
+  const s=A.visitor!=="ind"?renderOrg():A.path==="rec"?renderRec():A.path==="step"?renderStep():A.path==="rehab"?(A.rtype==="stroke"?renderRehab():renderCardioResp()):(A.where==="carehome"?renderCareHome():renderWell());
+  editing=false;
+  const an=s.querySelector(".answers");if(an){an.replaceChildren();const lab=document.createElement("span");lab.textContent="Your answers (tap to change):";an.appendChild(lab);an.appendChild(crumbs(Qs.length));const r=document.createElement("button");r.type="button";r.className="linkbtn";r.dataset.redo="";r.textContent="Start again";an.appendChild(r);}
+  app.replaceChildren(s);
+  s.querySelectorAll("[data-redo]").forEach(b=>b.onclick=()=>{Object.keys(A).forEach(k=>A[k]=k==="goals"?new Set():null);step=0;render();window.scrollTo({top:0});});
+  const tw=s.querySelector("#toWell");if(tw)tw.onclick=()=>{A.need="well";A.path="well";step=questions().findIndex(q=>q.key==="where");render();};
+}
+/* ---------- Embedded on the home page ---------- */
+const EMBED=/[?&]embed=1/.test(location.search)||window.PF_EMBED===1;
+if(EMBED){
+  const H=document.documentElement;H.classList.add("embed","card");H.setAttribute("data-theme","dark");
+  const post=m=>parent.postMessage(Object.assign({pf:1},m),"*");
+  const sendH=()=>post({type:"height",h:Math.ceil(document.querySelector(".wrap").getBoundingClientRect().bottom+6)});
+  const base=render;
+  render=function(){
+    base();
+    const done=step>=questions().length;H.classList.toggle("done",done);
+    if(done){
+      const p=app.querySelector(".plan");
+      if(p&&!p.querySelector(".teaser")){const t=document.createElement("div");t.className="teaser";
+        t.innerHTML='<button type="button" class="btn" data-open>See your full plan</button><button type="button" class="linkbtn" data-restart>Start again</button>';
+        t.querySelector("[data-open]").onclick=()=>post({type:"open"});
+        t.querySelector("[data-restart]").onclick=()=>{Object.keys(A).forEach(k=>A[k]=k==="goals"?new Set():null);step=0;render();};
+        p.appendChild(t);}
+      post({type:"result",pn:(p&&p.querySelector(".pn")||{}).textContent||""});
+    }else post({type:"step",step,done:false});
+    requestAnimationFrame(sendH);
+  };
+  new ResizeObserver(sendH).observe(document.querySelector(".wrap"));
+  document.addEventListener("click",e=>{const a=e.target.closest("[data-goto]");if(a){e.preventDefault();post({type:"goto",id:a.dataset.goto});}});
+  addEventListener("message",e=>{const d=e.data||{};if(!d.pf)return;
+    if(d.type==="mode"){H.classList.toggle("card",d.mode==="card");H.classList.toggle("sheet",d.mode==="sheet");scrollTo(0,0);sendH();}
+  });
+}
+render();
+<\/script>
+</script>
+<script>
+/* Plan finder host: questions run inside the hero card; when a plan is ready, the card grows into a full-screen sheet. */
+(function(){
+  var fr=document.getElementById('pf-frame');
+  var QUIZ=document.getElementById('pf-quiz').textContent.split('<\\/script>').join('<\/script>');
+  fr.srcdoc='<scr'+'ipt>window.PF_EMBED=1;window.PF_SENTINEL=1<\/scr'+'ipt>'+QUIZ;
+  var pf=document.getElementById('pf'),slot=pf.parentNode,isOpen=false;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tell(m){m.pf=1;fr.contentWindow.postMessage(m,'*');}
+  function open(push){
+    if(isOpen)return;isOpen=true;var r=pf.getBoundingClientRect();
+    var onScreen=r.bottom>0&&r.top<innerHeight;
+    slot.style.height=r.height+'px';
+    if(!onScreen)r={top:innerHeight*0.15,left:innerWidth*0.1,width:innerWidth*0.8,height:innerHeight*0.7};
+    pf.style.top=r.top+'px';pf.style.left=r.left+'px';pf.style.width=r.width+'px';pf.style.height=r.height+'px';
+    pf.classList.add('open');document.body.classList.add('pf-open');
+    void pf.offsetWidth;pf.classList.add('full');
+    tell({type:'mode',mode:'sheet'});
+    if(push!==false)try{history.pushState({pf:1},'')}catch(e){}
+    pf.focus({preventScroll:true});
+  }
+  function close(fromPop,then){
+    if(!isOpen)return;isOpen=false;
+    var r=slot.getBoundingClientRect();
+    pf.style.top=r.top+'px';pf.style.left=r.left+'px';pf.style.width=r.width+'px';pf.style.height=r.height+'px';
+    pf.classList.remove('full');tell({type:'mode',mode:'card'});
+    var done=function(){if(isOpen)return;pf.classList.remove('open');pf.removeAttribute('style');slot.style.height='';document.body.classList.remove('pf-open');if(then)then();};
+    if(reduce)done();else setTimeout(done,400);
+    if(!fromPop&&history.state&&history.state.pf)try{history.back()}catch(e){}
+  }
+  addEventListener('message',function(e){
+    var d=e.data||{};if(!d.pf||e.source!==fr.contentWindow)return;
+    if(d.type==='height'&&!isOpen)fr.style.height=Math.max(200,d.h)+'px';
+    if(d.type==='result')pf.classList.add('done');
+    if(d.type==='step')pf.classList.remove('done');
+    if(d.type==='result'||d.type==='open'||(d.type==='step'&&d.step>0))open();
+    if(d.type==='goto')close(false,function(){var t=document.getElementById(d.id);if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth'});});
+  });
+  addEventListener('popstate',function(){if(isOpen)close(true);});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen)close();});
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-pf-open]'))open();
+    if(e.target.closest('[data-pf-close]'))close();
+  });
+})();
+</script>
+</body>
+</html>
